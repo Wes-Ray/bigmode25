@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Logger="*res://logger.gd"
 GameConfig="*res://scripts/config.gd"
+EnemyVariables="*res://dallas_folder/enemy_variables.gd"
 
 [display]
 

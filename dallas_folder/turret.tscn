@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://t37eul41x86d"]
+
+[ext_resource type="Script" path="res://dallas_folder/turret.gd" id="1_xb7b7"]
+
+[node name="Turret" type="Node3D"]
+script = ExtResource("1_xb7b7")
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="Top" type="Node3D" parent="Mesh"]
+unique_name_in_owner = true
+
+[node name="Barrell" type="CSGBox3D" parent="Mesh/Top"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00580204, 1.48025, 0.509004)
+size = Vector3(0.283081, 0.120117, 1)
+
+[node name="PivotPoint" type="CSGBox3D" parent="Mesh/Top"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00252888, 1.12029, -0.00542018)
+size = Vector3(0.570313, 0.691284, 0.396484)
+
+[node name="BottomBox" type="CSGBox3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.517461, 0)

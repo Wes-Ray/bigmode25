@@ -9,7 +9,7 @@ size = Vector3(0.526955, 0.0853882, 0.848694)
 [sub_resource type="SphereShape3D" id="SphereShape3D_vkq2q"]
 radius = 0.0518926
 
-[node name="Ship" type="CharacterBody3D"]
+[node name="Ship" type="CharacterBody3D" groups=["ship"]]
 motion_mode = 1
 script = ExtResource("1_mn80g")
 
