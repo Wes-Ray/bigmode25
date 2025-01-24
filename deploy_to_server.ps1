@@ -1,21 +1,15 @@
 # Configuration deployment.json must be in project root directory
-# {
-#    "godot_path": "C:\\Users\\wes\\Documents\\windev\\Godot_v4.3-stable_win64.exe",
-#    "project_path": "C:\\Users\\wes\\Documents\\windev\\bigmode25\\project.godot",
-#    "build_path": "C:\\Users\\wes\\Documents\\windev\\bigmode25\\build\\web"
-# }
 
+if (-not (Test-Path "deployment.json")) {
+   Write-Host "[!] deployment.json not found in project root, see README"
+   exit 1
+}
 $config = Get-Content -Path "deployment.json" | ConvertFrom-Json
 $GODOT_PATH = $config.godot_path
 $PROJECT_PATH = $config.project_path
 $BUILD_PATH = $config.build_path
 
 $REMOTE_SERVER = "blog"  # key config must be setup in .ssh
-# C:\Users\wes\.ssh/config
-# Host blog
-#     Hostname 45.33.123.239
-#     User wes
-#     IdentityFile ~/.ssh/KEYNAME
 
 $REMOTE_PATH = "/home/wes/blog/gamejam"
 $PROJECT_NAME = "bigmode25-dev-" + $env:USERNAME
@@ -42,7 +36,11 @@ if ($buildProcess.ExitCode -eq 0) {
    $wslSource = $wslSource -replace "C:", "/mnt/c"
    
    # Execute rsync command through WSL
-   wsl rsync -avz --delete --include="${PROJECT_NAME}.*" --exclude="*" "${wslSource}/" "${REMOTE_SERVER}:${REMOTE_PATH}/"
+   $rsyncResult = wsl rsync -avz --delete --include="${PROJECT_NAME}.*" --exclude="*" "${wslSource}/" "${REMOTE_SERVER}:${REMOTE_PATH}/"
+   if ($LASTEXITCODE -ne 0) {
+      Write-Host "[!] Rsync failed with exit code: $LASTEXITCODE"
+      exit 1
+  }
    
    Write-Host
    Write-Host "[*] Deployment for '$PROJECT_NAME' complete!"
