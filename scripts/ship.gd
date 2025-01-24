@@ -18,8 +18,12 @@ var speed := min_speed
 @export var yaw_speed := 1.
 @export var roll_speed := 20.
 
+@onready var health_component : HealthComponent = %HealthComponent
+
 func _ready() -> void:
 	assert(camera_rig, "camera rig must be added before adding to scene")
+	#TODO: make a separate function / signal for when player dies to projectiles
+	health_component.died.connect(_died)
 
 func _process(delta: float) -> void:
 	var forward := basis.z
@@ -84,9 +88,19 @@ func _process(delta: float) -> void:
 	Logger.log("speed", speed)
 	velocity = forward * speed
 	move_and_slide()
+	Logger.log("health", health_component.current_health)
 
 func _on_collision_area_body_entered(_body: Node3D) -> void:
 	# TODO: add explodies
 	# print("collied: ", _body)
+	player_crashed.emit()
+	queue_free()
+
+func _on_collision_area_area_entered(area: Area3D) -> void:
+	if area.is_in_group("projectile_hitbox"):
+		health_component.take_damage(1)
+
+
+func _died() -> void:
 	player_crashed.emit()
 	queue_free()

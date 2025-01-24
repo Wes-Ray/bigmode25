@@ -1,26 +1,19 @@
 # Configuration deployment.json must be in project root directory
-# {
-#    "godot_path": "C:\\Users\\wes\\Documents\\windev\\Godot_v4.3-stable_win64.exe",
-#    "project_path": "C:\\Users\\wes\\Documents\\windev\\bigmode25\\project.godot",
-#    "build_path": "C:\\Users\\wes\\Documents\\windev\\bigmode25\\build\\web"
-# }
 
+if (-not (Test-Path "deployment.json")) {
+   Write-Host "[!] deployment.json not found in project root, see README"
+   exit 1
+}
 $config = Get-Content -Path "deployment.json" | ConvertFrom-Json
 $GODOT_PATH = $config.godot_path
 $PROJECT_PATH = $config.project_path
 $BUILD_PATH = $config.build_path
 
-$REMOTE_SERVER = "gamejam"  # key must be setup in .ssh
-# $REMOTE_SERVER = "blog"
+$REMOTE_SERVER = "blog"  # key config must be setup in .ssh
+
 $REMOTE_PATH = "/home/wes/blog/gamejam"
 $PROJECT_NAME = "bigmode25-dev-" + $env:USERNAME
 $URL = "https://ogsyn.dev/gamejam/$PROJECT_NAME.html"
-
-Write-Host $PROJECT_NAME
-Write-Host $GODOT_PATH
-Write-Host $PROJECT_PATH
-Write-Host $PROJECT_PATH
-Write-Host $BUILD_PATH
 
 # Remove existing build directory if it exists
 if (Test-Path $BUILD_PATH) {
@@ -31,8 +24,18 @@ if (Test-Path $BUILD_PATH) {
 # Create fresh build directory
 New-Item -ItemType Directory -Force -Path $BUILD_PATH
 
+# Check if necessary paths exist before trying to build
+$paths = @($GODOT_PATH, $PROJECT_PATH, $BUILD_PATH)
+foreach ($path in $paths) {
+   if (-not (Test-Path $path)) {
+       Write-Host "[!] Path not found: $path"
+       exit 1
+   }
+}
+
 # Build the web export
 Write-Host "[*] Building web export..."
+
 $buildProcess = Start-Process -FilePath $GODOT_PATH -ArgumentList "--headless", "--export-release", "Web", "$BUILD_PATH\$PROJECT_NAME.html", $PROJECT_PATH -NoNewWindow -PassThru -Wait
 
 if ($buildProcess.ExitCode -eq 0) {
@@ -44,6 +47,10 @@ if ($buildProcess.ExitCode -eq 0) {
    
    # Execute rsync command through WSL
    wsl rsync -avz --delete --include="${PROJECT_NAME}.*" --exclude="*" "${wslSource}/" "${REMOTE_SERVER}:${REMOTE_PATH}/"
+   if ($LASTEXITCODE -ne 0) {
+      Write-Host "[!] Rsync failed with exit code: $LASTEXITCODE"
+      exit 1
+  }
    
    Write-Host
    Write-Host "[*] Deployment for '$PROJECT_NAME' complete!"
