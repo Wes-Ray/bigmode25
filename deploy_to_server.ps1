@@ -10,17 +10,16 @@ $GODOT_PATH = $config.godot_path
 $PROJECT_PATH = $config.project_path
 $BUILD_PATH = $config.build_path
 
-$REMOTE_SERVER = "gamejam"  # key must be setup in .ssh
-# $REMOTE_SERVER = "blog"
+$REMOTE_SERVER = "blog"  # key config must be setup in .ssh
+# C:\Users\wes\.ssh/config
+# Host blog
+#     Hostname 45.33.123.239
+#     User wes
+#     IdentityFile ~/.ssh/KEYNAME
+
 $REMOTE_PATH = "/home/wes/blog/gamejam"
 $PROJECT_NAME = "bigmode25-dev-" + $env:USERNAME
 $URL = "https://ogsyn.dev/gamejam/$PROJECT_NAME.html"
-
-Write-Host $PROJECT_NAME
-Write-Host $GODOT_PATH
-Write-Host $PROJECT_PATH
-Write-Host $PROJECT_PATH
-Write-Host $BUILD_PATH
 
 # Remove existing build directory if it exists
 if (Test-Path $BUILD_PATH) {
