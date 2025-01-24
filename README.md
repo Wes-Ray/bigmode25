@@ -12,7 +12,7 @@
 
 - Set up godot export in godot editor (download web export by project>export>manage export template>download and install)
 - generate SSH public key in your PS/windows (users/YOURNAME/.ssh), send the .pub to be put on VPS
-- create ssh config in windows (don't change User, that is VPS username)
+- create ssh config in windows, update IP and KEYNAME to match your private key name in .ssh (don't change User, that is VPS username)
 
 C:\Users\wes\.ssh\config  
 Host blog  

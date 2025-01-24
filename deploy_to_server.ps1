@@ -26,6 +26,7 @@ New-Item -ItemType Directory -Force -Path $BUILD_PATH
 
 # Build the web export
 Write-Host "[*] Building web export..."
+
 $buildProcess = Start-Process -FilePath $GODOT_PATH -ArgumentList "--headless", "--export-release", "Web", "$BUILD_PATH\$PROJECT_NAME.html", $PROJECT_PATH -NoNewWindow -PassThru -Wait
 
 if ($buildProcess.ExitCode -eq 0) {
@@ -36,6 +37,7 @@ if ($buildProcess.ExitCode -eq 0) {
    $wslSource = $wslSource -replace "C:", "/mnt/c"
    
    # Execute rsync command through WSL
+   Write-Host 'Running: wsl rsync -avz --delete --include="${PROJECT_NAME}.*" --exclude="*" "${wslSource}/" "${REMOTE_SERVER}:${REMOTE_PATH}/'
    $rsyncResult = wsl rsync -avz --delete --include="${PROJECT_NAME}.*" --exclude="*" "${wslSource}/" "${REMOTE_SERVER}:${REMOTE_PATH}/"
    if ($LASTEXITCODE -ne 0) {
       Write-Host "[!] Rsync failed with exit code: $LASTEXITCODE"
