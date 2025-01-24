@@ -24,6 +24,15 @@ if (Test-Path $BUILD_PATH) {
 # Create fresh build directory
 New-Item -ItemType Directory -Force -Path $BUILD_PATH
 
+# Check if necessary paths exist before trying to build
+$paths = @($GODOT_PATH, $PROJECT_PATH, $BUILD_PATH)
+foreach ($path in $paths) {
+   if (-not (Test-Path $path)) {
+       Write-Host "[!] Path not found: $path"
+       exit 1
+   }
+}
+
 # Build the web export
 Write-Host "[*] Building web export..."
 
@@ -37,8 +46,7 @@ if ($buildProcess.ExitCode -eq 0) {
    $wslSource = $wslSource -replace "C:", "/mnt/c"
    
    # Execute rsync command through WSL
-   Write-Host 'Running: wsl rsync -avz --delete --include="${PROJECT_NAME}.*" --exclude="*" "${wslSource}/" "${REMOTE_SERVER}:${REMOTE_PATH}/'
-   $rsyncResult = wsl rsync -avz --delete --include="${PROJECT_NAME}.*" --exclude="*" "${wslSource}/" "${REMOTE_SERVER}:${REMOTE_PATH}/"
+   wsl rsync -avz --delete --include="${PROJECT_NAME}.*" --exclude="*" "${wslSource}/" "${REMOTE_SERVER}:${REMOTE_PATH}/"
    if ($LASTEXITCODE -ne 0) {
       Write-Host "[!] Rsync failed with exit code: $LASTEXITCODE"
       exit 1
