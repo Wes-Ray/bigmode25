@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://wk8ox7egbudr"]
+
+[ext_resource type="Script" path="res://scripts/ship.gd" id="1_mn80g"]
+[ext_resource type="PackedScene" uid="uid://b72sm1bsxqrm6" path="res://assets/ship/ship01.glb" id="2_x6yu6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2d3l7"]
+size = Vector3(0.526955, 0.0853882, 0.848694)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vkq2q"]
+radius = 0.0518926
+
+[node name="Ship" type="CharacterBody3D"]
+motion_mode = 1
+script = ExtResource("1_mn80g")
+
+[node name="collision_area" type="Area3D" parent="."]
+
+[node name="Collision" type="CollisionShape3D" parent="collision_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128547, -0.0161324, -0.800429)
+shape = SubResource("BoxShape3D_2d3l7")
+
+[node name="ignored" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.818169)
+shape = SubResource("SphereShape3D_vkq2q")
+disabled = true
+
+[node name="ship01" parent="." instance=ExtResource("2_x6yu6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.24699)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="ship01"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.374317, 2.6339)
+light_color = Color(0.69, 0.67965, 0.621, 1)
+light_energy = 0.1
+
+[connection signal="body_entered" from="collision_area" to="." method="_on_collision_area_body_entered"]

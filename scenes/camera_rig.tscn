@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bag23ibu3ddf1"]
+
+[ext_resource type="Script" path="res://scripts/camera_rig.gd" id="1_6dard"]
+
+[node name="CameraRig" type="Node3D"]
+script = ExtResource("1_6dard")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.265811, 0)
+spring_length = -3.5
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+fov = 95.0

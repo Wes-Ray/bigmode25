@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://dku57g8dxn61d"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_i74l5"]
+[ext_resource type="PackedScene" uid="uid://wk8ox7egbudr" path="res://scenes/ship.tscn" id="2_dow6u"]
+[ext_resource type="PackedScene" uid="uid://bag23ibu3ddf1" path="res://scenes/camera_rig.tscn" id="3_jvdo8"]
+[ext_resource type="PackedScene" uid="uid://bv2g21feowrn3" path="res://scenes/hud.tscn" id="4_mt3ol"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qebr8"]
+sky_curve = 0.166435
+
+[sub_resource type="Sky" id="Sky_55tyi"]
+sky_material = SubResource("ProceduralSkyMaterial_qebr8")
+
+[sub_resource type="Environment" id="Environment_yb4a2"]
+background_mode = 2
+sky = SubResource("Sky_55tyi")
+
+[node name="Level01" type="Node3D" node_paths=PackedStringArray("spawn_point")]
+script = ExtResource("1_i74l5")
+spawn_point = NodePath("SpawnPoint")
+ship_scene = ExtResource("2_dow6u")
+camera_scene = ExtResource("3_jvdo8")
+hud_scene = ExtResource("4_mt3ol")
+
+[node name="SpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.61476, 0)
+
+[node name="DebugSpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.46637, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.10074, -0.233154, -0.512939)
+size = Vector3(1000, 1, 1000)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yb4a2")
