@@ -46,7 +46,8 @@ if ($buildProcess.ExitCode -eq 0) {
    $wslSource = $wslSource -replace "C:", "/mnt/c"
    
    # Execute rsync command through WSL
-   wsl rsync -avz --delete --include="${PROJECT_NAME}.*" --exclude="*" "${wslSource}/" "${REMOTE_SERVER}:${REMOTE_PATH}/"
+   Write-Host 'Running: wsl rsync -avz --delete --include="${PROJECT_NAME}.*" --exclude="*" "${wslSource}/" "${REMOTE_SERVER}:${REMOTE_PATH}/'
+   $rsyncResult = wsl rsync -avz --delete --include="${PROJECT_NAME}.*" --exclude="*" "${wslSource}/" "${REMOTE_SERVER}:${REMOTE_PATH}/"
    if ($LASTEXITCODE -ne 0) {
       Write-Host "[!] Rsync failed with exit code: $LASTEXITCODE"
       exit 1
