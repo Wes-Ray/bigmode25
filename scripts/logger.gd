@@ -9,5 +9,5 @@ func get_speed() -> String:
 	if not debug_dict.has("speed"):
 		return "-1"
 	
-	var fmt_str :String= "[b]%0d[/b]" % (debug_dict["speed"] * 11.0)
+	var fmt_str :String= "[b]%0d[/b]" % (debug_dict["speed"] * 6.0)
 	return fmt_str
