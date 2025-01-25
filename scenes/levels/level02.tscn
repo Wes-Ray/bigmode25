@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b774jfc3aq5w8"]
+[gd_scene load_steps=9 format=3 uid="uid://dydrr63f746ur"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sebui"]
 [ext_resource type="PackedScene" uid="uid://wk8ox7egbudr" path="res://scenes/ship.tscn" id="2_kkbaq"]
 [ext_resource type="PackedScene" uid="uid://bag23ibu3ddf1" path="res://scenes/camera_rig.tscn" id="3_e40k6"]
 [ext_resource type="PackedScene" uid="uid://bv2g21feowrn3" path="res://scenes/hud.tscn" id="4_a4gyl"]
-[ext_resource type="PackedScene" uid="uid://dawdljhe76lky" path="res://scenes/levels/level_object_scenes/trench_01.tscn" id="5_c2qg7"]
+[ext_resource type="PackedScene" uid="uid://c1haih54swjor" path="res://scenes/levels/level_object_scenes/trench_01.tscn" id="5_c2qg7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lo2qf"]
 
