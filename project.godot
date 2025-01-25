@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="bigmode25"
-run/main_scene="res://scenes/levels/level01.tscn"
+run/main_scene="res://scenes/menus/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 Logger="*res://scripts/logger.gd"
 GameConfig="*res://scripts/config.gd"
 EventsBus="*res://scripts/events_bus.gd"
+
+[debug]
+
+gdscript/warnings/unused_signal=0
 
 [display]
 
