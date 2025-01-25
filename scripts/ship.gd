@@ -42,11 +42,16 @@ func _process(delta: float) -> void:
 		var current_to_target := basis.inverse() * target_basis
 		var rotation_diff := current_to_target.get_euler()
 
+		# dampen the roll speed on large pitch / yaw changes to stabilize their calculations (ship spaz fix)
+		var damp_roll_speed := roll_speed
+		if abs(rotation_diff.x) > 1.0 or abs(rotation_diff.y) > 1.0:
+			damp_roll_speed = roll_speed / 5.
+
 		# scaling so large camera rotation difference don't speed up rotations
 		var angular_velocity = Vector3(
 			sign(rotation_diff.x) * min(abs(rotation_diff.x), 1.0) * pitch_speed,
 			sign(rotation_diff.y) * min(abs(rotation_diff.y), 1.0) * yaw_speed,
-			sign(rotation_diff.z) * min(abs(rotation_diff.z), 1.0) * roll_speed
+			sign(rotation_diff.z) * min(abs(rotation_diff.z), 1.0) * damp_roll_speed
 		)
 
 		basis = basis.rotated(basis.x, angular_velocity.x * delta)
