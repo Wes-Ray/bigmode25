@@ -21,6 +21,10 @@ Logger="*res://scripts/logger.gd"
 GameConfig="*res://scripts/config.gd"
 EventsBus="*res://scripts/events_bus.gd"
 
+[debug]
+
+gdscript/warnings/unused_signal=0
+
 [display]
 
 window/size/viewport_width=2560

@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhjesns7d06ff"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_n6a6p"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n6a6p")
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1043.0
+offset_top = 682.0
+offset_right = 1102.0
+offset_bottom = 713.0
+scale = Vector2(5.76, 4.6)
+text = "PLAY"
+
+[node name="OptionsButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 927.0
+offset_top = 967.0
+offset_right = 1027.0
+offset_bottom = 998.0
+scale = Vector2(5.76, 4.16)
+text = "SETTINGS
+"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1137.0
+offset_top = 1218.0
+offset_right = 1189.0
+offset_bottom = 1249.0
+scale = Vector2(3.63601, 2.13762)
+text = "QUIT
+"
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 748.0
+offset_top = 265.0
+offset_right = 863.0
+offset_bottom = 288.0
+scale = Vector2(7.88, 8.64)
+text = "WILD WEASELS"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

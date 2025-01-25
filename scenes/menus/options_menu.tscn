@@ -1,0 +1,85 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqhlh27axx4qy"]
+
+[ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_si6tt"]
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_si6tt")
+
+[node name="Settings" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1186.0
+offset_top = -958.0
+offset_right = -1146.0
+offset_bottom = -918.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="Settings"]
+layout_mode = 0
+offset_left = -365.0
+offset_top = -103.0
+offset_right = 27.0
+offset_bottom = 29.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 4
+
+[node name="VBoxContainer" type="GridContainer" parent="Settings/PanelContainer/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="SensLabel" type="RichTextLabel" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 48
+text = "Sensitivity"
+
+[node name="SensSpinBox" type="SpinBox" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+max_value = 20.0
+step = 0.1
+
+[node name="InvertLabel" type="RichTextLabel" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 48
+text = "Invert Mouse"
+
+[node name="InvertCheckButton" type="CheckBox" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+
+[node name="Control" type="Control" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Back Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 80.0
+offset_right = 172.0
+offset_bottom = 109.0
+scale = Vector2(2.95722, 2.96)
+text = "BACK"
+
+[connection signal="value_changed" from="Settings/PanelContainer/MarginContainer/VBoxContainer/SensSpinBox" to="." method="_on_sens_spin_box_value_changed"]
+[connection signal="toggled" from="Settings/PanelContainer/MarginContainer/VBoxContainer/InvertCheckButton" to="." method="_on_invert_check_button_toggled"]
+[connection signal="pressed" from="Back Button" to="." method="_on_back_button_pressed"]
