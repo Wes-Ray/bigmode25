@@ -1,8 +1,8 @@
-class_name Turret
+class_name ProjectileTurret
 extends Node3D
 
 @export var attack_range := 2000
-@export var projectile : PackedScene = preload("res://scenes/turret/enemy_projectile.tscn")
+@export var projectile : PackedScene = preload("res://scenes/turrets/projectile_turret/enemy_projectile.tscn")
 var attack_ready := true
 
 @onready var attack_timer : Timer = %AttackTimer

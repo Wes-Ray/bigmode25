@@ -80,6 +80,7 @@ func _on_launch_button_button_up() -> void:
 
 func _on_restart_button_button_up() -> void:
 	get_tree().reload_current_scene()
+	EventsBus.game_reset.emit()
 
 func on_player_crashed() -> void:
 	Logger.log("player crashed", true)

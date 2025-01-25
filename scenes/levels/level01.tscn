@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://wk8ox7egbudr" path="res://scenes/ship.tscn" id="2_dow6u"]
 [ext_resource type="PackedScene" uid="uid://bag23ibu3ddf1" path="res://scenes/camera_rig.tscn" id="3_jvdo8"]
 [ext_resource type="PackedScene" uid="uid://bv2g21feowrn3" path="res://scenes/hud.tscn" id="4_mt3ol"]
-[ext_resource type="PackedScene" uid="uid://t37eul41x86d" path="res://scenes/turret/turret.tscn" id="5_8eek6"]
+[ext_resource type="PackedScene" uid="uid://t37eul41x86d" path="res://scenes/turrets/projectile_turret/projectile_turret.tscn" id="5_8eek6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qebr8"]
 sky_curve = 0.166435
