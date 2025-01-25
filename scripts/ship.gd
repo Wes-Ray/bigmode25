@@ -9,7 +9,9 @@ signal player_crashed
 @export var max_speed := 80.
 @export var min_speed := 50.
 @export var forward_accel := 10.
+@export var boost_accel_mod := 3.
 @export var forward_deccel := 14.
+@export var brake_deccel_mod := 2.
 
 var speed := min_speed
 
@@ -42,11 +44,16 @@ func _process(delta: float) -> void:
 		var current_to_target := basis.inverse() * target_basis
 		var rotation_diff := current_to_target.get_euler()
 
+		# dampen the roll speed on large pitch / yaw changes to stabilize their calculations (ship spaz fix)
+		var damp_roll_speed := roll_speed
+		if abs(rotation_diff.x) > 1.0 or abs(rotation_diff.y) > 1.0:
+			damp_roll_speed = roll_speed / 5.
+
 		# scaling so large camera rotation difference don't speed up rotations
 		var angular_velocity = Vector3(
 			sign(rotation_diff.x) * min(abs(rotation_diff.x), 1.0) * pitch_speed,
 			sign(rotation_diff.y) * min(abs(rotation_diff.y), 1.0) * yaw_speed,
-			sign(rotation_diff.z) * min(abs(rotation_diff.z), 1.0) * roll_speed
+			sign(rotation_diff.z) * min(abs(rotation_diff.z), 1.0) * damp_roll_speed
 		)
 
 		basis = basis.rotated(basis.x, angular_velocity.x * delta)
@@ -55,17 +62,24 @@ func _process(delta: float) -> void:
 
 		basis = basis.orthonormalized()
 
+		
 	if Input.is_action_pressed("throttle_up"):
+		var boosting := false
+		if Input.is_action_pressed("boost"):
+			boosting = true
 		speed = move_toward(
 			speed,
 			max_speed,
-			forward_accel * delta
+			forward_accel * (boost_accel_mod if boosting else 1.) * delta
 		)
 	else:
+		var braking := false
+		if Input.is_action_pressed("throttle_down"):
+			braking = true
 		speed = move_toward(
 			speed,
 			min_speed,
-			forward_deccel * delta
+			forward_deccel * (brake_deccel_mod if braking else 1.) * delta
 		)
 
 	Logger.log("speed", speed)

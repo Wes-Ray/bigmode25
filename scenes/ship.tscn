@@ -13,6 +13,12 @@ radius = 0.0518926
 [node name="Ship" type="CharacterBody3D" groups=["ship"]]
 motion_mode = 1
 script = ExtResource("1_mn80g")
+max_speed = 90.0
+min_speed = 30.0
+forward_accel = 6.0
+forward_deccel = 10.0
+pitch_speed = 4.0
+yaw_speed = 2.0
 
 [node name="collision_area" type="Area3D" parent="."]
 collision_mask = 6
