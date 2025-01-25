@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bv2g21feowrn3"]
+[gd_scene load_steps=4 format=3 uid="uid://bv2g21feowrn3"]
 
 [ext_resource type="Theme" path="res://resources/themes/base.tres" id="1_cgph1"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_pr8ck"]
 [ext_resource type="PackedScene" uid="uid://c6d2kxsd2345a" path="res://scenes/menus/switch_scene_button.tscn" id="3_pas0a"]
-[ext_resource type="PackedScene" uid="uid://bhjesns7d06ff" path="res://scenes/menus/main_menu.tscn" id="4_q3d4t"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -82,7 +81,6 @@ text = "RESTART"
 [node name="SwitchSceneButton" parent="Menu/ButtonsContainer" instance=ExtResource("3_pas0a")]
 layout_mode = 2
 text = "exit"
-scene_select = ExtResource("4_q3d4t")
 
 [node name="ControlsInfo" type="RichTextLabel" parent="Menu"]
 layout_mode = 1

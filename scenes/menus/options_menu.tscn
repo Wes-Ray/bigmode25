@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqhlh27axx4qy"]
+[gd_scene load_steps=4 format=3 uid="uid://cqhlh27axx4qy"]
 
 [ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_si6tt"]
 [ext_resource type="Theme" path="res://resources/themes/base.tres" id="1_vihyd"]
 [ext_resource type="PackedScene" uid="uid://c6d2kxsd2345a" path="res://scenes/menus/switch_scene_button.tscn" id="3_vufs0"]
-[ext_resource type="PackedScene" uid="uid://bhjesns7d06ff" path="res://scenes/menus/main_menu.tscn" id="4_265fe"]
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3
@@ -62,19 +61,18 @@ custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 
-[node name="Back" parent="." instance=ExtResource("3_vufs0")]
+[node name="SwitchSceneButton" parent="." instance=ExtResource("3_vufs0")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_bottom = 0.0
-offset_left = -176.0
-offset_top = 39.0
-offset_right = -48.0
-offset_bottom = 92.0
+offset_left = -153.0
+offset_top = 18.0
+offset_right = -25.0
+offset_bottom = 71.0
 grow_horizontal = 0
 grow_vertical = 1
-text = "Back"
-scene_select = ExtResource("4_265fe")
+text = "back"
 
 [connection signal="value_changed" from="Settings/PanelContainer/MarginContainer/VBoxContainer/SensSpinBox" to="." method="_on_sens_spin_box_value_changed"]
 [connection signal="toggled" from="Settings/PanelContainer/MarginContainer/VBoxContainer/InvertCheckButton" to="." method="_on_invert_check_button_toggled"]

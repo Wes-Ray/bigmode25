@@ -1,11 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhjesns7d06ff"]
+[gd_scene load_steps=4 format=3 uid="uid://bhjesns7d06ff"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_n6a6p"]
 [ext_resource type="Theme" path="res://resources/themes/base.tres" id="1_tujrc"]
 [ext_resource type="PackedScene" uid="uid://c6d2kxsd2345a" path="res://scenes/menus/switch_scene_button.tscn" id="3_llabq"]
-[ext_resource type="PackedScene" uid="uid://dku57g8dxn61d" path="res://scenes/levels/level01.tscn" id="4_81laq"]
-[ext_resource type="PackedScene" uid="uid://b774jfc3aq5w8" path="res://scenes/levels/level02.tscn" id="5_qku6u"]
-[ext_resource type="PackedScene" uid="uid://cqhlh27axx4qy" path="res://scenes/menus/options_menu.tscn" id="6_jhbuf"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -40,17 +37,17 @@ offset_bottom = 565.0
 [node name="SwitchSceneButton" parent="VBoxContainer" instance=ExtResource("3_llabq")]
 layout_mode = 2
 text = "level01"
-scene_select = ExtResource("4_81laq")
+scene_select = "res://scenes/levels/level01.tscn"
 
 [node name="SwitchSceneButton2" parent="VBoxContainer" instance=ExtResource("3_llabq")]
 layout_mode = 2
 text = "level02"
-scene_select = ExtResource("5_qku6u")
+scene_select = "res://scenes/levels/level02.tscn"
 
 [node name="SwitchSceneButton3" parent="VBoxContainer" instance=ExtResource("3_llabq")]
 layout_mode = 2
 text = "settings"
-scene_select = ExtResource("6_jhbuf")
+scene_select = "res://scenes/menus/options_menu.tscn"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
