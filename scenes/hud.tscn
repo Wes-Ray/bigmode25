@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bv2g21feowrn3"]
+[gd_scene load_steps=3 format=3 uid="uid://bv2g21feowrn3"]
 
+[ext_resource type="Theme" uid="uid://x4o8ip3k7w8p" path="res://resources/themes/base.tres" id="1_cgph1"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_pr8ck"]
 
 [node name="HUD" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_cgph1")
 script = ExtResource("1_pr8ck")
 
 [node name="Menu" type="Control" parent="."]
@@ -20,15 +22,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Background" type="Panel" parent="Menu"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 217.0
+grow_horizontal = 2
+
 [node name="StatusLabel" type="RichTextLabel" parent="Menu"]
 unique_name_in_owner = true
 layout_mode = 1
-offset_left = 28.0
-offset_top = 14.0
-offset_right = 1255.0
-offset_bottom = 516.0
+offset_left = 25.0
+offset_top = 24.0
+offset_right = 1454.0
+offset_bottom = 267.0
+theme_override_font_sizes/normal_font_size = 180
+theme_override_font_sizes/bold_font_size = 180
 bbcode_enabled = true
-text = "[i]Game Paused[/i]
+text = "[b]Game Paused[/b]
 "
 
 [node name="LaunchButton" type="Button" parent="Menu"]
@@ -49,13 +60,14 @@ theme_override_font_sizes/font_size = 160
 text = "LAUNCH"
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="Menu"]
+layout_direction = 2
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 16.0
 offset_top = -118.0
-offset_right = 508.0
+offset_right = 378.0
 offset_bottom = -19.0
 grow_vertical = 0
 theme_override_constants/separation = 16
@@ -69,40 +81,20 @@ text = "RESTART"
 layout_mode = 2
 text = "EXIT"
 
-[node name="Info" type="RichTextLabel" parent="Menu"]
+[node name="ControlsInfo" type="RichTextLabel" parent="Menu"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -743.0
-offset_top = 12.0
-offset_right = 182.0
-offset_bottom = 266.0
+offset_left = -561.0
+offset_top = 21.0
+offset_right = -21.0
+offset_bottom = 256.0
 grow_horizontal = 0
-theme_override_font_sizes/italics_font_size = 100
-theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
-text = "[i]A[/i]  and [i]D[/i]  to Roll Plane
-[i]W[/i]  to Throttle"
-
-[node name="ColorRect" type="ColorRect" parent="Menu"]
-z_index = -1
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 271.0
-grow_horizontal = 2
-color = Color(0.130772, 0.130772, 0.130772, 0.788235)
-
-[node name="ColorRect2" type="ColorRect" parent="Menu"]
-visible = false
-z_index = -1
-layout_mode = 0
-offset_left = -80.0
-offset_top = 1073.0
-offset_right = 2512.0
-offset_bottom = 1392.0
-color = Color(0.130772, 0.130772, 0.130772, 0.788235)
+text = "A/D: Roll Plane
+W: Throttle
+Mouse2: Free look"
 
 [node name="Crosshair" type="Control" parent="."]
 unique_name_in_owner = true
@@ -144,8 +136,11 @@ offset_bottom = 285.0
 [node name="DebugLabel" type="RichTextLabel" parent="Debug"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_right = 540.0
-offset_bottom = 451.0
+offset_left = -2.0
+offset_top = -53.0
+offset_right = 538.0
+offset_bottom = 398.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 24
 theme_override_font_sizes/bold_font_size = 24
 text = "debug"
@@ -176,27 +171,13 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -139.0
 offset_top = -116.0
-offset_right = 195.0
+offset_right = 312.0
 offset_bottom = 117.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "100"
-
-[node name="ColorRect3" type="ColorRect" parent="Speedometer"]
-z_index = -1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -156.0
-offset_top = -106.0
-offset_right = 160.0
-offset_bottom = 108.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.130772, 0.130772, 0.130772, 0.788235)
+theme_override_font_sizes/bold_font_size = 200
+bbcode_enabled = true
+text = "[b]100[/b]"
 
 [node name="Settings" type="Control" parent="."]
 unique_name_in_owner = true
@@ -211,52 +192,46 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="Settings"]
-layout_mode = 0
-offset_left = -365.0
-offset_top = -103.0
-offset_right = 27.0
-offset_bottom = 29.0
-
-[node name="MarginContainer" type="MarginContainer" parent="Settings/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Settings"]
 layout_mode = 2
+offset_left = -445.0
+offset_top = -99.0
+offset_right = 27.0
+offset_bottom = 41.0
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 4
 
-[node name="VBoxContainer" type="GridContainer" parent="Settings/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="GridContainer" parent="Settings/MarginContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="SensLabel" type="RichTextLabel" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SensLabel" type="RichTextLabel" parent="Settings/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/normal_font_size = 48
-text = "Sensitivity"
+bbcode_enabled = true
+text = "[b]Sensitivity[/b]"
 
-[node name="SensSpinBox" type="SpinBox" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SensSpinBox" type="SpinBox" parent="Settings/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 max_value = 20.0
 step = 0.1
 
-[node name="InvertLabel" type="RichTextLabel" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="InvertLabel" type="RichTextLabel" parent="Settings/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/normal_font_size = 48
-text = "Invert Mouse"
+bbcode_enabled = true
+text = "[b]Invert Mouse[/b]"
 
-[node name="InvertCheckButton" type="CheckBox" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="InvertCheckButton" type="CheckBox" parent="Settings/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 
-[node name="Control" type="Control" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
 [connection signal="button_up" from="Menu/LaunchButton" to="." method="_on_launch_button_button_up"]
 [connection signal="button_up" from="Menu/ButtonsContainer/RestartButton" to="." method="_on_restart_button_button_up"]
-[connection signal="value_changed" from="Settings/PanelContainer/MarginContainer/VBoxContainer/SensSpinBox" to="." method="_on_sens_spin_box_value_changed"]
-[connection signal="toggled" from="Settings/PanelContainer/MarginContainer/VBoxContainer/InvertCheckButton" to="." method="_on_invert_check_button_toggled"]
+[connection signal="value_changed" from="Settings/MarginContainer/VBoxContainer/SensSpinBox" to="." method="_on_sens_spin_box_value_changed"]
+[connection signal="toggled" from="Settings/MarginContainer/VBoxContainer/InvertCheckButton" to="." method="_on_invert_check_button_toggled"]
