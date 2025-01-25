@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=3 uid="uid://dydrr63f746ur"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_sebui"]
+[ext_resource type="PackedScene" uid="uid://wk8ox7egbudr" path="res://scenes/ship.tscn" id="2_kkbaq"]
+[ext_resource type="PackedScene" uid="uid://bag23ibu3ddf1" path="res://scenes/camera_rig.tscn" id="3_e40k6"]
+[ext_resource type="PackedScene" uid="uid://bv2g21feowrn3" path="res://scenes/hud.tscn" id="4_a4gyl"]
+[ext_resource type="PackedScene" uid="uid://c1haih54swjor" path="res://scenes/levels/level_object_scenes/trench_01.tscn" id="5_c2qg7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lo2qf"]
+
+[sub_resource type="Sky" id="Sky_kmt50"]
+sky_material = SubResource("ProceduralSkyMaterial_lo2qf")
+
+[sub_resource type="Environment" id="Environment_2084g"]
+background_mode = 2
+sky = SubResource("Sky_kmt50")
+
+[node name="Leve02" type="Node3D" node_paths=PackedStringArray("spawn_point")]
+script = ExtResource("1_sebui")
+spawn_point = NodePath("Spawn")
+ship_scene = ExtResource("2_kkbaq")
+camera_scene = ExtResource("3_e40k6")
+hud_scene = ExtResource("4_a4gyl")
+
+[node name="Spawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50.0722, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2084g")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.459522, 0.699001, 0.54794, -0.655425, -0.149458, 0.740325, 0.599382, -0.699329, 0.389463, 0, 36.2723, 0)
+
+[node name="trench01" parent="." instance=ExtResource("5_c2qg7")]
