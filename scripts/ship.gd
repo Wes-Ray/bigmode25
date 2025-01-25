@@ -28,36 +28,32 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var forward := basis.z
 
-	var cam_tf := camera_rig.global_transform
-	var desired_forward := cam_tf.basis.z
-	var desired_up := cam_tf.basis.y
+	if not camera_rig.is_free_looking:
+		var cam_tf := camera_rig.global_transform
+		var desired_forward := cam_tf.basis.z
+		var desired_up := cam_tf.basis.y
 
-	var target_basis := Basis()
-	target_basis.z = desired_forward.normalized()
-	target_basis.y = desired_up.normalized()
-	target_basis.x = target_basis.y.cross(target_basis.z).normalized()
-	target_basis = target_basis.orthonormalized()
+		var target_basis := Basis()
+		target_basis.z = desired_forward.normalized()
+		target_basis.y = desired_up.normalized()
+		target_basis.x = target_basis.y.cross(target_basis.z).normalized()
+		target_basis = target_basis.orthonormalized()
 
-	var current_to_target := basis.inverse() * target_basis
-	var rotation_diff := current_to_target.get_euler()
+		var current_to_target := basis.inverse() * target_basis
+		var rotation_diff := current_to_target.get_euler()
 
-	# scaling so large camera rotation difference don't speed up rotations
-	var angular_velocity = Vector3(
-		sign(rotation_diff.x) * min(abs(rotation_diff.x), 1.0) * pitch_speed,
-		sign(rotation_diff.y) * min(abs(rotation_diff.y), 1.0) * yaw_speed,
-		sign(rotation_diff.z) * min(abs(rotation_diff.z), 1.0) * roll_speed
-	)
+		# scaling so large camera rotation difference don't speed up rotations
+		var angular_velocity = Vector3(
+			sign(rotation_diff.x) * min(abs(rotation_diff.x), 1.0) * pitch_speed,
+			sign(rotation_diff.y) * min(abs(rotation_diff.y), 1.0) * yaw_speed,
+			sign(rotation_diff.z) * min(abs(rotation_diff.z), 1.0) * roll_speed
+		)
 
-	basis = basis.rotated(basis.x, angular_velocity.x * delta)
-	basis = basis.rotated(basis.y, angular_velocity.y * delta)
-	basis = basis.rotated(basis.z, angular_velocity.z * delta)
+		basis = basis.rotated(basis.x, angular_velocity.x * delta)
+		basis = basis.rotated(basis.y, angular_velocity.y * delta)
+		basis = basis.rotated(basis.z, angular_velocity.z * delta)
 
-	basis = basis.orthonormalized()
-
-	# var speed := min_speed
-	# if Input.is_action_pressed("throttle_up"):
-	# 	speed = max_speed
-	
+		basis = basis.orthonormalized()
 
 	if Input.is_action_pressed("throttle_up"):
 		speed = move_toward(
@@ -71,19 +67,6 @@ func _process(delta: float) -> void:
 			min_speed,
 			forward_deccel * delta
 		)
-
-# 	if not is_zero_approx(roll_input):
-	# 	current_roll_speed = move_toward(
-	# 		current_roll_speed,
-	# 		roll_input * max_roll_speed,
-	# 		roll_accel * delta
-	# 	)
-	# else:
-	# 	current_roll_speed = move_toward(
-	# 		current_roll_speed,
-	# 		0.,
-	# 		roll_deccel * delta
-	# 	)
 
 	Logger.log("speed", speed)
 	velocity = forward * speed

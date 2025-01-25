@@ -1,0 +1,197 @@
+[gd_scene load_steps=13 format=3 uid="uid://dwmfl6ws8d7jy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bn12k"]
+albedo_color = Color(0.355547, 0.41236, 0.467086, 1)
+metallic = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_by47e"]
+transparency = 1
+albedo_color = Color(0, 0.627451, 0.929412, 0.85098)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0uxvv"]
+material = SubResource("StandardMaterial3D_by47e")
+size = Vector3(38, 38, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pp3ci"]
+size = Vector3(20, 38, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iab2s"]
+size = Vector3(20, 38, 1)
+
+[sub_resource type="Animation" id="Animation_h7ide"]
+resource_name = "shut_door"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall/Door1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-30, 0, 0), Vector3(-10, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wall/Door2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(30, 0, 0), Vector3(10, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Wall/Hole/Shield2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3i7tt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall/Door1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-30, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wall/Door2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(30, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Wall/Hole/Shield2:mesh")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("BoxMesh_0uxvv")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Wall/Hole/Shield2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_hmnm7"]
+material = SubResource("StandardMaterial3D_by47e")
+size = Vector3(38, 38, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hej4a"]
+transparency = 1
+albedo_color = Color(0.639216, 0.47451, 0.972549, 0.705882)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k40iq"]
+material = SubResource("StandardMaterial3D_hej4a")
+size = Vector3(38, 38, 1)
+
+[sub_resource type="Animation" id="Animation_h7uik"]
+resource_name = "shield_low"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall/Hole/Shield2:mesh")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [SubResource("BoxMesh_hmnm7"), SubResource("BoxMesh_k40iq")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wall/Hole/Shield2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nkq4x"]
+_data = {
+"RESET": SubResource("Animation_3i7tt"),
+"shield_low": SubResource("Animation_h7uik"),
+"shut_door": SubResource("Animation_h7ide")
+}
+
+[node name="BlastDoor" type="Node3D"]
+
+[node name="Wall" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11507, 0)
+size = Vector3(90, 40, 2)
+material = SubResource("StandardMaterial3D_bn12k")
+
+[node name="Hole" type="CSGCylinder3D" parent="Wall"]
+transform = Transform3D(0.866025, 5.85622e-09, 0.5, 0.5, -2.18557e-08, -0.866025, 5.85622e-09, 1, -2.18557e-08, 0, 0, 0)
+operation = 2
+radius = 18.0
+sides = 6
+smooth_faces = false
+
+[node name="Shield2" type="MeshInstance3D" parent="Wall/Hole"]
+transform = Transform3D(0.5, -0.866025, -3.78552e-08, 0, -4.37114e-08, 1, -0.866025, -0.5, -2.18557e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_0uxvv")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Wall/Hole/Shield2"]
+light_color = Color(0.344936, 0.746622, 0.979416, 1)
+light_energy = 8.91
+omni_range = 26.0
+
+[node name="Door1" type="MeshInstance3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 0)
+mesh = SubResource("BoxMesh_pp3ci")
+
+[node name="Door2" type="MeshInstance3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
+mesh = SubResource("BoxMesh_iab2s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nkq4x")
+}
+autoplay = "shield_low"

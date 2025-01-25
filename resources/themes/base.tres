@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://x4o8ip3k7w8p"]
+
+[ext_resource type="FontFile" uid="uid://mj31ihk0e6wt" path="res://assets/fonts/HomeVideoBold-R90Dv.ttf" id="1_wxo7u"]
+[ext_resource type="FontFile" uid="uid://sbs4sj2srvdb" path="res://assets/fonts/HomeVideo-BLG6G.ttf" id="2_gx40j"]
+
+[resource]
+Button/colors/font_color = Color(0.10508, 0.710917, 3.85046e-06, 1)
+Button/colors/font_focus_color = Color(0.768627, 0.654902, 0.184314, 1)
+Button/colors/font_hover_color = Color(0.77, 0.65296, 0.1848, 1)
+Button/font_sizes/font_size = 50
+Button/fonts/font = ExtResource("1_wxo7u")
+RichTextLabel/colors/default_color = Color(0.105882, 0.709804, 0, 1)
+RichTextLabel/font_sizes/bold_font_size = 50
+RichTextLabel/font_sizes/normal_font_size = 50
+RichTextLabel/fonts/bold_font = ExtResource("1_wxo7u")
+RichTextLabel/fonts/normal_font = ExtResource("2_gx40j")
