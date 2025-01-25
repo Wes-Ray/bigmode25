@@ -1,7 +1,7 @@
+class_name Projectile
 extends Node3D
 
-const SPEED := 200
-
+var speed := 200.0
 var direction := Vector3(0, 0, 0)
 
 
@@ -12,7 +12,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	look_at(global_position + direction * 10000)
 	rotate(Vector3(0, 1, 0), PI/2)
-	global_position += direction * SPEED * delta
+	global_position += direction * speed * delta
 
 
 func _on_area_3d_area_entered(_area:Area3D) -> void:

@@ -1,9 +1,13 @@
 class_name ProjectileTurret
 extends Node3D
 
+enum firing_type {DIRECT, RANDOM, PREDICT}
+
+@export var fire_mode := firing_type.DIRECT
 @export var attack_range := 2000
+@export_range(0.5, 10) var fire_rate := 2.0
 @export var projectile : PackedScene
-var attack_ready := true
+@export_range(50, 500) var projectile_speed := 200.0
 
 @onready var attack_timer : Timer = %AttackTimer
 @onready var top : Node3D = %Top
@@ -13,22 +17,77 @@ var attack_ready := true
 
 func _ready() -> void:
 	assert(projectile, "projectile scene must be assigned")
+	attack_timer.wait_time = fire_rate
 
 func _process(_delta: float) -> void:
 	if ship and get_distance(ship.global_position) < attack_range:
 		top.look_at(ship.global_position)
 		if attack_timer.is_stopped():
-			shoot()
+			match fire_mode:
+				firing_type.DIRECT:
+					direct_shoot(generic_shoot())
+				firing_type.RANDOM:
+					random_shoot(generic_shoot())
+				firing_type.PREDICT:
+					predict_shoot(generic_shoot())
 			attack_timer.start()
 	else:
 		ship = get_tree().get_first_node_in_group("ship")
 
 
-func shoot() -> void:
-	var proj : Node3D = projectile.instantiate()
+func generic_shoot() -> Projectile:
+	var proj : Projectile = projectile.instantiate()
 	get_tree().root.add_child(proj)
 	proj.global_position = shooting_point.global_position
+	proj.speed = projectile_speed
+	return proj
+
+
+func direct_shoot(proj: Projectile) -> void:
 	proj.direction = (ship.global_position - shooting_point.global_position).normalized()
+
+
+func random_shoot(proj: Projectile) -> void:
+	proj.direction = (ship.global_position - shooting_point.global_position)
+	var spread = 75  # Adjust this for more/less chaos
+	var random_offset = Vector3(
+		randf_range(-spread, spread),
+		randf_range(-spread, spread),
+		randf_range(-spread, spread)
+	)
+	proj.direction += random_offset
+	proj.direction = proj.direction.normalized()
+
+
+func predict_shoot(proj: Projectile) -> void:
+	if is_equal_approx(0, ship.velocity.length()):
+		direct_shoot(proj)
+		return
+
+	var a := ship.velocity.length_squared() - pow(projectile_speed, 2)
+	var b := 2 * (ship.global_position - proj.global_position).dot(ship.velocity)
+	var c := pow((ship.global_position - proj.global_position).length(), 2)
+	var discriminant := pow(b, 2) - 4*a*c
+
+	if discriminant <= 0:
+		direct_shoot(proj)
+		return
+
+	if is_equal_approx(a, 0):
+		direct_shoot(proj)
+		return
+
+	# quadratic formula, we take the lower time so the projectiles don't shoot into space
+	var time := (-b - sqrt(discriminant)) / (2 * a)
+
+	if time <= 0:
+		time = (-b + sqrt(discriminant)) / (2 * a)
+		direct_shoot(proj)
+		return
+
+	var proj_velocity = (ship.global_position + time * ship.velocity - proj.global_position) / time
+	proj.direction = proj_velocity.normalized()
+	proj.speed = proj_velocity.length()
 
 
 func get_distance(pos: Vector3) -> float:
