@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ship.gd" id="1_mn80g"]
 [ext_resource type="PackedScene" uid="uid://b72sm1bsxqrm6" path="res://assets/ship/ship01.glb" id="2_x6yu6"]
-[ext_resource type="Script" path="res://scenes/health_component.gd" id="3_6350g"]
+[ext_resource type="Script" path="res://scripts/health_component.gd" id="3_6350g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2d3l7"]
 size = Vector3(0.526955, 0.0853882, 0.848694)
