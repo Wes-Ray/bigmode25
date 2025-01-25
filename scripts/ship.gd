@@ -9,7 +9,9 @@ signal player_crashed
 @export var max_speed := 80.
 @export var min_speed := 50.
 @export var forward_accel := 10.
+@export var boost_accel_mod := 3.
 @export var forward_deccel := 14.
+@export var brake_deccel_mod := 2.
 
 var speed := min_speed
 
@@ -60,17 +62,24 @@ func _process(delta: float) -> void:
 
 		basis = basis.orthonormalized()
 
+		
 	if Input.is_action_pressed("throttle_up"):
+		var boosting := false
+		if Input.is_action_pressed("boost"):
+			boosting = true
 		speed = move_toward(
 			speed,
 			max_speed,
-			forward_accel * delta
+			forward_accel * (boost_accel_mod if boosting else 1.) * delta
 		)
 	else:
+		var braking := false
+		if Input.is_action_pressed("throttle_down"):
+			braking = true
 		speed = move_toward(
 			speed,
 			min_speed,
-			forward_deccel * delta
+			forward_deccel * (brake_deccel_mod if braking else 1.) * delta
 		)
 
 	Logger.log("speed", speed)
