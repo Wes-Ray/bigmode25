@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dydrr63f746ur"]
+[gd_scene load_steps=13 format=3 uid="uid://dydrr63f746ur"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sebui"]
 [ext_resource type="PackedScene" uid="uid://wk8ox7egbudr" path="res://scenes/ship.tscn" id="2_kkbaq"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bv2g21feowrn3" path="res://scenes/hud.tscn" id="4_a4gyl"]
 [ext_resource type="PackedScene" uid="uid://cctm4t5452j1g" path="res://scenes/levels/level_object_scenes/trench_02.tscn" id="5_8cavi"]
 [ext_resource type="Texture2D" uid="uid://bgpiodebmm302" path="res://resources/night_sky1.tres" id="5_mln88"]
+[ext_resource type="PackedScene" uid="uid://d23s48brb7axp" path="res://assets/props/elbow_pipe01.glb" id="7_cfo38"]
+[ext_resource type="PackedScene" uid="uid://chtu5gyv4ebam" path="res://assets/props/straight_pipe01.glb" id="8_2pgjq"]
+[ext_resource type="PackedScene" uid="uid://c3eftue5uxh0f" path="res://assets/props/straight_pipe_long01.glb" id="9_tgab0"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_reb25"]
 rayleigh_coefficient = 1.0
@@ -46,3 +49,41 @@ environment = SubResource("Environment_2084g")
 transform = Transform3D(0.565781, 0.714308, 0.411893, 0.190464, -0.59924, 0.777583, 0.802256, -0.361491, -0.475089, 0, 36.2723, 0)
 
 [node name="trench02" parent="." instance=ExtResource("5_8cavi")]
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="straight_pipe_long01" parent="Props" instance=ExtResource("9_tgab0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.0922, -40.4097, -436.102)
+
+[node name="elbow_pipe01" parent="Props" instance=ExtResource("7_cfo38")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -153.974, -58.3016, -4416.64)
+
+[node name="straight_pipe01" parent="Props" instance=ExtResource("8_2pgjq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -202.418, -57.0443, -4416.66)
+
+[node name="elbow_pipe02" parent="Props" instance=ExtResource("7_cfo38")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -137.91, -6.02521, -879.953)
+
+[node name="straight_pipe02" parent="Props" instance=ExtResource("8_2pgjq")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -180.793, -5.81554, -855.162)
+
+[node name="straight_pipe03" parent="Props" instance=ExtResource("8_2pgjq")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -132.547, -61.2944, -883.471)
+
+[node name="straight_pipe_long02" parent="Props" instance=ExtResource("9_tgab0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 708.838, 33.8695, -1904.32)
+
+[node name="straight_pipe_long03" parent="Props" instance=ExtResource("9_tgab0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 708.838, 33.8695, -1747.45)
+
+[node name="straight_pipe_long06" parent="Props" instance=ExtResource("9_tgab0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 721.371, 0.975159, -1904.32)
+
+[node name="straight_pipe_long07" parent="Props" instance=ExtResource("9_tgab0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 721.371, 0.975159, -1747.45)
+
+[node name="straight_pipe_long04" parent="Props" instance=ExtResource("9_tgab0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 717.448, -34.0575, -1904.32)
+
+[node name="straight_pipe_long05" parent="Props" instance=ExtResource("9_tgab0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 717.448, -34.0575, -1747.45)
