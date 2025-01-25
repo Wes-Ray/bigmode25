@@ -2,7 +2,7 @@ class_name ProjectileTurret
 extends Node3D
 
 @export var attack_range := 2000
-@export var projectile : PackedScene = preload("res://scenes/turrets/projectile_turret/enemy_projectile.tscn")
+@export var projectile : PackedScene
 var attack_ready := true
 
 @onready var attack_timer : Timer = %AttackTimer
@@ -10,6 +10,9 @@ var attack_ready := true
 @onready var ship : Ship = get_tree().get_first_node_in_group("ship")
 @onready var shooting_point : Node3D = %ShootingPoint
 
+
+func _ready() -> void:
+	assert(projectile, "projectile scene must be assigned")
 
 func _process(_delta: float) -> void:
 	if ship and get_distance(ship.global_position) < attack_range:

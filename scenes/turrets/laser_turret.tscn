@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cdrpc5daiyglh"]
 
 [ext_resource type="Script" path="res://scripts/laser_turret.gd" id="1_e7exr"]
-[ext_resource type="Material" uid="uid://djwvlxkvbuaye" path="res://scenes/turrets/projectile_turret/projectile_turret_top_material.tres" id="2_4n2om"]
-[ext_resource type="Material" uid="uid://ceatbkvs6fwxx" path="res://scenes/turrets/turret_material.tres" id="3_7ungk"]
+[ext_resource type="Material" uid="uid://djwvlxkvbuaye" path="res://resources/turrets/projectile_turret_top_material.tres" id="2_4n2om"]
+[ext_resource type="Material" uid="uid://ceatbkvs6fwxx" path="res://resources/turrets/turret_material.tres" id="3_7ungk"]
 
 [node name="LaserTurret" type="Node3D"]
 script = ExtResource("1_e7exr")
