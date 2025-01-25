@@ -18,6 +18,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	menu.hide()
 
+	# TODO: add this back on release
 	# if not OS.is_debug_build():
 	# 	debug_node.hide()
 
@@ -84,8 +85,8 @@ func _on_restart_button_button_up() -> void:
 
 func on_player_crashed() -> void:
 	Logger.log("player crashed", true)
-	status_label.text = "[color=red]CRASHED[/color]"
-	launch_button.hide()	
+	status_label.text = "[b][color=red]CRASHED[/color][/b]"
+	launch_button.hide()
 	pause()
 
 func _on_sens_spin_box_value_changed(value:float) -> void:
