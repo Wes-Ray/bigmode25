@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dku57g8dxn61d"]
+[gd_scene load_steps=9 format=3 uid="uid://dku57g8dxn61d"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_i74l5"]
 [ext_resource type="PackedScene" uid="uid://wk8ox7egbudr" path="res://scenes/ship.tscn" id="2_dow6u"]
 [ext_resource type="PackedScene" uid="uid://bag23ibu3ddf1" path="res://scenes/camera_rig.tscn" id="3_jvdo8"]
 [ext_resource type="PackedScene" uid="uid://bv2g21feowrn3" path="res://scenes/hud.tscn" id="4_mt3ol"]
+[ext_resource type="PackedScene" uid="uid://t37eul41x86d" path="res://scenes/turrets/projectile_turret.tscn" id="5_8eek6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qebr8"]
 sky_curve = 0.166435
@@ -34,3 +35,19 @@ size = Vector3(1000, 1, 1000)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yb4a2")
+
+[node name="Turret" parent="." instance=ExtResource("5_8eek6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 42.2762, 159.087)
+attack_range = null
+
+[node name="Turret2" parent="." instance=ExtResource("5_8eek6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -362.358, 42.2762, -81.0652)
+attack_range = null
+
+[node name="Turret3" parent="." instance=ExtResource("5_8eek6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 42.2762, -297.869)
+attack_range = null
+
+[node name="Turret4" parent="." instance=ExtResource("5_8eek6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.835, 42.2762, 159.087)
+attack_range = null
