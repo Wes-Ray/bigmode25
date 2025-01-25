@@ -7,7 +7,6 @@
 
 [node name="ProjectileTurret" type="Node3D"]
 script = ExtResource("1_xb7b7")
-attack_range = null
 projectile = ExtResource("2_arwmr")
 
 [node name="Mesh" type="Node3D" parent="."]
