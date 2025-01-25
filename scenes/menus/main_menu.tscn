@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhjesns7d06ff"]
+[gd_scene load_steps=7 format=3 uid="uid://bhjesns7d06ff"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_n6a6p"]
+[ext_resource type="Theme" path="res://resources/themes/base.tres" id="1_tujrc"]
+[ext_resource type="PackedScene" uid="uid://c6d2kxsd2345a" path="res://scenes/menus/switch_scene_button.tscn" id="3_llabq"]
+[ext_resource type="PackedScene" uid="uid://dku57g8dxn61d" path="res://scenes/levels/level01.tscn" id="4_81laq"]
+[ext_resource type="PackedScene" uid="uid://b774jfc3aq5w8" path="res://scenes/levels/level02.tscn" id="5_qku6u"]
+[ext_resource type="PackedScene" uid="uid://cqhlh27axx4qy" path="res://scenes/menus/options_menu.tscn" id="6_jhbuf"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -9,46 +14,47 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_tujrc")
 script = ExtResource("1_n6a6p")
 
-[node name="PlayButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1043.0
-offset_top = 682.0
-offset_right = 1102.0
-offset_bottom = 713.0
-scale = Vector2(5.76, 4.6)
-text = "PLAY"
+[node name="TitleLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -926.0
+offset_top = 26.0
+offset_right = 567.0
+offset_bottom = 268.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 200
+text = "WILD WEASELS"
 
-[node name="OptionsButton" type="Button" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 927.0
-offset_top = 967.0
-offset_right = 1027.0
-offset_bottom = 998.0
-scale = Vector2(5.76, 4.16)
-text = "SETTINGS
-"
+offset_left = 45.0
+offset_top = 252.0
+offset_right = 415.0
+offset_bottom = 565.0
 
-[node name="QuitButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1137.0
-offset_top = 1218.0
-offset_right = 1189.0
-offset_bottom = 1249.0
-scale = Vector2(3.63601, 2.13762)
+[node name="SwitchSceneButton" parent="VBoxContainer" instance=ExtResource("3_llabq")]
+layout_mode = 2
+text = "level01"
+scene_select = ExtResource("4_81laq")
+
+[node name="SwitchSceneButton2" parent="VBoxContainer" instance=ExtResource("3_llabq")]
+layout_mode = 2
+text = "level02"
+scene_select = ExtResource("5_qku6u")
+
+[node name="SwitchSceneButton3" parent="VBoxContainer" instance=ExtResource("3_llabq")]
+layout_mode = 2
+text = "settings"
+scene_select = ExtResource("6_jhbuf")
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
 text = "QUIT
 "
 
-[node name="TitleLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 748.0
-offset_top = 265.0
-offset_right = 863.0
-offset_bottom = 288.0
-scale = Vector2(7.88, 8.64)
-text = "WILD WEASELS"
-
-[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

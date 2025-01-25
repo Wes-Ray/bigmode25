@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqhlh27axx4qy"]
+[gd_scene load_steps=5 format=3 uid="uid://cqhlh27axx4qy"]
 
 [ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_si6tt"]
+[ext_resource type="Theme" path="res://resources/themes/base.tres" id="1_vihyd"]
+[ext_resource type="PackedScene" uid="uid://c6d2kxsd2345a" path="res://scenes/menus/switch_scene_button.tscn" id="3_vufs0"]
+[ext_resource type="PackedScene" uid="uid://bhjesns7d06ff" path="res://scenes/menus/main_menu.tscn" id="4_265fe"]
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3
@@ -9,29 +12,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_vihyd")
 script = ExtResource("1_si6tt")
 
 [node name="Settings" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1186.0
-offset_top = -958.0
-offset_right = -1146.0
-offset_bottom = -918.0
-grow_horizontal = 0
-grow_vertical = 0
+anchors_preset = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="Settings"]
 layout_mode = 0
-offset_left = -365.0
-offset_top = -103.0
-offset_right = 27.0
-offset_bottom = 29.0
+offset_left = 43.0
+offset_top = 47.0
+offset_right = 563.0
+offset_bottom = 187.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Settings/PanelContainer"]
 layout_mode = 2
@@ -68,18 +62,19 @@ custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 
-[node name="Control" type="Control" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Back Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 112.0
-offset_top = 80.0
-offset_right = 172.0
-offset_bottom = 109.0
-scale = Vector2(2.95722, 2.96)
-text = "BACK"
+[node name="Back" parent="." instance=ExtResource("3_vufs0")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -176.0
+offset_top = 39.0
+offset_right = -48.0
+offset_bottom = 92.0
+grow_horizontal = 0
+grow_vertical = 1
+text = "Back"
+scene_select = ExtResource("4_265fe")
 
 [connection signal="value_changed" from="Settings/PanelContainer/MarginContainer/VBoxContainer/SensSpinBox" to="." method="_on_sens_spin_box_value_changed"]
 [connection signal="toggled" from="Settings/PanelContainer/MarginContainer/VBoxContainer/InvertCheckButton" to="." method="_on_invert_check_button_toggled"]
-[connection signal="pressed" from="Back Button" to="." method="_on_back_button_pressed"]
