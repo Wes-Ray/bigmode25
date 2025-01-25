@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cctm4t5452j1g"]
+
+[ext_resource type="PackedScene" uid="uid://dfdnr5tk6twar" path="res://assets/levels/trench02.glb" id="1_86qwj"]
+
+[node name="trench02" instance=ExtResource("1_86qwj")]
