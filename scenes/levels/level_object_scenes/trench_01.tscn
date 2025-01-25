@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dawdljhe76lky"]
+
+[ext_resource type="PackedScene" uid="uid://bp0sbcdsri0wj" path="res://assets/levels/trench01.glb" id="1_2k52f"]
+[ext_resource type="Script" path="res://scripts/collision_shape_3d_util.gd" id="2_xha14"]
+
+[node name="trench01" instance=ExtResource("1_2k52f")]
+
+[node name="CollisionShape3D" parent="trench/StaticBody3D" index="0"]
+script = ExtResource("2_xha14")
