@@ -118,7 +118,6 @@ func shoot():
 		proj.direction = camera_rig.basis.z
 		proj.speed = projectile_speed
 		get_tree().root.add_child(proj)
-
 		proj.global_position = launchers[current_launcher].global_position
 		current_launcher = 1 if current_launcher == 0 else 0
 		current_ammo -= 1
@@ -127,6 +126,7 @@ func shoot():
 func _on_collision_area_body_entered(_body: Node3D) -> void:
 	# TODO: add explodies
 	# print("collied: ", _body)
+	_death_sound()
 	player_crashed.emit()
 	queue_free()
 
@@ -135,7 +135,9 @@ func _on_collision_area_area_entered(area: Area3D) -> void:
 		health_component.take_damage(1)
 
 
+
 func _died() -> void:
+	_death_sound()
 	player_crashed.emit()
 	queue_free()
 
@@ -143,3 +145,7 @@ func _died() -> void:
 func _on_rocket_recharge_timeout() -> void:
 	current_ammo += 1
 	clampi(current_ammo, 0, max_ammo)
+
+func _death_sound() -> void:
+	await get_tree().create_timer(1).timeout
+	$crash.play()
