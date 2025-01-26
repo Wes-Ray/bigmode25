@@ -38,6 +38,7 @@ movie_writer/movie_file="C:/Users/wes/Documents/windev/breach-vector/output/vide
 
 ship=""
 projectile_hitbox=""
+rocket_recharge="rocket recharge timer"
 
 [input]
 
