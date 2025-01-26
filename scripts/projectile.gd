@@ -15,7 +15,11 @@ func _physics_process(delta: float) -> void:
 	global_position += direction * speed * delta
 
 
-func _on_area_3d_area_entered(_area:Area3D) -> void:
+func _on_area_3d_body_entered(_body:Node3D) -> void:
+	speed = 0
+	#print("hit: ", _body)
+	set_deferred("$Explosion/Area3D/CollisionShape3D.disabled", false)
+	$Explosion.visible = true
 	await get_tree().create_timer(0.2).timeout
 	queue_free()
 

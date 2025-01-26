@@ -125,19 +125,19 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 708.83
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 708.838, 33.8695, -1747.45)
 
 [node name="straight_pipe_long06" parent="StaticProps" instance=ExtResource("9_tgab0")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 721.371, 0.975159, -1904.32)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 721.371, 0.975159, -1784.05)
 
 [node name="straight_pipe_long07" parent="StaticProps" instance=ExtResource("9_tgab0")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 721.371, 0.975159, -1747.45)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 721.371, 0.975159, -1940.92)
 
 [node name="straight_pipe_long04" parent="StaticProps" instance=ExtResource("9_tgab0")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 717.448, -34.0575, -1904.32)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 717.448, -34.0575, -1917.67)
 
 [node name="straight_pipe_long05" parent="StaticProps" instance=ExtResource("9_tgab0")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 717.448, -34.0575, -1747.45)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 717.448, -34.0575, -1760.8)
 
 [node name="BlastDoor" parent="." instance=ExtResource("12_8csq4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -183.717, 1.96292, -1142.03)
+transform = Transform3D(-0.98071, 0, -0.195467, 0, 1, 0, 0.195467, 0, -0.98071, -199.123, -10.7235, -1244.6)
 
 [node name="ProjectileTurret" parent="." instance=ExtResource("14_1ols5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.7898, -62.3647, -910.162)
