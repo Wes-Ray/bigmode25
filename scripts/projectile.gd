@@ -4,6 +4,8 @@ extends Node3D
 var speed := 200.0
 var direction := Vector3(0, 0, 0)
 
+@onready var cylinder : CSGCylinder3D = %CSGCylinder3D
+
 
 func _ready() -> void:
 	EventsBus.game_reset.connect(queue_free)

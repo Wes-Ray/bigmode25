@@ -110,10 +110,7 @@ debug4={
 
 [layer_names]
 
-3d_physics/layer_1="ship"
-3d_physics/layer_2="wall"
-3d_physics/layer_3="enemy_projectile"
-3d_physics/layer_4="friendly_projectile"
+3d_physics/layer_1="everything :)"
 
 [rendering]
 

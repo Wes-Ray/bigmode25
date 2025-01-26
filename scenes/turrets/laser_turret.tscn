@@ -62,7 +62,7 @@ libraries = {
 
 [node name="Top" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.995762, 0.0919708, 0, -0.0919708, 0.995762, 0, 13.2011, 0)
+transform = Transform3D(1, 0, 0, 0, 0.995762, 0.0919709, 0, -0.0919709, 0.995762, 0, 13.2011, 0)
 
 [node name="Barrell" type="CSGBox3D" parent="Top"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00580204, 1.80625, -4.10137)
@@ -94,13 +94,13 @@ shape = SubResource("CylinderShape3D_moxmc")
 [node name="SpringArm3D" type="SpringArm3D" parent="Top"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 1.47382, -1.16511)
-collision_mask = 0
 spring_length = 10.0
 
 [node name="LaserHumSound" type="AudioStreamPlayer3D" parent="Top/SpringArm3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, -5.96046e-08, 0, 6.70552e-08, 1, -0.070179, -0.22051, -0.112709)
 stream = ExtResource("4_lni1s")
+attenuation_model = 1
 volume_db = 12.598
 autoplay = true
 
