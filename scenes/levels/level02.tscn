@@ -143,10 +143,7 @@ transform = Transform3D(-0.98071, 0, -0.195467, 0, 1, 0, 0.195467, 0, -0.98071, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.7898, -62.3647, -910.162)
 
 [node name="LaserTurret" parent="." instance=ExtResource("13_2igwp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.574, -58.8763, -791.525)
+transform = Transform3D(-0.613707, 0, -0.789534, 0, 1, 0, 0.789534, 0, -0.613707, -138.574, -58.8763, -791.525)
 
 [node name="LaserTurret2" parent="." instance=ExtResource("13_2igwp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.7065, -59.2077, -783.907)
-
-[node name="elbow_pipe01" parent="." instance=ExtResource("7_cfo38")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -169.683, -13.0565, -1092.84)
+transform = Transform3D(-0.551529, 0, -0.834155, 0, 1, 0, 0.834155, 0, -0.551529, -116.469, -59.2077, -818.514)
