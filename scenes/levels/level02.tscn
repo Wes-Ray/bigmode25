@@ -38,11 +38,11 @@ size = Vector3(181.775, 110.26, 20)
 
 [node name="Leve02" type="Node3D" node_paths=PackedStringArray("spawn_point", "debug_spawn_point")]
 script = ExtResource("1_sebui")
+spawn_point = NodePath("Spawn")
+debug_spawn_point = NodePath("DebugSpawn")
 ship_scene = ExtResource("2_kkbaq")
 camera_scene = ExtResource("3_e40k6")
 hud_scene = ExtResource("4_a4gyl")
-spawn_point = NodePath("Spawn")
-debug_spawn_point = NodePath("DebugSpawn")
 
 [node name="Spawn" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, 0.948082, -13.5939, 0)

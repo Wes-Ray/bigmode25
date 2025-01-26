@@ -7,6 +7,7 @@ class_name MainLevel
 @export var camera_scene: PackedScene
 @export var hud_scene: PackedScene
 
+# For use by ProxZone direct children
 var active_prox_zone: ProxZone = null
 
 # Called when the node enters the scene tree for the first time.
