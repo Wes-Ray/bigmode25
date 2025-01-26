@@ -108,7 +108,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_h7ide"]
 resource_name = "shut_door"
-length = 5.0
+length = 6.0
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -130,10 +130,10 @@ tracks/1/path = NodePath("blast-wall/Door1:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 4, 5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 3, 4.7, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-3.86797e-06, 0, 87.4888), Vector3(-1.94294e-08, 0, -0.555508), Vector3(-1.94294e-08, 0, -0.555508)]
+"values": [Vector3(-3.86797e-06, 0, 87.4888), Vector3(-5.96711e-07, 0, 12.6511), Vector3(-1.94294e-08, 0, -0.555508), Vector3(-1.94294e-08, 0, -0.555508)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -142,10 +142,10 @@ tracks/2/path = NodePath("blast-wall/Door2:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 4, 5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 3, 4.7, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(3.78732e-06, 0, -86.6438), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(3.78732e-06, 0, -86.6438), Vector3(5.68098e-07, 0, -12.9966), Vector3(0, 0, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nkq4x"]
