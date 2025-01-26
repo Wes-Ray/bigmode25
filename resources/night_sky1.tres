@@ -1,0 +1,21 @@
+[gd_resource type="NoiseTexture2D" load_steps=3 format=3 uid="uid://bgpiodebmm302"]
+
+[sub_resource type="Gradient" id="Gradient_piddk"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.259887, 0.497175, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0879608, 0.0879608, 0.0879608, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_p718x"]
+seed = 90
+frequency = 0.0196
+metadata/_preview_in_3d_space_ = true
+
+[resource]
+width = 1024
+height = 1024
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 0.78
+normalize = false
+color_ramp = SubResource("Gradient_piddk")
+noise = SubResource("FastNoiseLite_p718x")

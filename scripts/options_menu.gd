@@ -7,6 +7,7 @@ extends Control
 func _ready() -> void:
 	inverted.button_pressed = GameConfig.mouse_inverted
 	sensitivity.value = GameConfig.mouse_sens
+	get_tree().paused = false
 
 
 func _on_sens_spin_box_value_changed(value:float) -> void:

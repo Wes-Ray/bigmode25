@@ -1,34 +1,89 @@
-[gd_scene load_steps=9 format=3 uid="uid://b774jfc3aq5w8"]
+[gd_scene load_steps=13 format=3 uid="uid://dydrr63f746ur"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sebui"]
 [ext_resource type="PackedScene" uid="uid://wk8ox7egbudr" path="res://scenes/ship.tscn" id="2_kkbaq"]
 [ext_resource type="PackedScene" uid="uid://bag23ibu3ddf1" path="res://scenes/camera_rig.tscn" id="3_e40k6"]
 [ext_resource type="PackedScene" uid="uid://bv2g21feowrn3" path="res://scenes/hud.tscn" id="4_a4gyl"]
-[ext_resource type="PackedScene" uid="uid://dawdljhe76lky" path="res://scenes/levels/level_object_scenes/trench_01.tscn" id="5_c2qg7"]
+[ext_resource type="PackedScene" uid="uid://cctm4t5452j1g" path="res://scenes/levels/level_object_scenes/trench_02.tscn" id="5_8cavi"]
+[ext_resource type="Texture2D" uid="uid://bgpiodebmm302" path="res://resources/night_sky1.tres" id="5_mln88"]
+[ext_resource type="PackedScene" uid="uid://d23s48brb7axp" path="res://assets/props/elbow_pipe01.glb" id="7_cfo38"]
+[ext_resource type="PackedScene" uid="uid://chtu5gyv4ebam" path="res://assets/props/straight_pipe01.glb" id="8_2pgjq"]
+[ext_resource type="PackedScene" uid="uid://c3eftue5uxh0f" path="res://assets/props/straight_pipe_long01.glb" id="9_tgab0"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lo2qf"]
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_reb25"]
+rayleigh_coefficient = 1.0
+rayleigh_color = Color(0.613068, 0.335155, 0.7291, 1)
+mie_coefficient = 0.01
+mie_eccentricity = 0.9
+mie_color = Color(0.987376, 0.853289, 0.497841, 1)
+night_sky = ExtResource("5_mln88")
 
 [sub_resource type="Sky" id="Sky_kmt50"]
-sky_material = SubResource("ProceduralSkyMaterial_lo2qf")
+sky_material = SubResource("PhysicalSkyMaterial_reb25")
 
 [sub_resource type="Environment" id="Environment_2084g"]
 background_mode = 2
 sky = SubResource("Sky_kmt50")
+ambient_light_source = 2
+ambient_light_color = Color(0.118581, 0.118581, 0.118581, 1)
+ambient_light_energy = 1.5
 
-[node name="Leve02" type="Node3D" node_paths=PackedStringArray("spawn_point")]
+[node name="Leve02" type="Node3D" node_paths=PackedStringArray("spawn_point", "debug_spawn_point")]
 script = ExtResource("1_sebui")
 spawn_point = NodePath("Spawn")
+debug_spawn_point = NodePath("DebugSpawn")
 ship_scene = ExtResource("2_kkbaq")
 camera_scene = ExtResource("3_e40k6")
 hud_scene = ExtResource("4_a4gyl")
 
 [node name="Spawn" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50.0722, 0)
+transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, 0.948082, -13.5939, 0)
+
+[node name="DebugSpawn" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, 0.948082, -13.5939, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2084g")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.459522, 0.699001, 0.54794, -0.655425, -0.149458, 0.740325, 0.599382, -0.699329, 0.389463, 0, 36.2723, 0)
+transform = Transform3D(0.565781, 0.714308, 0.411893, 0.190464, -0.59924, 0.777583, 0.802256, -0.361491, -0.475089, 0, 36.2723, 0)
 
-[node name="trench01" parent="." instance=ExtResource("5_c2qg7")]
+[node name="trench02" parent="." instance=ExtResource("5_8cavi")]
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="straight_pipe_long01" parent="Props" instance=ExtResource("9_tgab0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.0922, -40.4097, -436.102)
+
+[node name="elbow_pipe01" parent="Props" instance=ExtResource("7_cfo38")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -153.974, -58.3016, -4416.64)
+
+[node name="straight_pipe01" parent="Props" instance=ExtResource("8_2pgjq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -202.418, -57.0443, -4416.66)
+
+[node name="elbow_pipe02" parent="Props" instance=ExtResource("7_cfo38")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -137.91, -6.02521, -879.953)
+
+[node name="straight_pipe02" parent="Props" instance=ExtResource("8_2pgjq")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -180.793, -5.81554, -855.162)
+
+[node name="straight_pipe03" parent="Props" instance=ExtResource("8_2pgjq")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -132.547, -61.2944, -883.471)
+
+[node name="straight_pipe_long02" parent="Props" instance=ExtResource("9_tgab0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 708.838, 33.8695, -1904.32)
+
+[node name="straight_pipe_long03" parent="Props" instance=ExtResource("9_tgab0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 708.838, 33.8695, -1747.45)
+
+[node name="straight_pipe_long06" parent="Props" instance=ExtResource("9_tgab0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 721.371, 0.975159, -1904.32)
+
+[node name="straight_pipe_long07" parent="Props" instance=ExtResource("9_tgab0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 721.371, 0.975159, -1747.45)
+
+[node name="straight_pipe_long04" parent="Props" instance=ExtResource("9_tgab0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 717.448, -34.0575, -1904.32)
+
+[node name="straight_pipe_long05" parent="Props" instance=ExtResource("9_tgab0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 717.448, -34.0575, -1747.45)

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://xbeyfl712vsw" path="res://scenes/player_rocket.tscn" id="2_ax2a4"]
 [ext_resource type="PackedScene" uid="uid://b72sm1bsxqrm6" path="res://assets/ship/ship01.glb" id="2_x6yu6"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="3_6350g"]
+[ext_resource type="PackedScene" uid="uid://crdwiw331f1cp" path="res://assets/ship/Spaceship.glb" id="3_dott0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2d3l7"]
 size = Vector3(0.526955, 0.0853882, 0.848694)
@@ -14,7 +15,7 @@ radius = 0.0518926
 [node name="Ship" type="CharacterBody3D" groups=["ship"]]
 motion_mode = 1
 script = ExtResource("1_mn80g")
-max_speed = 90.0
+max_speed = 160.0
 min_speed = 30.0
 forward_accel = 6.0
 forward_deccel = 10.0
@@ -23,7 +24,7 @@ yaw_speed = 2.0
 projectile = ExtResource("2_ax2a4")
 
 [node name="collision_area" type="Area3D" parent="."]
-collision_mask = 6
+collision_mask = 7
 
 [node name="Collision" type="CollisionShape3D" parent="collision_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128547, -0.0161324, -0.800429)
