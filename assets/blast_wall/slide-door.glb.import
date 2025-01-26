@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cnljm0si3y8jw"
-path="res://.godot/imported/blast-wall.glb-b4f49edb1399a8bbbc08293e555d82c4.scn"
+uid="uid://decntn65b6em"
+path="res://.godot/imported/slide-door.glb-5053c5b247d72b6d5e9ea9b4ef6818fe.scn"
 
 [deps]
 
-source_file="res://scenes/blast_wall/blast-wall.glb"
-dest_files=["res://.godot/imported/blast-wall.glb-b4f49edb1399a8bbbc08293e555d82c4.scn"]
+source_file="res://assets/blast_wall/slide-door.glb"
+dest_files=["res://.godot/imported/slide-door.glb-5053c5b247d72b6d5e9ea9b4ef6818fe.scn"]
 
 [params]
 
