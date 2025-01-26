@@ -17,8 +17,8 @@
 /home/USER/.ssh/config  
 
 Host blog  
-    Hostname ENTER_IP  
-    User wes  
-    IdentityFile ~/.ssh/KEYNAME  
+	Hostname ENTER_IP  
+	User wes  
+	IdentityFile ~/.ssh/KEYNAME  
 
 - run deploy_to_server.ps1 script, it should build and rsync the build to the server with the given name.
