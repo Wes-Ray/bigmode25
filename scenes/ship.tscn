@@ -62,7 +62,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
 unique_name_in_owner = true
 script = ExtResource("3_6350g")
 
-[node name="RocketRecharge" type="Timer" parent="."]
+[node name="RocketRecharge" type="Timer" parent="." groups=["rocket_recharge"]]
 unique_name_in_owner = true
 one_shot = true
 

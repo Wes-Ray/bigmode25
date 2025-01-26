@@ -122,6 +122,7 @@ func shoot():
 		current_launcher = 1 if current_launcher == 0 else 0
 		current_ammo -= 1
 		rocket_cooldown_timer.start()
+		EventsBus.rocket_count_changed.emit(current_ammo)
 
 func _on_collision_area_body_entered(_body: Node3D) -> void:
 	# TODO: add explodies
@@ -145,6 +146,7 @@ func _died() -> void:
 func _on_rocket_recharge_timeout() -> void:
 	current_ammo += 1
 	clampi(current_ammo, 0, max_ammo)
+	EventsBus.rocket_count_changed.emit(current_ammo)
 
 func _death_sound() -> void:
 	await get_tree().create_timer(1).timeout
