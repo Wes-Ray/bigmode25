@@ -58,16 +58,16 @@ transform = Transform3D(0.565781, 0.714308, 0.411893, 0.190464, -0.59924, 0.7775
 
 [node name="trench02" parent="." instance=ExtResource("5_8cavi")]
 
-[node name="ProxZoneEntrance1" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8426, 6.40528, -74.5979)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZoneEntrance1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4263, -15.5804, 0)
-shape = SubResource("BoxShape3D_xy0hm")
-
 [node name="ProxZone1" parent="." node_paths=PackedStringArray("zone_entrance") instance=ExtResource("11_f7bsd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4331, 11.5093, -456.323)
-zone_entrance = NodePath("../ProxZoneEntrance1")
+zone_entrance = NodePath("ProxZoneEntrance1")
+
+[node name="ProxZoneEntrance1" type="Area3D" parent="ProxZone1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5905, -5.10402, 381.725)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone1/ProxZoneEntrance1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4263, -15.5804, 0)
+shape = SubResource("BoxShape3D_xy0hm")
 
 [node name="testbulb1a" parent="ProxZone1" instance=ExtResource("7_p4ufl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.0652, -25.767, 23.3116)
@@ -75,16 +75,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.0652, -25.767, 23.3116)
 [node name="testbulb1b" parent="ProxZone1" instance=ExtResource("7_p4ufl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.087, -25.767, 17.0092)
 
-[node name="ProxZoneEntrance2" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.4673, 6.40528, -347.25)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZoneEntrance2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4263, -15.5804, 0)
-shape = SubResource("BoxShape3D_7g06m")
-
 [node name="ProxZone2" parent="." node_paths=PackedStringArray("zone_entrance") instance=ExtResource("11_f7bsd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.0056, 11.1852, -651.159)
-zone_entrance = NodePath("../ProxZoneEntrance2")
+zone_entrance = NodePath("ProxZoneEntrance2")
+
+[node name="ProxZoneEntrance2" type="Area3D" parent="ProxZone2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.5383, -4.77992, 303.909)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone2/ProxZoneEntrance2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4263, -15.5804, 0)
+shape = SubResource("BoxShape3D_7g06m")
 
 [node name="testbulb2a" parent="ProxZone2" instance=ExtResource("7_p4ufl")]
 transform = Transform3D(0.559381, 0, -0.828911, 0, 1, 0, 0.828911, 0, 0.559381, 31.27, -14.2577, 107.497)
