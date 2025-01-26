@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://wk8ox7egbudr"]
 
 [ext_resource type="Script" path="res://scripts/ship.gd" id="1_mn80g"]
-[ext_resource type="PackedScene" uid="uid://b72sm1bsxqrm6" path="res://assets/ship/ship01.glb" id="2_x6yu6"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="3_6350g"]
+[ext_resource type="PackedScene" uid="uid://crdwiw331f1cp" path="res://assets/ship/Spaceship.glb" id="3_dott0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2d3l7"]
 size = Vector3(0.526955, 0.0853882, 0.848694)
@@ -32,17 +32,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.818169)
 shape = SubResource("SphereShape3D_vkq2q")
 disabled = true
 
-[node name="ship01" parent="." instance=ExtResource("2_x6yu6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.24699)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="ship01"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.374317, 2.6339)
-light_color = Color(0.69, 0.67965, 0.621, 1)
-light_energy = 0.1
-
 [node name="HealthComponent" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_6350g")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.374317, 1.38691)
+visible = false
+light_color = Color(0.69, 0.67965, 0.621, 1)
+light_energy = 0.1
+
+[node name="Spaceship" parent="." instance=ExtResource("3_dott0")]
 
 [connection signal="area_entered" from="collision_area" to="." method="_on_collision_area_area_entered"]
 [connection signal="body_entered" from="collision_area" to="." method="_on_collision_area_body_entered"]
