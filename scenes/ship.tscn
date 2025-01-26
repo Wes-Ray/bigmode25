@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://wk8ox7egbudr"]
+[gd_scene load_steps=7 format=3 uid="uid://wk8ox7egbudr"]
 
 [ext_resource type="Script" path="res://scripts/ship.gd" id="1_mn80g"]
+[ext_resource type="PackedScene" uid="uid://xbeyfl712vsw" path="res://scenes/player_rocket.tscn" id="2_ax2a4"]
 [ext_resource type="PackedScene" uid="uid://b72sm1bsxqrm6" path="res://assets/ship/ship01.glb" id="2_x6yu6"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="3_6350g"]
 
@@ -19,6 +20,7 @@ forward_accel = 6.0
 forward_deccel = 10.0
 pitch_speed = 4.0
 yaw_speed = 2.0
+projectile = ExtResource("2_ax2a4")
 
 [node name="collision_area" type="Area3D" parent="."]
 collision_mask = 6
@@ -40,9 +42,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.374317, 2.6339)
 light_color = Color(0.69, 0.67965, 0.621, 1)
 light_energy = 0.1
 
+[node name="Launchers" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="RocketLauncher0" type="CSGBox3D" parent="Launchers"]
+transform = Transform3D(0.252854, 0, 0, 0, 0.279167, 0, 0, 0, 0.970809, 0.653933, -0.0789429, -0.467108)
+
+[node name="LaunchPoint0" type="Node3D" parent="Launchers/RocketLauncher0"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.640795)
+
+[node name="RocketLauncher1" type="CSGBox3D" parent="Launchers"]
+transform = Transform3D(0.252854, 0, 0, 0, 0.279167, 0, 0, 0, 0.949353, -0.655484, -0.0789429, -0.523629)
+
+[node name="LaunchPoint1" type="Node3D" parent="Launchers/RocketLauncher1"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.894885)
+
 [node name="HealthComponent" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_6350g")
 
+[node name="RocketRecharge" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="RocketCooldown" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
 [connection signal="area_entered" from="collision_area" to="." method="_on_collision_area_area_entered"]
 [connection signal="body_entered" from="collision_area" to="." method="_on_collision_area_body_entered"]
+[connection signal="timeout" from="RocketRecharge" to="." method="_on_rocket_recharge_timeout"]
