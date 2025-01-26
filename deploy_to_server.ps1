@@ -6,13 +6,21 @@ if (-not (Test-Path "deployment.json")) {
 }
 $config = Get-Content -Path "deployment.json" | ConvertFrom-Json
 $GODOT_PATH = $config.godot_path
+Write-Host $GODOT_PATH
 $PROJECT_PATH = $config.project_path
+Write-Host $PROJECT_PATH
 $BUILD_PATH = $config.build_path
+Write-Host $BUILD_PATH
 
 $REMOTE_SERVER = "blog"  # key config must be setup in .ssh
 
 $REMOTE_PATH = "/home/wes/blog/gamejam"
 $PROJECT_NAME = "bigmode25-dev-" + $env:USERNAME
+
+if ($args[0] -eq "main") {
+   $PROJECT_NAME = "bigmode25-dev-main"
+}
+
 $URL = "https://ogsyn.dev/gamejam/$PROJECT_NAME.html"
 
 # Remove existing build directory if it exists
@@ -36,7 +44,7 @@ foreach ($path in $paths) {
 # Build the web export
 Write-Host "[*] Building web export..."
 
-$buildProcess = Start-Process -FilePath $GODOT_PATH -ArgumentList "--headless", "--export-release", "Web", "$BUILD_PATH\$PROJECT_NAME.html", $PROJECT_PATH -NoNewWindow -PassThru -Wait
+$buildProcess = Start-Process -FilePath $GODOT_PATH -ArgumentList "--headless", "--export-release", "Web", "`"$BUILD_PATH\$PROJECT_NAME.html`"", $PROJECT_PATH -NoNewWindow -PassThru -Wait
 
 if ($buildProcess.ExitCode -eq 0) {
    Write-Host "[*] Build successful, deploying to server..."

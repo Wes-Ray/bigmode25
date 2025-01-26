@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6d2kxsd2345a"]
+
+[ext_resource type="Theme" path="res://resources/themes/base.tres" id="1_5nmc2"]
+[ext_resource type="Script" path="res://scripts/switch_scene_button.gd" id="1_conwd"]
+
+[node name="SwitchSceneButton" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1666.0
+offset_bottom = -976.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5nmc2")
+text = "level00"
+script = ExtResource("1_conwd")
+scene_select = "res://scenes/menus/main_menu.tscn"
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]
