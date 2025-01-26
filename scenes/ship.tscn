@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://wk8ox7egbudr"]
+[gd_scene load_steps=8 format=3 uid="uid://wk8ox7egbudr"]
 
 [ext_resource type="Script" path="res://scripts/ship.gd" id="1_mn80g"]
 [ext_resource type="PackedScene" uid="uid://xbeyfl712vsw" path="res://scenes/player_rocket.tscn" id="2_ax2a4"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="3_6350g"]
 [ext_resource type="PackedScene" uid="uid://crdwiw331f1cp" path="res://assets/ship/Spaceship.glb" id="3_v2lo3"]
+[ext_resource type="AudioStream" uid="uid://cx1pavpionhbx" path="res://assets/sound/ship_explosion.ogg" id="5_bdllt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2d3l7"]
 size = Vector3(1.63574, 0.267383, 1.6644)
@@ -61,13 +62,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
 unique_name_in_owner = true
 script = ExtResource("3_6350g")
 
-[node name="RocketRecharge" type="Timer" parent="."]
+[node name="RocketRecharge" type="Timer" parent="." groups=["rocket_recharge"]]
 unique_name_in_owner = true
 one_shot = true
 
 [node name="RocketCooldown" type="Timer" parent="."]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="crash" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_bdllt")
 
 [connection signal="area_entered" from="collision_area" to="." method="_on_collision_area_area_entered"]
 [connection signal="body_entered" from="collision_area" to="." method="_on_collision_area_body_entered"]

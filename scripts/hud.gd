@@ -12,6 +12,10 @@ class_name HUD
 @onready var setting_root := %Settings
 @onready var speedometer_root := %Speedometer
 @onready var speedometer_label := %SpeedometerLabel
+@onready var rockets_root := %Rockets
+@onready var rockets_count_label := %RocketCountLabel
+@onready var rocket_progress_bar : ProgressBar = %RocketProgressBar
+var rocket_timer : Timer
 
 const MAIN_MENU := "res://scenes/menus/main_menu.tscn"
 
@@ -42,6 +46,9 @@ func _ready() -> void:
 	sens_spinbox.value = GameConfig.mouse_sens
 	invert_check.button_pressed = GameConfig.mouse_inverted
 
+	EventsBus.rocket_count_changed.connect(_on_rocket_count_changed)
+
+
 func _process(_delta: float) -> void:
 	update_debug_label()
 
@@ -64,6 +71,14 @@ func _process(_delta: float) -> void:
 	var current_speed :String= Logger.get_speed()
 	speedometer_label.text = current_speed
 
+	if is_instance_valid(rocket_timer):
+		if rocket_timer.is_stopped():
+			rocket_progress_bar.value = 100
+		else:
+			rocket_progress_bar.value = (rocket_timer.time_left / rocket_timer.wait_time) * 100
+	else:
+		rocket_timer = get_tree().get_first_node_in_group("rocket_recharge")
+
 func update_debug_label() -> void:
 	var result_str:= ""
 	for key: String in Logger.debug_dict.keys():
@@ -82,6 +97,7 @@ func pause() -> void:
 	setting_root.show()
 	crosshair.hide()
 	speedometer_root.hide()
+	rockets_root.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().paused = true
 
@@ -90,6 +106,7 @@ func unpause() -> void:
 	setting_root.hide()
 	crosshair.show()
 	speedometer_root.show()
+	rockets_root.show()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	get_tree().paused = false
 
@@ -116,3 +133,5 @@ func _on_sens_spin_box_value_changed(value:float) -> void:
 func _on_invert_check_button_toggled(toggled_on:bool) -> void:
 	GameConfig.mouse_inverted = toggled_on
 
+func _on_rocket_count_changed(rockets: int) -> void:
+	rockets_count_label.text = "[b]" + str(rockets) + " / 2[/b]"
