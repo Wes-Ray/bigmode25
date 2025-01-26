@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv2g21feowrn3"]
+[gd_scene load_steps=3 format=3 uid="uid://bv2g21feowrn3"]
 
 [ext_resource type="Theme" path="res://resources/themes/base.tres" id="1_cgph1"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_pr8ck"]
-[ext_resource type="PackedScene" uid="uid://c6d2kxsd2345a" path="res://scenes/menus/switch_scene_button.tscn" id="3_pas0a"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -78,7 +77,7 @@ alignment = 2
 layout_mode = 2
 text = "RESTART"
 
-[node name="SwitchSceneButton" parent="Menu/ButtonsContainer" instance=ExtResource("3_pas0a")]
+[node name="ExitToMenu" type="Button" parent="Menu/ButtonsContainer"]
 layout_mode = 2
 text = "exit"
 
@@ -172,7 +171,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -139.0
 offset_top = -116.0
-offset_right = 312.0
+offset_right = 544.0
 offset_bottom = 117.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -234,5 +233,6 @@ theme_override_font_sizes/font_size = 32
 
 [connection signal="button_up" from="Menu/LaunchButton" to="." method="_on_launch_button_button_up"]
 [connection signal="button_up" from="Menu/ButtonsContainer/RestartButton" to="." method="_on_restart_button_button_up"]
+[connection signal="button_up" from="Menu/ButtonsContainer/ExitToMenu" to="." method="_on_exit_to_menu_button_up"]
 [connection signal="value_changed" from="Settings/MarginContainer/VBoxContainer/SensSpinBox" to="." method="_on_sens_spin_box_value_changed"]
 [connection signal="toggled" from="Settings/MarginContainer/VBoxContainer/InvertCheckButton" to="." method="_on_invert_check_button_toggled"]

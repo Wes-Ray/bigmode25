@@ -13,6 +13,23 @@ class_name HUD
 @onready var speedometer_root := %Speedometer
 @onready var speedometer_label := %SpeedometerLabel
 
+const MAIN_MENU := "res://scenes/menus/main_menu.tscn"
+
+# func _ready() -> void:
+# 	self.hide()
+
+# func on_player_crashed() -> void:
+# 	print("crash")
+# 	var scn = "res://scenes/menus/main_menu.tscn"
+# 	# call_deferred("_change_scene", scn)
+# 	call_deferred("func", get_tree().change_scene_to_file(scn))
+
+# func _change_scene(scn):
+# 	print("deferred change scene")
+# 	get_tree().change_scene_to_file(scn)
+	
+
+
 func _ready() -> void:
 	# keeps this script functioning when paused
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -83,6 +100,10 @@ func _on_restart_button_button_up() -> void:
 	get_tree().reload_current_scene()
 	EventsBus.game_reset.emit()
 
+func _on_exit_to_menu_button_up() -> void:
+	self.queue_free()
+	get_tree().change_scene_to_file(MAIN_MENU)
+
 func on_player_crashed() -> void:
 	Logger.log("player crashed", true)
 	status_label.text = "[b][color=red]CRASHED[/color][/b]"
@@ -94,3 +115,4 @@ func _on_sens_spin_box_value_changed(value:float) -> void:
 
 func _on_invert_check_button_toggled(toggled_on:bool) -> void:
 	GameConfig.mouse_inverted = toggled_on
+

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://xbeyfl712vsw"]
+
+[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_skt7i"]
+[ext_resource type="Material" uid="uid://tgcgn4wu7f6q" path="res://resources/turrets/laser.tres" id="1_ttnjg"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1vi10"]
+radius = 0.3
+
+[node name="PlayerRocket" type="Node3D"]
+script = ExtResource("1_skt7i")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CylinderShape3D_1vi10")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+material_override = ExtResource("1_ttnjg")
+radius = 0.3
