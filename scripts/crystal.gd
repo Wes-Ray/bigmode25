@@ -14,5 +14,9 @@ func _process(_delta):
 
 func _on_area_3d_area_entered(_area:Area3D):
 	destroyed.emit()
+	# print("%s destroyed" % self.name)
 	self.visible = false
-	set_deferred("$Area3D/CollisionShape3D.disabled", true)
+	call_deferred("remove_collision")
+
+func remove_collision():
+	$Area3D/CollisionShape3D.disabled = true
