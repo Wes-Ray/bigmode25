@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dydrr63f746ur"]
+[gd_scene load_steps=20 format=3 uid="uid://dydrr63f746ur"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sebui"]
 [ext_resource type="PackedScene" uid="uid://wk8ox7egbudr" path="res://scenes/ship.tscn" id="2_kkbaq"]
@@ -7,8 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://cctm4t5452j1g" path="res://scenes/levels/level_object_scenes/trench_02.tscn" id="5_8cavi"]
 [ext_resource type="Texture2D" uid="uid://bgpiodebmm302" path="res://resources/night_sky1.tres" id="5_mln88"]
 [ext_resource type="PackedScene" uid="uid://d23s48brb7axp" path="res://assets/props/elbow_pipe01.glb" id="7_cfo38"]
+[ext_resource type="PackedScene" uid="uid://o1skyth3ebcm" path="res://scenes/light_bulb.tscn" id="7_p4ufl"]
 [ext_resource type="PackedScene" uid="uid://chtu5gyv4ebam" path="res://assets/props/straight_pipe01.glb" id="8_2pgjq"]
 [ext_resource type="PackedScene" uid="uid://c3eftue5uxh0f" path="res://assets/props/straight_pipe_long01.glb" id="9_tgab0"]
+[ext_resource type="PackedScene" uid="uid://bjgbj1egj4yyk" path="res://scenes/prox_zone.tscn" id="11_f7bsd"]
+[ext_resource type="PackedScene" uid="uid://ca6tuggw5nlul" path="res://scenes/blast_wall/blast_door.tscn" id="12_8csq4"]
+[ext_resource type="PackedScene" uid="uid://cdrpc5daiyglh" path="res://scenes/turrets/laser_turret.tscn" id="13_2igwp"]
+[ext_resource type="PackedScene" uid="uid://t37eul41x86d" path="res://scenes/turrets/projectile_turret.tscn" id="14_1ols5"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_reb25"]
 rayleigh_coefficient = 1.0
@@ -28,6 +33,12 @@ ambient_light_source = 2
 ambient_light_color = Color(0.118581, 0.118581, 0.118581, 1)
 ambient_light_energy = 1.5
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_xy0hm"]
+size = Vector3(181.775, 110.26, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7g06m"]
+size = Vector3(181.775, 110.26, 20)
+
 [node name="Leve02" type="Node3D" node_paths=PackedStringArray("spawn_point", "debug_spawn_point")]
 script = ExtResource("1_sebui")
 spawn_point = NodePath("Spawn")
@@ -46,44 +57,90 @@ transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, 0.9480
 environment = SubResource("Environment_2084g")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.565781, 0.714308, 0.411893, 0.190464, -0.59924, 0.777583, 0.802256, -0.361491, -0.475089, 0, 36.2723, 0)
+transform = Transform3D(0.523894, 0.822714, 0.220628, -0.801444, 0.388387, 0.4548, 0.288481, -0.415088, 0.862833, 0, 36.2723, 0)
 
 [node name="trench02" parent="." instance=ExtResource("5_8cavi")]
 
-[node name="Props" type="Node3D" parent="."]
+[node name="ProxZone1" parent="." node_paths=PackedStringArray("zone_entrance") instance=ExtResource("11_f7bsd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4331, 11.5093, -456.323)
+zone_entrance = NodePath("ProxZoneEntrance1")
 
-[node name="straight_pipe_long01" parent="Props" instance=ExtResource("9_tgab0")]
+[node name="ProxZoneEntrance1" type="Area3D" parent="ProxZone1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5905, -5.10402, 381.725)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone1/ProxZoneEntrance1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4263, -15.5804, 0)
+shape = SubResource("BoxShape3D_xy0hm")
+
+[node name="testbulb1a" parent="ProxZone1" instance=ExtResource("7_p4ufl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.0652, -25.767, 23.3116)
+
+[node name="testbulb1b" parent="ProxZone1" instance=ExtResource("7_p4ufl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.087, -25.767, 17.0092)
+
+[node name="ProxZone2" parent="." node_paths=PackedStringArray("zone_entrance") instance=ExtResource("11_f7bsd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.0056, 11.1852, -651.159)
+zone_entrance = NodePath("ProxZoneEntrance2")
+
+[node name="ProxZoneEntrance2" type="Area3D" parent="ProxZone2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.5383, -4.77992, 303.909)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone2/ProxZoneEntrance2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4263, -15.5804, 0)
+shape = SubResource("BoxShape3D_7g06m")
+
+[node name="testbulb2a" parent="ProxZone2" instance=ExtResource("7_p4ufl")]
+transform = Transform3D(0.559381, 0, -0.828911, 0, 1, 0, 0.828911, 0, 0.559381, 31.27, -14.2577, 107.497)
+
+[node name="testbulb2b" parent="ProxZone2" instance=ExtResource("7_p4ufl")]
+transform = Transform3D(0.559381, 0, -0.828911, 0, 1, 0, 0.828911, 0, 0.559381, 176.992, -14.2577, 127.203)
+
+[node name="StaticProps" type="Node3D" parent="."]
+
+[node name="straight_pipe_long01" parent="StaticProps" instance=ExtResource("9_tgab0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.0922, -40.4097, -436.102)
 
-[node name="elbow_pipe01" parent="Props" instance=ExtResource("7_cfo38")]
+[node name="straight_pipe_long08" parent="StaticProps" instance=ExtResource("9_tgab0")]
+transform = Transform3D(0.57619, 0, -0.817316, 0, 1, 0, 0.817316, 0, 0.57619, 176.854, -40.4097, -1716.41)
+
+[node name="elbow_pipe01" parent="StaticProps" instance=ExtResource("7_cfo38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -153.974, -58.3016, -4416.64)
 
-[node name="straight_pipe01" parent="Props" instance=ExtResource("8_2pgjq")]
+[node name="straight_pipe01" parent="StaticProps" instance=ExtResource("8_2pgjq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -202.418, -57.0443, -4416.66)
 
-[node name="elbow_pipe02" parent="Props" instance=ExtResource("7_cfo38")]
+[node name="elbow_pipe02" parent="StaticProps" instance=ExtResource("7_cfo38")]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -137.91, -6.02521, -879.953)
 
-[node name="straight_pipe02" parent="Props" instance=ExtResource("8_2pgjq")]
+[node name="straight_pipe02" parent="StaticProps" instance=ExtResource("8_2pgjq")]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -180.793, -5.81554, -855.162)
 
-[node name="straight_pipe03" parent="Props" instance=ExtResource("8_2pgjq")]
+[node name="straight_pipe03" parent="StaticProps" instance=ExtResource("8_2pgjq")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -132.547, -61.2944, -883.471)
 
-[node name="straight_pipe_long02" parent="Props" instance=ExtResource("9_tgab0")]
+[node name="straight_pipe_long02" parent="StaticProps" instance=ExtResource("9_tgab0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 708.838, 33.8695, -1904.32)
 
-[node name="straight_pipe_long03" parent="Props" instance=ExtResource("9_tgab0")]
+[node name="straight_pipe_long03" parent="StaticProps" instance=ExtResource("9_tgab0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 708.838, 33.8695, -1747.45)
 
-[node name="straight_pipe_long06" parent="Props" instance=ExtResource("9_tgab0")]
+[node name="straight_pipe_long06" parent="StaticProps" instance=ExtResource("9_tgab0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 721.371, 0.975159, -1904.32)
 
-[node name="straight_pipe_long07" parent="Props" instance=ExtResource("9_tgab0")]
+[node name="straight_pipe_long07" parent="StaticProps" instance=ExtResource("9_tgab0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 721.371, 0.975159, -1747.45)
 
-[node name="straight_pipe_long04" parent="Props" instance=ExtResource("9_tgab0")]
+[node name="straight_pipe_long04" parent="StaticProps" instance=ExtResource("9_tgab0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 717.448, -34.0575, -1904.32)
 
-[node name="straight_pipe_long05" parent="Props" instance=ExtResource("9_tgab0")]
+[node name="straight_pipe_long05" parent="StaticProps" instance=ExtResource("9_tgab0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 717.448, -34.0575, -1747.45)
+
+[node name="BlastDoor" parent="." instance=ExtResource("12_8csq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -183.717, 1.96292, -1142.03)
+
+[node name="LaserTurret" parent="." instance=ExtResource("13_2igwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.984, -60.9704, -838.262)
+
+[node name="ProjectileTurret" parent="." instance=ExtResource("14_1ols5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.7898, -62.3647, -910.162)

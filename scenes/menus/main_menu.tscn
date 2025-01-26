@@ -34,11 +34,6 @@ offset_top = 252.0
 offset_right = 415.0
 offset_bottom = 565.0
 
-[node name="SwitchSceneButton" parent="VBoxContainer" instance=ExtResource("3_llabq")]
-layout_mode = 2
-text = "level01"
-scene_select = "res://scenes/levels/level01.tscn"
-
 [node name="SwitchSceneButton2" parent="VBoxContainer" instance=ExtResource("3_llabq")]
 layout_mode = 2
 text = "level02"

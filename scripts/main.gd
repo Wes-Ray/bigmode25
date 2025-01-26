@@ -1,10 +1,14 @@
 extends Node3D
+class_name MainLevel
 
 @export var spawn_point: Node3D
 @export var debug_spawn_point: Node3D
 @export var ship_scene: PackedScene
 @export var camera_scene: PackedScene
 @export var hud_scene: PackedScene
+
+# For use by ProxZone direct children
+var active_prox_zone: ProxZone = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

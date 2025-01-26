@@ -7,13 +7,15 @@
 [ext_resource type="AudioStream" uid="uid://cx1pavpionhbx" path="res://resources/audio/ship_explosion.ogg" id="5_bdllt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2d3l7"]
-size = Vector3(0.526955, 0.0853882, 0.848694)
+size = Vector3(1.63574, 0.267383, 1.6644)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vkq2q"]
 radius = 0.0518926
 
 [node name="Ship" type="CharacterBody3D" groups=["ship"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.66323)
 motion_mode = 1
+safe_margin = 93.659
 script = ExtResource("1_mn80g")
 max_speed = 160.0
 min_speed = 30.0
@@ -23,11 +25,11 @@ pitch_speed = 4.0
 yaw_speed = 2.0
 projectile = ExtResource("2_ax2a4")
 
-[node name="collision_area" type="Area3D" parent="."]
+[node name="collision_area" type="Area3D" parent="." groups=["ship"]]
 collision_mask = 7
 
 [node name="Collision" type="CollisionShape3D" parent="collision_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128547, -0.0161324, -0.800429)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00896844, 0.0932986, 0.633119)
 shape = SubResource("BoxShape3D_2d3l7")
 
 [node name="ignored" type="CollisionShape3D" parent="."]
