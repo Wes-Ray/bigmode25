@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dydrr63f746ur"]
+[gd_scene load_steps=21 format=3 uid="uid://dydrr63f746ur"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sebui"]
 [ext_resource type="PackedScene" uid="uid://wk8ox7egbudr" path="res://scenes/ship.tscn" id="2_kkbaq"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d23s48brb7axp" path="res://assets/props/elbow_pipe01.glb" id="7_cfo38"]
 [ext_resource type="PackedScene" uid="uid://o1skyth3ebcm" path="res://scenes/light_bulb.tscn" id="7_p4ufl"]
 [ext_resource type="PackedScene" uid="uid://chtu5gyv4ebam" path="res://assets/props/straight_pipe01.glb" id="8_2pgjq"]
+[ext_resource type="Script" path="res://scripts/zone_trigger.gd" id="8_kwsq7"]
 [ext_resource type="PackedScene" uid="uid://c3eftue5uxh0f" path="res://assets/props/straight_pipe_long01.glb" id="9_tgab0"]
 [ext_resource type="PackedScene" uid="uid://bjgbj1egj4yyk" path="res://scenes/prox_zone.tscn" id="11_f7bsd"]
 [ext_resource type="PackedScene" uid="uid://ca6tuggw5nlul" path="res://scenes/blast_wall/blast_door.tscn" id="12_8csq4"]
@@ -67,6 +68,7 @@ zone_entrance = NodePath("ProxZoneEntrance1")
 
 [node name="ProxZoneEntrance1" type="Area3D" parent="ProxZone1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5905, -5.10402, 381.725)
+script = ExtResource("8_kwsq7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone1/ProxZoneEntrance1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4263, -15.5804, 0)
@@ -84,6 +86,7 @@ zone_entrance = NodePath("ProxZoneEntrance2")
 
 [node name="ProxZoneEntrance2" type="Area3D" parent="ProxZone2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.5383, -4.77992, 303.909)
+script = ExtResource("8_kwsq7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone2/ProxZoneEntrance2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4263, -15.5804, 0)

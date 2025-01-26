@@ -135,13 +135,10 @@ func _on_collision_area_area_entered(area: Area3D) -> void:
 	if area.is_in_group("projectile_hitbox"):
 		health_component.take_damage(1)
 
-
-
 func _died() -> void:
 	_death_sound()
 	player_crashed.emit()
 	queue_free()
-
 
 func _on_rocket_recharge_timeout() -> void:
 	current_ammo += 1
@@ -151,3 +148,6 @@ func _on_rocket_recharge_timeout() -> void:
 func _death_sound() -> void:
 	await get_tree().create_timer(1).timeout
 	$crash.play()
+
+func entered_zone_trigger(zone_name: int):
+	print("entered zone trigger: ", zone_name)
