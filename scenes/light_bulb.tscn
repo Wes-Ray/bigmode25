@@ -1,7 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://o1skyth3ebcm"]
-
-[ext_resource type="PackedScene" uid="uid://ch318uok57j3s" path="res://scenes/prox_object.tscn" id="1_6cnsx"]
-[ext_resource type="Script" path="res://scripts/TESTvisible_on_screen_enabler_3d.gd" id="2_big8g"]
+[gd_scene format=3 uid="uid://o1skyth3ebcm"]
 
 [node name="LightBulb" type="OmniLight3D"]
 light_color = Color(0.849386, 0.207379, 0.776569, 1)
@@ -12,11 +9,3 @@ omni_attenuation = 0.1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 inner_radius = 2.55921
 outer_radius = 4.4213
-
-[node name="ProxObject" parent="." instance=ExtResource("1_6cnsx")]
-
-[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
-visible = false
-script = ExtResource("2_big8g")
-
-[connection signal="screen_exited" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_exited"]
