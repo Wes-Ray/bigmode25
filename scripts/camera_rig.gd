@@ -15,8 +15,13 @@ var is_free_looking := false
 var center_camera_tween : Tween
 var return_camera_to_center_time := 0.2
 
+var sound = 'y'
+
+
 func _ready() -> void:
 	assert(track_target, "there must be a track target assigned before entering scene")
+	soundtrack(sound)
+	
 
 func _process(delta: float) -> void:
 	if not is_instance_valid(track_target):
@@ -74,3 +79,7 @@ func _input(event: InputEvent) -> void:
 	
 	rotate(basis.y.normalized(), -mouse_movement.x * (YAW_DAMPEN))  # yaw
 	rotate(basis.x.normalized(), invert_val * mouse_movement.y)  # pitch
+	
+func soundtrack(bool) -> void:
+	
+	$Soundtrack.play()
