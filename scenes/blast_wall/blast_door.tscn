@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://ca6tuggw5nlul"]
+[gd_scene load_steps=15 format=3 uid="uid://ca6tuggw5nlul"]
 
+[ext_resource type="Script" path="res://scripts/blast_door.gd" id="1_7vavr"]
 [ext_resource type="Texture2D" uid="uid://cmd2t41pnddfy" path="res://resources/environment/beach/aerial_beach_01_diff_1k.jpg" id="2_f632i"]
 [ext_resource type="PackedScene" uid="uid://dt66vume37wvj" path="res://scenes/blast_wall/slide_door.tscn" id="4_esp65"]
-[ext_resource type="PackedScene" uid="uid://yl20owsmi50l" path="res://scenes/blast_wall/wall_crystal.tscn" id="4_y1267"]
+[ext_resource type="PackedScene" uid="uid://yl20owsmi50l" path="res://scenes/crystal/crystal.tscn" id="4_y1267"]
 [ext_resource type="PackedScene" uid="uid://dadnkg4ji885p" path="res://scenes/blast_wall/blast_wall.tscn" id="5_wlooj"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_x1odb"]
@@ -57,7 +58,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-1.94294e-08, 0, -0.555508)]
+"values": [Vector3(-3.86797e-06, 0, 87.4888)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -69,18 +70,19 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(3.78732e-06, 0, -86.6438)]
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yrkcy"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qdkbp"]
 transparency = 1
-albedo_color = Color(0.768627, 0.627451, 0.929412, 0.796078)
+albedo_color = Color(0.631373, 0.521569, 0.847059, 0.737255)
 albedo_texture = ExtResource("2_f632i")
+emission = Color(0, 0, 1, 1)
+rim_enabled = true
 
 [sub_resource type="Animation" id="Animation_h7uik"]
 resource_name = "shield_low"
 length = 0.4
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -88,10 +90,10 @@ tracks/0/path = NodePath("blast-wall/Shield:material_override")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [SubResource("StandardMaterial3D_by47e"), SubResource("StandardMaterial3D_yrkcy")]
+"values": [SubResource("StandardMaterial3D_qdkbp")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -105,11 +107,34 @@ tracks/1/keys = {
 "update": 0,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("blast-wall/Door1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3.86797e-06, 0, 87.4888)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("blast-wall/Door2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3.78732e-06, 0, -86.6438)]
+}
 
 [sub_resource type="Animation" id="Animation_h7ide"]
 resource_name = "shut_door"
 length = 6.0
-loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -130,10 +155,10 @@ tracks/1/path = NodePath("blast-wall/Door1:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 3, 4.7, 6),
+"times": PackedFloat32Array(0, 2.4, 4, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-3.86797e-06, 0, 87.4888), Vector3(-5.96711e-07, 0, 12.6511), Vector3(-1.94294e-08, 0, -0.555508), Vector3(-1.94294e-08, 0, -0.555508)]
+"values": [Vector3(-3.86797e-06, 0, 87.4888), Vector3(-9.81565e-07, 0, 21.4556), Vector3(-1.94294e-08, 0, -0.555508), Vector3(-1.94294e-08, 0, -0.555508)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -142,10 +167,10 @@ tracks/2/path = NodePath("blast-wall/Door2:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 3, 4.7, 6),
+"times": PackedFloat32Array(0, 2.4, 4, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(3.78732e-06, 0, -86.6438), Vector3(5.68098e-07, 0, -12.9966), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(3.78732e-06, 0, -86.6438), Vector3(9.4683e-07, 0, -21.6609), Vector3(0, 0, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nkq4x"]
@@ -156,18 +181,26 @@ _data = {
 }
 
 [node name="BlastDoor" type="Node3D"]
+script = ExtResource("1_7vavr")
 
 [node name="blast-wall" parent="." instance=ExtResource("5_wlooj")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="blast-wall"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="blast-wall/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_x1odb")
 
 [node name="Crystal1" parent="blast-wall" instance=ExtResource("4_y1267")]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 16.664, 0, 82.8459)
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 17.3437, 0, 78.3924)
+skeleton = NodePath("../..")
+
+[node name="Crystal2" parent="blast-wall" instance=ExtResource("4_y1267")]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 17.3437, 0, -75.0961)
 skeleton = NodePath("../..")
 
 [node name="Shield" type="MeshInstance3D" parent="blast-wall"]
@@ -188,13 +221,13 @@ transform = Transform3D(1, -1.77636e-15, -1.08971e-15, 1.77636e-15, 1, 0, -1.089
 shape = SubResource("SphereShape3D_j47bk")
 
 [node name="Door1" parent="blast-wall" instance=ExtResource("4_esp65")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.94294e-08, 0, -0.555508)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.86797e-06, 0, 87.4888)
 
 [node name="Door2" parent="blast-wall" instance=ExtResource("4_esp65")]
-transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 3.78732e-06, 0, -86.6438)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_nkq4x")
 }
-autoplay = "shut_door"
+autoplay = "RESET"
