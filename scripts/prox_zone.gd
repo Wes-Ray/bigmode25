@@ -25,7 +25,6 @@ func _area_entered(area: Area3D) -> void:
 	# TODO: if there are errors with lights not being enabled, might want to make a timer here
 	call_deferred("enable_children")
 
-
 func disable_children():
 	print("disabling children")
 	for c in get_children():
