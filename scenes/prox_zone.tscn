@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjgbj1egj4yyk"]
+
+[ext_resource type="Script" path="res://scripts/prox_zone.gd" id="1_4nyo7"]
+
+[node name="ProxZone" type="Marker3D"]
+gizmo_extents = 2.0
+script = ExtResource("1_4nyo7")

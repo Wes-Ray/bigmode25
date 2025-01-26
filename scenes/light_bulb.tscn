@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://o1skyth3ebcm"]
+
+[node name="LightBulb" type="OmniLight3D"]
+light_color = Color(0.849386, 0.207379, 0.776569, 1)
+omni_range = 20.0
+omni_attenuation = 0.1
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+inner_radius = 2.55921
+outer_radius = 4.4213
