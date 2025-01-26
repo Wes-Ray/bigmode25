@@ -36,6 +36,7 @@ func init() -> void:
 	camera_instance.rotation = spawn_point.rotation
 
 	ship_instance.player_crashed.connect(hud_instance.on_player_crashed)
+	ship_instance.player_crashed.connect(camera_instance.on_player_crashed)
 
 	add_child(ship_instance)
 	add_child(camera_instance)

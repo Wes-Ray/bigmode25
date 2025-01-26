@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://xbeyfl712vsw" path="res://scenes/player_rocket.tscn" id="2_ax2a4"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="3_6350g"]
 [ext_resource type="PackedScene" uid="uid://crdwiw331f1cp" path="res://assets/ship/Spaceship.glb" id="3_v2lo3"]
-[ext_resource type="AudioStream" uid="uid://cx1pavpionhbx" path="res://resources/audio/ship_explosion.ogg" id="5_bdllt"]
+[ext_resource type="AudioStream" uid="uid://cx1pavpionhbx" path="res://assets/sound/ship_explosion.ogg" id="5_bdllt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2d3l7"]
 size = Vector3(1.63574, 0.267383, 1.6644)

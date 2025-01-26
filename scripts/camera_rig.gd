@@ -15,12 +15,14 @@ var is_free_looking := false
 var center_camera_tween : Tween
 var return_camera_to_center_time := 0.2
 
-var sound = 'y'
+var soundtrack_on := true
+@onready var soundtrack_player := %Soundtrack
+@onready var deathsound_player := %DeathSound
 
 
 func _ready() -> void:
 	assert(track_target, "there must be a track target assigned before entering scene")
-	soundtrack(sound)
+	soundtrack(soundtrack_on)
 	
 
 func _process(delta: float) -> void:
@@ -80,6 +82,11 @@ func _input(event: InputEvent) -> void:
 	rotate(basis.y.normalized(), -mouse_movement.x * (YAW_DAMPEN))  # yaw
 	rotate(basis.x.normalized(), invert_val * mouse_movement.y)  # pitch
 	
-func soundtrack(bool) -> void:
-	
-	$Soundtrack.play()
+func soundtrack(do_play : bool) -> void:
+	if not do_play:
+		return
+	soundtrack_player.play()
+
+func on_player_crashed() -> void:
+	print("camera saw player crashed")
+	deathsound_player.play()
