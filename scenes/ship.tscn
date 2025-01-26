@@ -5,13 +5,14 @@
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="3_6350g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2d3l7"]
-size = Vector3(0.526955, 0.0853882, 0.848694)
+size = Vector3(1, 0.2, 2)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vkq2q"]
 radius = 0.0518926
 
 [node name="Ship" type="CharacterBody3D" groups=["ship"]]
 motion_mode = 1
+safe_margin = 93.659
 script = ExtResource("1_mn80g")
 max_speed = 90.0
 min_speed = 30.0
