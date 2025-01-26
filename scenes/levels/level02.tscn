@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dydrr63f746ur"]
+[gd_scene load_steps=16 format=3 uid="uid://dydrr63f746ur"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sebui"]
 [ext_resource type="PackedScene" uid="uid://wk8ox7egbudr" path="res://scenes/ship.tscn" id="2_kkbaq"]
@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://cctm4t5452j1g" path="res://scenes/levels/level_object_scenes/trench_02.tscn" id="5_8cavi"]
 [ext_resource type="Texture2D" uid="uid://bgpiodebmm302" path="res://resources/night_sky1.tres" id="5_mln88"]
 [ext_resource type="PackedScene" uid="uid://d23s48brb7axp" path="res://assets/props/elbow_pipe01.glb" id="7_cfo38"]
+[ext_resource type="PackedScene" uid="uid://dbm5vbte8ec5w" path="res://scenes/light_bulb.tscn" id="7_p4ufl"]
 [ext_resource type="PackedScene" uid="uid://chtu5gyv4ebam" path="res://assets/props/straight_pipe01.glb" id="8_2pgjq"]
 [ext_resource type="PackedScene" uid="uid://c3eftue5uxh0f" path="res://assets/props/straight_pipe_long01.glb" id="9_tgab0"]
+[ext_resource type="PackedScene" uid="uid://cxkv0ptduw1qa" path="res://scenes/prox_zone.tscn" id="11_f7bsd"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_reb25"]
 rayleigh_coefficient = 1.0
@@ -27,6 +29,9 @@ sky = SubResource("Sky_kmt50")
 ambient_light_source = 2
 ambient_light_color = Color(0.118581, 0.118581, 0.118581, 1)
 ambient_light_energy = 1.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8lxt8"]
+size = Vector3(231.23, 124.235, 168.219)
 
 [node name="Leve02" type="Node3D" node_paths=PackedStringArray("spawn_point", "debug_spawn_point")]
 script = ExtResource("1_sebui")
@@ -51,6 +56,9 @@ transform = Transform3D(0.565781, 0.714308, 0.411893, 0.190464, -0.59924, 0.7775
 [node name="trench02" parent="." instance=ExtResource("5_8cavi")]
 
 [node name="Props" type="Node3D" parent="."]
+
+[node name="LightBulb" parent="Props" instance=ExtResource("7_p4ufl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.01, -14.2577, -419.581)
 
 [node name="straight_pipe_long01" parent="Props" instance=ExtResource("9_tgab0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.0922, -40.4097, -436.102)
@@ -87,3 +95,12 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 717.44
 
 [node name="straight_pipe_long05" parent="Props" instance=ExtResource("9_tgab0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 717.448, -34.0575, -1747.45)
+
+[node name="Zones" type="Node3D" parent="."]
+
+[node name="ProxZone" parent="Zones" instance=ExtResource("11_f7bsd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4331, 11.5093, -456.323)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Zones/ProxZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.96903, -16.3715, 3.6004)
+shape = SubResource("BoxShape3D_8lxt8")

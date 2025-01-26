@@ -38,6 +38,7 @@ movie_writer/movie_file="C:/Users/wes/Documents/windev/breach-vector/output/vide
 
 ship=""
 projectile_hitbox=""
+prox_object="Object is only enabled when player is in the overlapping ProxZone"
 
 [input]
 

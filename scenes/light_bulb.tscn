@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbm5vbte8ec5w"]
+
+[ext_resource type="PackedScene" uid="uid://cw66brhjdpmmp" path="res://scenes/prox_object.tscn" id="1_6cnsx"]
+
+[node name="LightBulb" type="OmniLight3D" groups=["prox_object"]]
+light_color = Color(0.849386, 0.207379, 0.776569, 1)
+omni_range = 101.295
+omni_attenuation = 0.1
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+inner_radius = 2.55921
+outer_radius = 4.4213
+
+[node name="ProxObject" parent="." instance=ExtResource("1_6cnsx")]
