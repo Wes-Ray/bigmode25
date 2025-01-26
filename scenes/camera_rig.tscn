@@ -6,9 +6,6 @@
 
 [node name="CameraRig" type="Node3D"]
 script = ExtResource("1_6dard")
-max_roll_speed = null
-roll_accel = null
-roll_deccel = null
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)

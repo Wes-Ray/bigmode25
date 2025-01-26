@@ -1,19 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdrpc5daiyglh"]
+[gd_scene load_steps=10 format=3 uid="uid://cdrpc5daiyglh"]
 
 [ext_resource type="Script" path="res://scripts/laser_turret.gd" id="1_e7exr"]
 [ext_resource type="Material" uid="uid://cl10qqplchfhu" path="res://resources/turrets/laser_turret_top.tres" id="2_nanqa"]
 [ext_resource type="Material" uid="uid://ceatbkvs6fwxx" path="res://resources/turrets/turret_material.tres" id="3_7ungk"]
 [ext_resource type="Material" uid="uid://tgcgn4wu7f6q" path="res://resources/turrets/laser.tres" id="3_cy3ac"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_moxmc"]
-height = 3.5
+[ext_resource type="AudioStream" uid="uid://di08nkdef0syl" path="res://assets/sound/laser_hum.ogg" id="4_lni1s"]
 
 [sub_resource type="Animation" id="Animation_r71sr"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh/Top:rotation")
+tracks/0/path = NodePath("Top:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -30,7 +28,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh/Top:rotation")
+tracks/0/path = NodePath("Top:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -46,46 +44,11 @@ _data = {
 "up-down": SubResource("Animation_ud8iy")
 }
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_moxmc"]
+height = 3.5
+
 [node name="LaserTurret" type="Node3D"]
 script = ExtResource("1_e7exr")
-
-[node name="Mesh" type="Node3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
-
-[node name="Top" type="Node3D" parent="Mesh"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.995762, 0.0919709, 0, -0.0919709, 0.995762, 0, 0, 0)
-
-[node name="Barrell" type="CSGBox3D" parent="Mesh/Top"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00580204, 1.48025, -0.571773)
-material_override = ExtResource("2_nanqa")
-size = Vector3(0.283081, 0.120117, 1)
-
-[node name="PivotPoint" type="CSGBox3D" parent="Mesh/Top"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00252888, 1.12029, -0.00542018)
-material_override = ExtResource("2_nanqa")
-size = Vector3(0.570313, 0.691284, 0.396484)
-
-[node name="ShootingPoint" type="Node3D" parent="Mesh/Top"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47382, -1.16511)
-
-[node name="Laser" type="Node3D" parent="Mesh/Top/ShootingPoint"]
-unique_name_in_owner = true
-transform = Transform3D(0.1, 0, 0, 0, -3.72529e-08, -0.1, 0, 1, -4.65661e-09, 0, 0, 0)
-
-[node name="Cylinder" type="CSGCylinder3D" parent="Mesh/Top/ShootingPoint/Laser"]
-material_override = ExtResource("3_cy3ac")
-
-[node name="Area3D" type="Area3D" parent="Mesh/Top/ShootingPoint/Laser" groups=["projectile_hitbox"]]
-collision_layer = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Top/ShootingPoint/Laser/Area3D"]
-shape = SubResource("CylinderShape3D_moxmc")
-
-[node name="BottomBox" type="CSGBox3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.517461, 0)
-material_override = ExtResource("3_7ungk")
 
 [node name="AttackTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -97,4 +60,53 @@ libraries = {
 "": SubResource("AnimationLibrary_ac2w7")
 }
 
-[connection signal="area_entered" from="Mesh/Top/ShootingPoint/Laser/Area3D" to="." method="_on_area_3d_area_entered"]
+[node name="Top" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.995762, 0.0919708, 0, -0.0919708, 0.995762, 0, 13.2011, 0)
+
+[node name="Barrell" type="CSGBox3D" parent="Top"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00580204, 1.80625, -4.10137)
+material_override = ExtResource("2_nanqa")
+size = Vector3(2.83, 1.2, 10)
+
+[node name="PivotPoint" type="CSGBox3D" parent="Top"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00252888, 0.266981, -0.0842338)
+material_override = ExtResource("2_nanqa")
+size = Vector3(5.7, 6.91, 3.96)
+
+[node name="ShootingPoint" type="Node3D" parent="Top"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47382, -1.16511)
+
+[node name="Laser" type="Node3D" parent="Top/ShootingPoint"]
+unique_name_in_owner = true
+transform = Transform3D(0.1, 0, 0, 0, -3.72529e-08, -0.1, 0, 1, -4.65661e-09, 0, 0, 0)
+
+[node name="Cylinder" type="CSGCylinder3D" parent="Top/ShootingPoint/Laser"]
+material_override = ExtResource("3_cy3ac")
+
+[node name="Area3D" type="Area3D" parent="Top/ShootingPoint/Laser" groups=["projectile_hitbox"]]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Top/ShootingPoint/Laser/Area3D"]
+shape = SubResource("CylinderShape3D_moxmc")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Top"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 1.47382, -1.16511)
+collision_mask = 0
+spring_length = 10.0
+
+[node name="LaserHumSound" type="AudioStreamPlayer3D" parent="Top/SpringArm3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, -5.96046e-08, 0, 6.70552e-08, 1, -0.070179, -0.22051, -0.112709)
+stream = ExtResource("4_lni1s")
+volume_db = 12.598
+autoplay = true
+
+[node name="BottomBox" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.17461, 2.98023e-08)
+material_override = ExtResource("3_7ungk")
+size = Vector3(10, 10, 10)
+
+[connection signal="area_entered" from="Top/ShootingPoint/Laser/Area3D" to="." method="_on_area_3d_area_entered"]

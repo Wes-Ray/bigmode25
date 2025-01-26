@@ -15,7 +15,7 @@ var is_free_looking := false
 var center_camera_tween : Tween
 var return_camera_to_center_time := 0.2
 
-var soundtrack_on := true
+var soundtrack_on := false
 @onready var soundtrack_player := %Soundtrack
 @onready var deathsound_player := %DeathSound
 
