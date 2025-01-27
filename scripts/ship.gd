@@ -33,6 +33,8 @@ var current_ammo := 0
 @onready var rocket_recharge_timer : Timer = %RocketRecharge
 @onready var rocket_cooldown_timer : Timer = %RocketCooldown
 @onready var health_component : HealthComponent = %HealthComponent
+@onready var contrail : GPUParticles3D = %Contrail
+@onready var bottom_contrail : GPUParticles3D = %BottomContrail
 
 func _ready() -> void:
 	assert(camera_rig, "camera rig must be added before adding to scene")
@@ -82,9 +84,9 @@ func _process(delta: float) -> void:
 
 		basis = basis.orthonormalized()
 
-		
+	var boosting := false
+	var braking := false
 	if Input.is_action_pressed("throttle_up"):
-		var boosting := false
 		if Input.is_action_pressed("boost"):
 			boosting = true
 		speed = move_toward(
@@ -93,7 +95,6 @@ func _process(delta: float) -> void:
 			forward_accel * (boost_accel_mod if boosting else 1.) * delta
 		)
 	else:
-		var braking := false
 		if Input.is_action_pressed("throttle_down"):
 			braking = true
 		speed = move_toward(
@@ -101,6 +102,15 @@ func _process(delta: float) -> void:
 			min_speed,
 			forward_deccel * (brake_deccel_mod if braking else 1.) * delta
 		)
+	if boosting:
+		contrail.boost()
+		bottom_contrail.boost()
+	elif braking:
+		contrail.brake()
+		bottom_contrail.brake()
+	else:
+		contrail.throttle()
+		bottom_contrail.throttle()
 
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
@@ -111,6 +121,7 @@ func _process(delta: float) -> void:
 	velocity = forward * speed
 	move_and_slide()
 	Logger.log("health", health_component.current_health)
+	
 
 func shoot():
 	if current_ammo > 0 and rocket_cooldown_timer.is_stopped():

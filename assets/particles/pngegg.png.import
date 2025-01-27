@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bidnurkmmoki"
-path.s3tc="res://.godot/imported/Turret_Base_Turret_Base_High.png-cd5b5a2c8baf259cabca28587b0842f2.s3tc.ctex"
+uid="uid://crmwpjrx1p1el"
+path.s3tc="res://.godot/imported/pngegg.png-530d03c1492dc428b1b00191caab365e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "581a351d4754421b0b6e9a1b74038550"
-}
 
 [deps]
 
-source_file="res://assets/Turrets/Turret_Base_Turret_Base_High.png"
-dest_files=["res://.godot/imported/Turret_Base_Turret_Base_High.png-cd5b5a2c8baf259cabca28587b0842f2.s3tc.ctex"]
+source_file="res://assets/particles/pngegg.png"
+dest_files=["res://.godot/imported/pngegg.png-530d03c1492dc428b1b00191caab365e.s3tc.ctex"]
 
 [params]
 

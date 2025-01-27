@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/projectile_turret.gd" id="1_xb7b7"]
 [ext_resource type="Material" uid="uid://djwvlxkvbuaye" path="res://resources/turrets/projectile_turret_top_material.tres" id="2_a2tob"]
-[ext_resource type="PackedScene" uid="uid://by53nrqml53dg" path="res://scenes/projectile.tscn" id="2_giqmu"]
+[ext_resource type="PackedScene" uid="uid://cg0i8u8sg1vf5" path="res://scenes/projectile.tscn" id="2_giqmu"]
 [ext_resource type="Material" uid="uid://ceatbkvs6fwxx" path="res://resources/turrets/turret_material.tres" id="2_mk2f6"]
 
 [node name="ProjectileTurret" type="Node3D"]

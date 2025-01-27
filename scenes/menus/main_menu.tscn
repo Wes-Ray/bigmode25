@@ -49,4 +49,19 @@ layout_mode = 2
 text = "QUIT
 "
 
+[node name="ControlsInfo" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -643.0
+offset_top = 268.0
+offset_right = -42.0
+offset_bottom = 503.0
+grow_horizontal = 0
+bbcode_enabled = true
+text = "Roll Plane: a/d
+Throttle:   w
+Free look:  Mouse2"
+
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
