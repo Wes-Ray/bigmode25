@@ -44,8 +44,7 @@ _data = {
 "up-down": SubResource("Animation_ud8iy")
 }
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_moxmc"]
-height = 3.5
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s8t72"]
 
 [node name="LaserTurret" type="Node3D"]
 script = ExtResource("1_e7exr")
@@ -74,23 +73,73 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00252888, 0.266981, -0.0842
 material_override = ExtResource("2_nanqa")
 size = Vector3(5.7, 6.91, 3.96)
 
-[node name="ShootingPoint" type="Node3D" parent="Top"]
+[node name="ShootingPoint1" type="Node3D" parent="Top"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47382, -1.16511)
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0, 1.47382, -1.16511)
 
-[node name="Laser" type="Node3D" parent="Top/ShootingPoint"]
-unique_name_in_owner = true
+[node name="Laser" type="Node3D" parent="Top/ShootingPoint1"]
 transform = Transform3D(0.1, 0, 0, 0, -3.72529e-08, -0.1, 0, 1, -4.65661e-09, 0, 0, 0)
 
-[node name="Cylinder" type="CSGCylinder3D" parent="Top/ShootingPoint/Laser"]
+[node name="Cylinder" type="CSGCylinder3D" parent="Top/ShootingPoint1/Laser"]
 material_override = ExtResource("3_cy3ac")
 
-[node name="Area3D" type="Area3D" parent="Top/ShootingPoint/Laser" groups=["enemy"]]
+[node name="Area3D" type="Area3D" parent="Top/ShootingPoint1/Laser" groups=["enemy"]]
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Top/ShootingPoint/Laser/Area3D"]
-shape = SubResource("CylinderShape3D_moxmc")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Top/ShootingPoint1/Laser/Area3D"]
+shape = SubResource("CapsuleShape3D_s8t72")
+
+[node name="ShootingPoint2" type="Node3D" parent="Top"]
+unique_name_in_owner = true
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 0, 1.47382, -1.16511)
+
+[node name="Laser" type="Node3D" parent="Top/ShootingPoint2"]
+transform = Transform3D(0.1, 0, 0, 0, -3.72529e-08, -0.1, 0, 1, -4.65661e-09, 0, 0, 0)
+
+[node name="Cylinder" type="CSGCylinder3D" parent="Top/ShootingPoint2/Laser"]
+material_override = ExtResource("3_cy3ac")
+
+[node name="Area3D" type="Area3D" parent="Top/ShootingPoint2/Laser" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Top/ShootingPoint2/Laser/Area3D"]
+shape = SubResource("CapsuleShape3D_s8t72")
+
+[node name="ShootingPoint3" type="Node3D" parent="Top"]
+unique_name_in_owner = true
+transform = Transform3D(0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195, 0, 1.47382, -1.16511)
+
+[node name="Laser" type="Node3D" parent="Top/ShootingPoint3"]
+transform = Transform3D(0.1, 0, 0, 0, -3.72529e-08, -0.1, 0, 1, -4.65661e-09, 0, 0, 0)
+
+[node name="Cylinder" type="CSGCylinder3D" parent="Top/ShootingPoint3/Laser"]
+material_override = ExtResource("3_cy3ac")
+
+[node name="Area3D" type="Area3D" parent="Top/ShootingPoint3/Laser" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Top/ShootingPoint3/Laser/Area3D"]
+shape = SubResource("CapsuleShape3D_s8t72")
+
+[node name="ShootingPoint4" type="Node3D" parent="Top"]
+unique_name_in_owner = true
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0, 1.47382, -1.16511)
+
+[node name="Laser" type="Node3D" parent="Top/ShootingPoint4"]
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-08, -0.1, 0, 1, -4.37114e-09, 0, 0, 0)
+
+[node name="Cylinder" type="CSGCylinder3D" parent="Top/ShootingPoint4/Laser"]
+material_override = ExtResource("3_cy3ac")
+
+[node name="Area3D" type="Area3D" parent="Top/ShootingPoint4/Laser" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Top/ShootingPoint4/Laser/Area3D"]
+shape = SubResource("CapsuleShape3D_s8t72")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="Top"]
 unique_name_in_owner = true
@@ -110,4 +159,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.17461, 2.98023e-08)
 material_override = ExtResource("3_7ungk")
 size = Vector3(10, 10, 10)
 
-[connection signal="area_entered" from="Top/ShootingPoint/Laser/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="Top/ShootingPoint1/Laser/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="Top/ShootingPoint2/Laser/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="Top/ShootingPoint3/Laser/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="Top/ShootingPoint4/Laser/Area3D" to="." method="_on_area_3d_area_entered"]
