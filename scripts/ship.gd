@@ -135,12 +135,10 @@ func _on_collision_area_body_entered(_body: Node3D) -> void:
 func _on_collision_area_area_entered(_area: Area3D) -> void:
 	health_component.take_damage(1)
 
-
 func _died() -> void:
 	_death_sound()
 	player_crashed.emit()
 	queue_free()
-
 
 func _on_rocket_recharge_timeout() -> void:
 	current_ammo += 1
@@ -150,3 +148,17 @@ func _on_rocket_recharge_timeout() -> void:
 func _death_sound() -> void:
 	await get_tree().create_timer(1).timeout
 	$crash.play()
+
+# When player enters a zone, it will send a node with a ZoneName ENUM
+func entered_zone_trigger(zone_name: int):
+	print("entered zone trigger: ", zone_name)
+	
+	match zone_name:
+		ZoneName.id.NONE:
+			pass
+		ZoneName.id.ZONE1:
+			print("zone1 entered")
+		ZoneName.id.ZONE2:
+			print("zone2 entered")
+		_:
+			assert(false, "unhandled ZoneName.id was passed to the ship from a zone entrance")

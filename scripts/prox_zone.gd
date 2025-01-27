@@ -1,16 +1,16 @@
 extends Marker3D
 class_name ProxZone
 
-@export var zone_entrance : Area3D
+@export var zone_trigger_entrance : ZoneTrigger
 
 @onready var main_parent: MainLevel = get_parent()
 
 func _ready() -> void:
-	assert(zone_entrance, "zone entrance must be defined in editor")
+	assert(zone_trigger_entrance, "zone entrance must be defined in editor")
 	assert(main_parent is MainLevel, "prox zones need to be direct child to a MainLevel")
-	zone_entrance.area_entered.connect(_area_entered)
+	zone_trigger_entrance.area_entered.connect(_area_entered)
 	disable_children()
-
+	
 func _area_entered(area: Area3D) -> void:
 	if not area.is_in_group("ship"):
 		return
@@ -31,8 +31,7 @@ func disable_children():
 		if c is not Node3D:
 			print("non-node3d found in disable children: ", c)
 			continue
-		# ignore Area3D's such as zone_entrances, so that the zone entrance can be a child of prox zone if you wish
-		if c is Area3D:
+		if c is ZoneTrigger:
 			continue
 		c.process_mode = Node.PROCESS_MODE_DISABLED
 		c.visible = false
@@ -42,6 +41,8 @@ func enable_children():
 	for c in get_children():
 		if c is not Node3D:
 			print("non-node3d found in enable children: ", c)
+			continue
+		if c is ZoneTrigger:
 			continue
 		c.process_mode = Node.PROCESS_MODE_INHERIT
 		c.visible = true
