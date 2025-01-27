@@ -9,7 +9,8 @@ func get_speed() -> String:
 	if not debug_dict.has("speed"):
 		return "-1"
 	
-	var fmt_str: String = "[b]%0d[/b]" % (debug_dict["speed"] * 6.0)
+	# var fmt_str: String = "[b]%03d[/b]" % (debug_dict["speed"] * 6.0)
+	var fmt_str: String = "[b]%03d[/b]" % (debug_dict["speed"])
 	return fmt_str
 
 func get_health() -> int:
