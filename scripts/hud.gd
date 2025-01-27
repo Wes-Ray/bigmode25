@@ -125,6 +125,7 @@ func on_player_crashed() -> void:
 	Logger.log("player crashed", true)
 	status_label.text = "[b][color=red]CRASHED[/color][/b]"
 	launch_button.hide()
+	EventsBus.game_reset.emit()
 	pause()
 
 func _on_sens_spin_box_value_changed(value:float) -> void:

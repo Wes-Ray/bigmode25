@@ -38,7 +38,6 @@ movie_writer/movie_file="C:/Users/wes/Documents/windev/breach-vector/output/vide
 [global_group]
 
 ship=""
-projectile_hitbox=""
 rocket_recharge="rocket recharge timer"
 
 [input]
@@ -111,10 +110,9 @@ debug4={
 
 [layer_names]
 
-3d_physics/layer_1="ship"
-3d_physics/layer_2="wall"
-3d_physics/layer_3="enemy_projectile"
-3d_physics/layer_4="friendly_projectile"
+3d_physics/layer_1="environment"
+3d_physics/layer_2="player"
+3d_physics/layer_3="enemy"
 
 [rendering]
 
