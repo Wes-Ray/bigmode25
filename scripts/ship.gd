@@ -133,6 +133,7 @@ func _on_collision_area_body_entered(_body: Node3D) -> void:
 	queue_free()
 
 func _on_collision_area_area_entered(_area: Area3D) -> void:
+	print("ship hit: ", _area)
 	health_component.take_damage(1)
 
 func _died() -> void:

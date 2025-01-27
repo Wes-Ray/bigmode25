@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://wk8ox7egbudr"]
 
 [ext_resource type="Script" path="res://scripts/ship.gd" id="1_mn80g"]
-[ext_resource type="PackedScene" uid="uid://cg0i8u8sg1vf5" path="res://scenes/projectile.tscn" id="2_ax2a4"]
+[ext_resource type="PackedScene" uid="uid://by53nrqml53dg" path="res://scenes/projectile.tscn" id="2_ax2a4"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="3_6350g"]
 [ext_resource type="PackedScene" uid="uid://crdwiw331f1cp" path="res://assets/ship/Spaceship.glb" id="3_v2lo3"]
 [ext_resource type="AudioStream" uid="uid://cx1pavpionhbx" path="res://assets/sound/ship_explosion.ogg" id="5_bdllt"]
