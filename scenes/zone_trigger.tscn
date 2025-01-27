@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://nl7y1qej0oqy"]
+[gd_scene load_steps=2 format=3 uid="uid://b84gwpfj7j0eq"]
 
 [ext_resource type="Script" path="res://scripts/zone_trigger.gd" id="1_me15q"]
 

@@ -1,7 +1,9 @@
 extends Node
 class_name ZoneName
 
-enum {
+# Global just to define zone names to pass to the player
+
+enum id {
     NONE,
     ZONE1,
     ZONE2,
