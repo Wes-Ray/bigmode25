@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://scripts/zone_trigger.gd" id="1_me15q"]
 
 [node name="ZoneTrigger" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_me15q")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

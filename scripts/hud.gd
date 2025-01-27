@@ -10,12 +10,14 @@ class_name HUD
 @onready var invert_check := %InvertCheckButton
 @onready var sens_spinbox := %SensSpinBox
 @onready var setting_root := %Settings
-@onready var speedometer_root := %Speedometer
+@onready var player_stats_root := %PlayerStats
 @onready var speedometer_label := %SpeedometerLabel
+@onready var health_label := %HealthLabel
 @onready var rockets_root := %Rockets
 @onready var rockets_count_label := %RocketCountLabel
 @onready var rocket_progress_bar : ProgressBar = %RocketProgressBar
 var rocket_timer : Timer
+var health_change_tween_time := 0.8
 
 const MAIN_MENU := "res://scenes/menus/main_menu.tscn"
 
@@ -32,7 +34,7 @@ const MAIN_MENU := "res://scenes/menus/main_menu.tscn"
 # 	print("deferred change scene")
 # 	get_tree().change_scene_to_file(scn)
 	
-
+var current_health: int = 0
 
 func _ready() -> void:
 	# keeps this script functioning when paused
@@ -45,6 +47,8 @@ func _ready() -> void:
 
 	sens_spinbox.value = GameConfig.mouse_sens
 	invert_check.button_pressed = GameConfig.mouse_inverted
+
+	current_health = Logger.get_health()
 
 	EventsBus.rocket_count_changed.connect(_on_rocket_count_changed)
 
@@ -71,6 +75,15 @@ func _process(_delta: float) -> void:
 	var current_speed :String= Logger.get_speed()
 	speedometer_label.text = current_speed
 
+	# update health
+	var old_health := current_health
+	current_health = Logger.get_health()
+	if old_health != current_health:
+		trigger_health_color_change()
+
+	var fmt_str: String= "[b]%03d[/b]" % (current_health * 6.0)
+	health_label.text = fmt_str
+
 	if is_instance_valid(rocket_timer):
 		if rocket_timer.is_stopped():
 			rocket_progress_bar.value = 100
@@ -96,7 +109,7 @@ func pause() -> void:
 	menu.show()
 	setting_root.show()
 	crosshair.hide()
-	speedometer_root.hide()
+	player_stats_root.hide()
 	rockets_root.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().paused = true
@@ -105,13 +118,19 @@ func unpause() -> void:
 	menu.hide()
 	setting_root.hide()
 	crosshair.show()
-	speedometer_root.show()
+	player_stats_root.show()
 	rockets_root.show()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	get_tree().paused = false
 
 func _on_launch_button_button_up() -> void:
 	unpause()
+
+func trigger_health_color_change() -> void:
+	print("ADDING")
+	health_label.set("theme_override_colors/default_color", Color(1,0,0))
+	await get_tree().create_timer(health_change_tween_time).timeout
+	health_label.set("theme_override_colors/default_color", Color(0.105, 0.711, 0))
 
 func _on_restart_button_button_up() -> void:
 	get_tree().reload_current_scene()
