@@ -1,16 +1,55 @@
-[gd_scene load_steps=8 format=3 uid="uid://wk8ox7egbudr"]
+[gd_scene load_steps=18 format=3 uid="uid://wk8ox7egbudr"]
 
 [ext_resource type="Script" path="res://scripts/ship.gd" id="1_mn80g"]
 [ext_resource type="PackedScene" uid="uid://cg0i8u8sg1vf5" path="res://scenes/projectile.tscn" id="2_ax2a4"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="3_6350g"]
 [ext_resource type="PackedScene" uid="uid://crdwiw331f1cp" path="res://assets/ship/Spaceship.glb" id="3_v2lo3"]
 [ext_resource type="AudioStream" uid="uid://cx1pavpionhbx" path="res://assets/sound/ship_explosion.ogg" id="5_bdllt"]
+[ext_resource type="Texture2D" uid="uid://dsnwxsysv0uiw" path="res://assets/particles/white_square.png" id="6_ris36"]
+[ext_resource type="Script" path="res://scripts/contrail.gd" id="7_2vcrv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2d3l7"]
 size = Vector3(1.63574, 0.267383, 1.6644)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vkq2q"]
 radius = 0.0518926
+
+[sub_resource type="Curve" id="Curve_mup2f"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qdai5"]
+width = 200
+curve = SubResource("Curve_mup2f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p7f8f"]
+gravity = Vector3(0, 1, 0)
+scale_min = 0.7
+scale_max = 0.7
+scale_curve = SubResource("CurveTexture_qdai5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4bi3n"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.491793, 0.993061, 1, 1)
+albedo_texture = ExtResource("6_ris36")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ykrfv"]
+material = SubResource("StandardMaterial3D_4bi3n")
+size = Vector2(1, 0.5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jr7nj"]
+load_path = "res://.godot/imported/white_square.png-0976a2a26af0798b1dfe951b36f5f851.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33c1y"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.491793, 0.993061, 1, 1)
+albedo_texture = SubResource("CompressedTexture2D_jr7nj")
+
+[sub_resource type="QuadMesh" id="QuadMesh_do32g"]
+material = SubResource("StandardMaterial3D_33c1y")
+size = Vector2(1, 0.5)
 
 [node name="Ship" type="CharacterBody3D" groups=["ship"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.66323)
@@ -69,6 +108,22 @@ one_shot = true
 
 [node name="crash" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_bdllt")
+
+[node name="Contrail" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.05, -0.0896616)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_p7f8f")
+draw_pass_1 = SubResource("QuadMesh_ykrfv")
+script = ExtResource("7_2vcrv")
+
+[node name="BottomContrail" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0.05, -0.0896616)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_p7f8f")
+draw_pass_1 = SubResource("QuadMesh_do32g")
+script = ExtResource("7_2vcrv")
 
 [connection signal="area_entered" from="collision_area" to="." method="_on_collision_area_area_entered"]
 [connection signal="body_entered" from="collision_area" to="." method="_on_collision_area_body_entered"]
