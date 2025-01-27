@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://by53nrqml53dg"]
+[gd_scene load_steps=21 format=4 uid="uid://cg0i8u8sg1vf5"]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_xee6f"]
 [ext_resource type="Material" uid="uid://tgcgn4wu7f6q" path="res://resources/turrets/laser.tres" id="2_c1jkx"]

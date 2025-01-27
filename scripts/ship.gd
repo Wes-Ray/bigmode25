@@ -6,25 +6,25 @@ signal player_crashed
 @export var camera_rig : CameraRig
 
 @export_category("foward speed")
-@export var max_speed := 80.
-@export var min_speed := 50.
-@export var forward_accel := 10.
+@export var max_speed := 140.
+@export var min_speed := 80.
+@export var forward_accel := 6.
 @export var boost_accel_mod := 3.
-@export var forward_deccel := 14.
+@export var forward_deccel := 10.
 @export var brake_deccel_mod := 2.
 
 var speed := min_speed
 
 @export_category("rotation speed")
-@export var pitch_speed := 3.5
-@export var yaw_speed := 1.
+@export var pitch_speed := 4.
+@export var yaw_speed := 2.
 @export var roll_speed := 20.
 
 @export_category("rockets")
 @export var max_ammo := 2
 @export var ammo_recharge_time := 1.5
 @export var cooldown_between_shots := 0.4
-@export var projectile_speed := 250
+@export var projectile_speed := 500.
 @export var projectile : PackedScene
 var current_launcher := 0
 var current_ammo := 0
