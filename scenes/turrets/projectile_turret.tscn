@@ -2,12 +2,16 @@
 
 [ext_resource type="Script" path="res://scripts/projectile_turret.gd" id="1_xb7b7"]
 [ext_resource type="Material" uid="uid://djwvlxkvbuaye" path="res://resources/turrets/projectile_turret_top_material.tres" id="2_a2tob"]
+[ext_resource type="PackedScene" uid="uid://by53nrqml53dg" path="res://scenes/projectile.tscn" id="2_giqmu"]
 [ext_resource type="Material" uid="uid://ceatbkvs6fwxx" path="res://resources/turrets/turret_material.tres" id="2_mk2f6"]
-[ext_resource type="PackedScene" uid="uid://xbeyfl712vsw" path="res://scenes/rocket.tscn" id="2_yoebp"]
 
 [node name="ProjectileTurret" type="Node3D"]
 script = ExtResource("1_xb7b7")
-projectile = ExtResource("2_yoebp")
+fire_mode = null
+attack_range = null
+fire_rate = null
+projectile = ExtResource("2_giqmu")
+projectile_speed = null
 
 [node name="Mesh" type="Node3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)

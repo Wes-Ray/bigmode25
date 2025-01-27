@@ -1,14 +1,24 @@
 class_name Projectile
 extends Node3D
 
+enum {NONE, ENV = 1, PLAYER = 2, ENEMY = 4}
+
 var speed := 200.0
 var direction := Vector3(0, 0, 0)
+var spawner := NONE
 
 @onready var cylinder : CSGCylinder3D = %CSGCylinder3D
 
 
 func _ready() -> void:
+	if spawner == NONE:
+		print("projectile spawner is NONE")
 	EventsBus.game_reset.connect(queue_free)
+	$Area3D.set_collision_layer(spawner)
+	if spawner == PLAYER:
+		$Area3D.set_collision_mask(ENV | ENEMY)
+	elif spawner == ENEMY:
+		$Area3D.set_collision_mask(ENV | PLAYER)
 
 
 func _physics_process(delta: float) -> void:
@@ -17,12 +27,21 @@ func _physics_process(delta: float) -> void:
 	global_position += direction * speed * delta
 
 
+func _on_area_3d_area_entered(_area:Area3D) -> void:
+	explode_projectile()
+	print("hit: ", _area)
+
+
 func _on_area_3d_body_entered(_body:Node3D) -> void:
-	speed = 0
+	explode_projectile()
 	#print("hit: ", _body)
+
+
+func explode_projectile():
+	speed = 0
 	set_deferred("$Explosion/Area3D/CollisionShape3D.disabled", false)
 	$Explosion.visible = true
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.4).timeout
 	queue_free()
 
 

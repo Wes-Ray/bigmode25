@@ -85,8 +85,9 @@ transform = Transform3D(0.1, 0, 0, 0, -3.72529e-08, -0.1, 0, 1, -4.65661e-09, 0,
 [node name="Cylinder" type="CSGCylinder3D" parent="Top/ShootingPoint/Laser"]
 material_override = ExtResource("3_cy3ac")
 
-[node name="Area3D" type="Area3D" parent="Top/ShootingPoint/Laser" groups=["projectile_hitbox"]]
+[node name="Area3D" type="Area3D" parent="Top/ShootingPoint/Laser" groups=["enemy"]]
 collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Top/ShootingPoint/Laser/Area3D"]
 shape = SubResource("CylinderShape3D_moxmc")

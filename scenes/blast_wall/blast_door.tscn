@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ca6tuggw5nlul"]
+[gd_scene load_steps=14 format=3 uid="uid://ca6tuggw5nlul"]
 
 [ext_resource type="Script" path="res://scripts/blast_door.gd" id="1_7vavr"]
 [ext_resource type="Texture2D" uid="uid://cmd2t41pnddfy" path="res://resources/environment/beach/aerial_beach_01_diff_1k.jpg" id="2_f632i"]
@@ -6,22 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://yl20owsmi50l" path="res://scenes/crystal/crystal.tscn" id="4_y1267"]
 [ext_resource type="PackedScene" uid="uid://dadnkg4ji885p" path="res://scenes/blast_wall/blast_wall.tscn" id="5_wlooj"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_x1odb"]
-custom_solver_bias = 0.88
-margin = 10.0
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_by47e"]
 transparency = 1
 albedo_color = Color(0, 0.627451, 0.929412, 0.85098)
 albedo_texture = ExtResource("2_f632i")
 emission = Color(0, 0, 1, 1)
 rim_enabled = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_v52l2"]
-size = Vector3(18, 70, 130)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_rr7nb"]
-size = Vector3(18, 75, 130)
 
 [sub_resource type="Animation" id="Animation_3i7tt"]
 length = 0.001
@@ -217,18 +207,23 @@ _data = {
 "shut_door": SubResource("Animation_h7ide")
 }
 
+[sub_resource type="BoxMesh" id="BoxMesh_v52l2"]
+size = Vector3(18, 70, 130)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rr7nb"]
+size = Vector3(18, 75, 130)
+
 [node name="BlastDoor" type="Node3D"]
 script = ExtResource("1_7vavr")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nkq4x")
+}
+autoplay = "RESET"
+
 [node name="blast-wall" parent="." instance=ExtResource("5_wlooj")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="blast-wall"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="blast-wall/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_x1odb")
 
 [node name="Crystal1" parent="blast-wall" instance=ExtResource("4_y1267")]
 unique_name_in_owner = true
@@ -241,7 +236,7 @@ transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.3
 skeleton = NodePath("../..")
 
 [node name="Shield" type="MeshInstance3D" parent="blast-wall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2688, 0, 1.42884e-07)
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 3.2688, 0, 1.42884e-07)
 material_override = SubResource("StandardMaterial3D_by47e")
 mesh = SubResource("BoxMesh_v52l2")
 skeleton = NodePath("")
@@ -261,10 +256,4 @@ shape = SubResource("BoxShape3D_rr7nb")
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.86797e-06, 0, 87.4888)
 
 [node name="Door2" parent="blast-wall" instance=ExtResource("4_esp65")]
-transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 3.78732e-06, 0, -86.6438)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_nkq4x")
-}
-autoplay = "RESET"
+transform = Transform3D(-1, -8.74228e-08, 1.06581e-14, 8.74228e-08, -1, 0, 1.06581e-14, 8.47033e-22, 1, 3.78732e-06, 0, -86.6438)

@@ -117,6 +117,7 @@ func shoot():
 		var proj : Projectile = projectile.instantiate()
 		proj.direction = camera_rig.basis.z
 		proj.speed = projectile_speed
+		proj.spawner = proj.PLAYER
 		get_tree().root.add_child(proj)
 		proj.global_position = launchers[current_launcher].global_position
 		current_launcher = 1 if current_launcher == 0 else 0
@@ -131,10 +132,8 @@ func _on_collision_area_body_entered(_body: Node3D) -> void:
 	player_crashed.emit()
 	queue_free()
 
-func _on_collision_area_area_entered(area: Area3D) -> void:
-	if area.is_in_group("projectile_hitbox"):
-		health_component.take_damage(1)
-
+func _on_collision_area_area_entered(_area: Area3D) -> void:
+	health_component.take_damage(1)
 
 
 func _died() -> void:

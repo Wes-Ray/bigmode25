@@ -37,6 +37,7 @@ func _process(_delta: float) -> void:
 
 func generic_shoot() -> Projectile:
 	var proj : Projectile = projectile.instantiate()
+	proj.spawner = proj.ENEMY
 	get_tree().root.add_child(proj)
 	proj.global_position = shooting_point.global_position
 	proj.speed = projectile_speed
