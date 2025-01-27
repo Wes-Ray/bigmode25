@@ -44,7 +44,8 @@ disabled = true
 unique_name_in_owner = true
 
 [node name="RocketLauncher0" type="CSGBox3D" parent="Launchers"]
-transform = Transform3D(0.252854, 0, 0, 0, 0.279167, 0, 0, 0, 0.970809, 0.653933, -0.0789429, 0.371165)
+transform = Transform3D(0.252854, 0, 0, 0, 0.279167, 0, 0, 0, 0.970809, 0.653933, -0.0789429, 1.74425)
+visible = false
 size = Vector3(1, 1, 0.7)
 
 [node name="LaunchPoint0" type="Node3D" parent="Launchers/RocketLauncher0"]
@@ -52,7 +53,8 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
 
 [node name="RocketLauncher1" type="CSGBox3D" parent="Launchers"]
-transform = Transform3D(0.252854, 0, 0, 0, 0.279167, 0, 0, 0, 0.949353, -0.655484, -0.0789429, 0.319443)
+transform = Transform3D(0.252854, 0, 0, 0, 0.279167, 0, 0, 0, 0.949353, -0.655484, -0.0789429, 1.69253)
+visible = false
 size = Vector3(1, 1, 0.7)
 
 [node name="LaunchPoint1" type="Node3D" parent="Launchers/RocketLauncher1"]
