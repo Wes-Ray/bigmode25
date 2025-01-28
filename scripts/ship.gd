@@ -14,6 +14,7 @@ signal player_crashed
 @export var brake_deccel_mod := 2.
 
 var speed := min_speed
+var boosting := false
 
 @export_category("rotation speed")
 @export var pitch_speed := 4.
@@ -36,6 +37,8 @@ var current_ammo := 0
 @onready var contrail : GPUParticles3D = %Contrail
 @onready var bottom_contrail : GPUParticles3D = %BottomContrail
 
+var engine_is_powered := false
+
 func _ready() -> void:
 	assert(camera_rig, "camera rig must be added before adding to scene")
 	#TODO: make a separate function / signal for when player dies to projectiles
@@ -47,7 +50,6 @@ func _ready() -> void:
 	rocket_cooldown_timer.wait_time = cooldown_between_shots
 	launchers.append(%LaunchPoint0)
 	launchers.append(%LaunchPoint1)
-
 
 func _process(delta: float) -> void:
 	var forward := basis.z
@@ -84,10 +86,16 @@ func _process(delta: float) -> void:
 
 		basis = basis.orthonormalized()
 
-	var boosting := false
+	boosting = false
 	var braking := false
+
+	if Input.is_action_just_pressed("shoot") and not engine_is_powered:
+		shoot()
+	if current_ammo < max_ammo and rocket_recharge_timer.is_stopped():
+		rocket_recharge_timer.start()
+
 	if Input.is_action_pressed("throttle_up"):
-		if Input.is_action_pressed("boost"):
+		if Input.is_action_pressed("shoot") and engine_is_powered:
 			boosting = true
 		speed = move_toward(
 			speed,
@@ -112,16 +120,13 @@ func _process(delta: float) -> void:
 		contrail.throttle()
 		bottom_contrail.throttle()
 
-	if Input.is_action_just_pressed("shoot"):
-		shoot()
-	if current_ammo < max_ammo and rocket_recharge_timer.is_stopped():
-		rocket_recharge_timer.start()
-
 	Logger.log("speed", speed)
 	velocity = forward * speed
 	move_and_slide()
 	Logger.log("health", health_component.current_health)
-	
+
+	if Input.is_action_just_released("toggle_power"):
+		engine_is_powered = not engine_is_powered
 
 func shoot():
 	if current_ammo > 0 and rocket_cooldown_timer.is_stopped():

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcba85tjb0wnh"
-path.s3tc="res://.godot/imported/Turret_Rocket_Turret_Vertical.png-9469a64dc87066d31e0b59cf680601b2.s3tc.ctex"
+path.s3tc="res://.godot/imported/Turret_Rocket_Turret_Vertical.png-fc7b70427f05f94e13cb10e4e9047be5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/Turrets/Turret_Rocket_Turret_Vertical.png"
-dest_files=["res://.godot/imported/Turret_Rocket_Turret_Vertical.png-9469a64dc87066d31e0b59cf680601b2.s3tc.ctex"]
+source_file="res://assets/turrets/Turret_Rocket_Turret_Vertical.png"
+dest_files=["res://.godot/imported/Turret_Rocket_Turret_Vertical.png-fc7b70427f05f94e13cb10e4e9047be5.s3tc.ctex"]
 
 [params]
 

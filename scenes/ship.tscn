@@ -56,6 +56,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.66323)
 motion_mode = 1
 safe_margin = 93.659
 script = ExtResource("1_mn80g")
+max_speed = null
+min_speed = null
+forward_accel = null
+boost_accel_mod = null
+forward_deccel = null
+brake_deccel_mod = null
+pitch_speed = null
+yaw_speed = null
+roll_speed = null
+max_ammo = null
+ammo_recharge_time = null
+cooldown_between_shots = null
+projectile_speed = null
 projectile = ExtResource("2_ax2a4")
 
 [node name="collision_area" type="Area3D" parent="." groups=["ship"]]

@@ -1,6 +1,8 @@
 extends Control
 class_name HUD
 
+var player_ref : Ship
+
 @onready var debug_label := %DebugLabel
 @onready var status_label := %StatusLabel
 @onready var menu := %Menu
@@ -13,26 +15,27 @@ class_name HUD
 @onready var player_stats_root := %PlayerStats
 @onready var speedometer_label := %SpeedometerLabel
 @onready var health_label := %HealthLabel
-@onready var rockets_root := %Rockets
+@onready var power_modes_root := %PowerModes
 @onready var rockets_count_label := %RocketCountLabel
 @onready var rocket_progress_bar : ProgressBar = %RocketProgressBar
+@onready var rockets_root := %Rockets
+@onready var engines_root := %Engines
+@onready var rockets_label := %RocketsLabel
+@onready var engines_label := %EnginesLabel
+@onready var engine_indicator := %EngineIndicator
+@onready var rocket_indicator := %RocketIndicator
+
 var rocket_timer : Timer
 var health_change_tween_time := 0.8
 
 const MAIN_MENU := "res://scenes/menus/main_menu.tscn"
 
-# func _ready() -> void:
-# 	self.hide()
-
-# func on_player_crashed() -> void:
-# 	print("crash")
-# 	var scn = "res://scenes/menus/main_menu.tscn"
-# 	# call_deferred("_change_scene", scn)
-# 	call_deferred("func", get_tree().change_scene_to_file(scn))
-
-# func _change_scene(scn):
-# 	print("deferred change scene")
-# 	get_tree().change_scene_to_file(scn)
+# LightGreen for Default HUD: 1bb500 or Color(0.105, 0.711, 0)
+const hud_active_green := Color(0.105, 0.711, 0)
+# DarkGreen for Deactivated HUD: Color(0.105, 0.711, 0)
+const hud_inactive_green := Color(0, 0.094, 0.031, 0.769)
+const hud_active_blue := Color(0.155, 0.614, 0.827)
+const hud_active_red := Color(0.9, .1, .1)
 	
 var current_health: int = 0
 
@@ -91,6 +94,24 @@ func _process(_delta: float) -> void:
 			rocket_progress_bar.value = (rocket_timer.time_left / rocket_timer.wait_time) * 100
 	else:
 		rocket_timer = get_tree().get_first_node_in_group("rocket_recharge")
+	
+	if is_instance_valid(player_ref):
+		if player_ref.engine_is_powered:
+			engine_indicator.visible = true
+			rocket_indicator.visible = false
+			engines_label.set("theme_override_colors/default_color", hud_active_green)
+			rockets_label.set("theme_override_colors/default_color", hud_inactive_green)
+			rockets_count_label.set("theme_override_colors/default_color", hud_inactive_green)
+			if player_ref.boosting:
+				engines_label.set("theme_override_colors/default_color", hud_active_blue)
+			
+		else: # guns powered
+			engine_indicator.visible = false
+			rocket_indicator.visible = true
+			engines_label.set("theme_override_colors/default_color", hud_inactive_green)
+			rockets_label.set("theme_override_colors/default_color", hud_active_green)
+			rockets_count_label.set("theme_override_colors/default_color", hud_active_green)
+
 
 func update_debug_label() -> void:
 	var result_str:= ""
@@ -110,7 +131,7 @@ func pause() -> void:
 	setting_root.show()
 	crosshair.hide()
 	player_stats_root.hide()
-	rockets_root.hide()
+	power_modes_root.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().paused = true
 
@@ -119,7 +140,7 @@ func unpause() -> void:
 	setting_root.hide()
 	crosshair.show()
 	player_stats_root.show()
-	rockets_root.show()
+	power_modes_root.show()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	get_tree().paused = false
 
@@ -128,9 +149,9 @@ func _on_launch_button_button_up() -> void:
 
 func trigger_health_color_change() -> void:
 	print("ADDING")
-	health_label.set("theme_override_colors/default_color", Color(1,0,0))
+	health_label.set("theme_override_colors/default_color", hud_active_red)
 	await get_tree().create_timer(health_change_tween_time).timeout
-	health_label.set("theme_override_colors/default_color", Color(0.105, 0.711, 0))
+	health_label.set("theme_override_colors/default_color", hud_active_green)
 
 func _on_restart_button_button_up() -> void:
 	get_tree().reload_current_scene()
@@ -154,4 +175,4 @@ func _on_invert_check_button_toggled(toggled_on:bool) -> void:
 	GameConfig.mouse_inverted = toggled_on
 
 func _on_rocket_count_changed(rockets: int) -> void:
-	rockets_count_label.text = "[b]" + str(rockets) + " / 2[/b]"
+	rockets_count_label.text = "[b]" + str(rockets) + "/2[/b]"
