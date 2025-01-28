@@ -4,14 +4,23 @@ class_name Ship
 signal player_crashed
 
 @export var camera_rig : CameraRig
+var camera : Camera3D 
+
+@export_category("field of view")
+@export var max_fov := 130.
+@export var mid_fov := 105.
+@export var min_fov := 85.
+@export var fov_accel := .3
 
 @export_category("foward speed")
-@export var max_speed := 140.
-@export var min_speed := 80.
-@export var forward_accel := 6.
-@export var boost_accel_mod := 3.
-@export var forward_deccel := 10.
-@export var brake_deccel_mod := 2.
+@export var max_speed := 100.
+@export var min_speed := 60.
+@export var boost_immediate := 15.
+@export var boost_max_speed := 140.
+@export var forward_accel := 8.
+@export var boost_accel_mod := 2.
+@export var forward_deccel := 3.
+@export var brake_deccel_mod := 6.
 
 var speed := min_speed
 var boosting := false
@@ -43,6 +52,7 @@ func _ready() -> void:
 	assert(camera_rig, "camera rig must be added before adding to scene")
 	#TODO: make a separate function / signal for when player dies to projectiles
 
+	camera = camera_rig.get_node("SpringArm3D").get_node("Camera3D")
 	health_component.died.connect(_died)
 
 	current_ammo = max_ammo
@@ -52,6 +62,8 @@ func _ready() -> void:
 	launchers.append(%LaunchPoint1)
 
 func _process(delta: float) -> void:
+
+	# ORIENTATION LOGIC -----
 	var forward := basis.z
 
 	if not camera_rig.is_free_looking:
@@ -86,42 +98,74 @@ func _process(delta: float) -> void:
 
 		basis = basis.orthonormalized()
 
+	# SPEED LOGIC -----
 	boosting = false
 	var braking := false
 
-	if Input.is_action_just_pressed("shoot") and not engine_is_powered:
+	if Input.is_action_just_pressed("shoot"):
+		boosting = false
 		shoot()
 	if current_ammo < max_ammo and rocket_recharge_timer.is_stopped():
 		rocket_recharge_timer.start()
 
-	if Input.is_action_pressed("throttle_up"):
-		if Input.is_action_pressed("shoot") and engine_is_powered:
-			boosting = true
-		speed = move_toward(
-			speed,
-			max_speed,
-			forward_accel * (boost_accel_mod if boosting else 1.) * delta
-		)
-	else:
-		if Input.is_action_pressed("throttle_down"):
-			braking = true
+	if Input.is_action_just_pressed("boost"):
+		speed += boost_immediate
+	if Input.is_action_just_released("boost"):
+		speed -= boost_immediate
+
+	if Input.is_action_pressed("throttle_down"):
+		braking = true
+	if Input.is_action_pressed("boost"):
+		boosting = true
+
+	if braking:
 		speed = move_toward(
 			speed,
 			min_speed,
-			forward_deccel * (brake_deccel_mod if braking else 1.) * delta
+			brake_deccel_mod * forward_deccel * delta
 		)
-	if boosting:
-		contrail.boost()
-		bottom_contrail.boost()
-	elif braking:
 		contrail.brake()
 		bottom_contrail.brake()
+		camera.fov = move_toward(
+			camera.fov,
+			min_fov,
+			fov_accel)
+
+	elif boosting:
+		speed = move_toward(
+			speed,
+			boost_max_speed,
+			forward_accel * boost_accel_mod * delta)
+		contrail.boost()
+		bottom_contrail.boost()
+		camera.fov = move_toward(
+			camera.fov,
+			max_fov,
+			fov_accel)
+
 	else:
+		if Input.is_action_pressed("throttle_up"):
+			speed = move_toward(
+				speed,
+				max_speed,
+				forward_accel * delta
+			)
+		else: # no speed input
+			speed = move_toward(
+				speed,
+				min_speed,
+				forward_deccel * delta
+			)
 		contrail.throttle()
 		bottom_contrail.throttle()
+		camera.fov = move_toward(
+			camera.fov,
+			mid_fov,
+			fov_accel)
+
 
 	Logger.log("speed", speed)
-	velocity = forward * speed
+	velocity = forward * speed 
 	move_and_slide()
 	Logger.log("health", health_component.current_health)
 
