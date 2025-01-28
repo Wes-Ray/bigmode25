@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bv2g21feowrn3"]
+[gd_scene load_steps=6 format=3 uid="uid://bv2g21feowrn3"]
 
 [ext_resource type="Theme" path="res://resources/themes/base.tres" id="1_cgph1"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_pr8ck"]
+[ext_resource type="Texture2D" uid="uid://sdxuetkkpxt" path="res://assets/textures/mouse1.png" id="3_ah3hh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1qrup"]
 bg_color = Color(0, 0.671449, 0.0862063, 1)
@@ -333,6 +334,15 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="TextureRect" type="TextureRect" parent="PowerModes/PowerDirection/EngineIndicator"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 63.0
+offset_right = 98.0
+offset_bottom = 103.0
+pivot_offset = Vector2(27, 22)
+texture = ExtResource("3_ah3hh")
+
 [node name="ColorRect2" type="ColorRect" parent="PowerModes/PowerDirection/EngineIndicator"]
 offset_left = 110.0
 offset_top = 63.0
@@ -352,6 +362,15 @@ unique_name_in_owner = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="TextureRect2" type="TextureRect" parent="PowerModes/PowerDirection/RocketIndicator"]
+layout_mode = 0
+offset_left = 317.0
+offset_top = 65.0
+offset_right = 357.0
+offset_bottom = 105.0
+pivot_offset = Vector2(27, 22)
+texture = ExtResource("3_ah3hh")
 
 [node name="ColorRect5" type="ColorRect" parent="PowerModes/PowerDirection/RocketIndicator"]
 offset_left = 366.0
