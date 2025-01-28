@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bv2g21feowrn3"]
+[gd_scene load_steps=5 format=3 uid="uid://bv2g21feowrn3"]
 
 [ext_resource type="Theme" path="res://resources/themes/base.tres" id="1_cgph1"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_pr8ck"]
-[ext_resource type="Texture2D" uid="uid://sdxuetkkpxt" path="res://assets/textures/mouse1.png" id="3_ah3hh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1qrup"]
 bg_color = Color(0, 0.671449, 0.0862063, 1)
@@ -155,15 +154,14 @@ text = "debug"
 [node name="PlayerStats" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -20.0
+offset_left = -40.0
 offset_top = -40.0
-offset_right = 20.0
-grow_horizontal = 2
+grow_horizontal = 0
 grow_vertical = 0
 
 [node name="Speedometer" type="Control" parent="PlayerStats"]
@@ -173,10 +171,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -53.0
-offset_right = -20.0
-offset_bottom = -53.0
+offset_left = -223.0
+offset_top = -54.0
+offset_right = -223.0
+offset_bottom = -54.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
@@ -215,10 +213,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -53.0
-offset_right = -20.0
-offset_bottom = -53.0
+offset_left = -223.0
+offset_top = -54.0
+offset_right = -223.0
+offset_bottom = -54.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
@@ -302,31 +300,32 @@ theme_override_font_sizes/font_size = 32
 [node name="PowerModes" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -40.0
+offset_left = -20.0
 offset_top = -40.0
-grow_horizontal = 0
+offset_right = 20.0
+grow_horizontal = 2
 grow_vertical = 0
 
 [node name="PowerDirection" type="Control" parent="PowerModes"]
 anchors_preset = 0
-offset_left = -550.0
-offset_top = -183.0
-offset_right = 27.0
-offset_bottom = -75.0
+offset_left = -253.0
+offset_top = -177.0
+offset_right = 324.0
+offset_bottom = -69.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PowerModes/PowerDirection"]
 layout_mode = 0
 offset_left = 207.0
 offset_top = 10.0
-offset_right = 581.0
+offset_right = 368.0
 offset_bottom = 59.0
 bbcode_enabled = true
-text = "[b]POWER(space)"
+text = "[b]POWER"
 
 [node name="EngineIndicator" type="Control" parent="PowerModes/PowerDirection"]
 unique_name_in_owner = true
@@ -334,23 +333,16 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="PowerModes/PowerDirection/EngineIndicator"]
-layout_mode = 0
-offset_left = 58.0
-offset_top = 63.0
-offset_right = 98.0
-offset_bottom = 103.0
-pivot_offset = Vector2(27, 22)
-texture = ExtResource("3_ah3hh")
-
 [node name="ColorRect2" type="ColorRect" parent="PowerModes/PowerDirection/EngineIndicator"]
+layout_mode = 0
 offset_left = 110.0
 offset_top = 63.0
-offset_right = 567.0
+offset_right = 282.0
 offset_bottom = 70.0
 color = Color(0.105882, 0.709804, 0, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="PowerModes/PowerDirection/EngineIndicator"]
+layout_mode = 0
 offset_left = 102.0
 offset_top = 63.0
 offset_right = 110.0
@@ -363,23 +355,16 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect2" type="TextureRect" parent="PowerModes/PowerDirection/RocketIndicator"]
-layout_mode = 0
-offset_left = 317.0
-offset_top = 65.0
-offset_right = 357.0
-offset_bottom = 105.0
-pivot_offset = Vector2(27, 22)
-texture = ExtResource("3_ah3hh")
-
 [node name="ColorRect5" type="ColorRect" parent="PowerModes/PowerDirection/RocketIndicator"]
-offset_left = 366.0
+layout_mode = 0
+offset_left = 280.0
 offset_top = 63.0
-offset_right = 567.0
+offset_right = 358.0
 offset_bottom = 70.0
 color = Color(0.105882, 0.709804, 0, 1)
 
 [node name="ColorRect4" type="ColorRect" parent="PowerModes/PowerDirection/RocketIndicator"]
+layout_mode = 0
 offset_left = 358.0
 offset_top = 63.0
 offset_right = 366.0
@@ -390,10 +375,10 @@ color = Color(0.105882, 0.709804, 0, 1)
 unique_name_in_owner = true
 layout_mode = 2
 anchors_preset = 0
-offset_left = -603.0
-offset_top = -23.0
-offset_right = -563.0
-offset_bottom = -23.0
+offset_left = -306.0
+offset_top = -17.0
+offset_right = -266.0
+offset_bottom = -17.0
 
 [node name="EnginesLabel" type="RichTextLabel" parent="PowerModes/Engines"]
 unique_name_in_owner = true
@@ -409,10 +394,10 @@ text = "[b]engines[/b]"
 unique_name_in_owner = true
 layout_mode = 2
 anchors_preset = 0
-offset_left = 168.0
-offset_top = 70.0
-offset_right = 208.0
-offset_bottom = 70.0
+offset_left = 465.0
+offset_top = 76.0
+offset_right = 505.0
+offset_bottom = 76.0
 grow_horizontal = 0
 grow_vertical = 0
 

@@ -97,11 +97,9 @@ func _process(delta: float) -> void:
 		basis = basis.orthonormalized()
 
 	# SPEED LOGIC -----
-	boosting = false
 	var braking := false
 
-	if Input.is_action_just_pressed("shoot"):
-		boosting = false
+	if Input.is_action_just_pressed("shoot") and not boosting:
 		shoot()
 	if current_ammo < max_ammo and rocket_recharge_timer.is_stopped():
 		rocket_recharge_timer.start()
@@ -115,6 +113,8 @@ func _process(delta: float) -> void:
 		braking = true
 	if Input.is_action_pressed("boost"):
 		boosting = true
+	else:
+		boosting = false
 
 	if braking:
 		speed = move_toward(
