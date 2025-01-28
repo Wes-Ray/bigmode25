@@ -46,8 +46,6 @@ var current_ammo := 0
 @onready var contrail : GPUParticles3D = %Contrail
 @onready var bottom_contrail : GPUParticles3D = %BottomContrail
 
-var engine_is_powered := false
-
 func _ready() -> void:
 	assert(camera_rig, "camera rig must be added before adding to scene")
 	#TODO: make a separate function / signal for when player dies to projectiles
@@ -163,14 +161,11 @@ func _process(delta: float) -> void:
 			mid_fov,
 			fov_accel)
 
-
 	Logger.log("speed", speed)
 	velocity = forward * speed 
 	move_and_slide()
 	Logger.log("health", health_component.current_health)
 
-	if Input.is_action_just_released("toggle_power"):
-		engine_is_powered = not engine_is_powered
 
 func shoot():
 	if current_ammo > 0 and rocket_cooldown_timer.is_stopped():

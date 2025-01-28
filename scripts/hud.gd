@@ -96,7 +96,7 @@ func _process(_delta: float) -> void:
 		rocket_timer = get_tree().get_first_node_in_group("rocket_recharge")
 	
 	if is_instance_valid(player_ref):
-		if player_ref.engine_is_powered:
+		if player_ref.boosting:
 			engine_indicator.visible = true
 			rocket_indicator.visible = false
 			engines_label.set("theme_override_colors/default_color", hud_active_green)
