@@ -13,6 +13,14 @@ class_name MainLevel
 @onready var cave_directional_light: DirectionalLight3D = %CaveDirectionalLight
 @onready var canyon_directional_light: DirectionalLight3D = %CanyonDirectionalLight
 
+# Music
+@onready var cave_ost := preload("res://assets/sound/CaveSound.mp3")
+# @onready var
+
+# player object refs
+var ship_instance: Ship
+var camera_instance: CameraRig
+var hud_instance: HUD
 
 # For use by ProxZone direct children
 var active_prox_zone: ProxZone = null
@@ -48,9 +56,9 @@ func switch_to_canyon_world_environment() -> void:
 	canyon_directional_light.show()
 
 func init() -> void:
-	var ship_instance: Ship = ship_scene.instantiate()
-	var camera_instance: CameraRig = camera_scene.instantiate()
-	var hud_instance: HUD = hud_scene.instantiate()
+	ship_instance = ship_scene.instantiate()
+	camera_instance = camera_scene.instantiate()
+	hud_instance = hud_scene.instantiate()
 	
 	ship_instance.camera_rig = camera_instance
 	camera_instance.track_target = ship_instance
@@ -69,4 +77,23 @@ func init() -> void:
 	add_child(camera_instance)
 	add_child(hud_instance)
 
+	EventsBus.player_entered_zone_trigger.connect(_on_player_entered_zone_trigger)
+
 	hud_instance.pause()
+
+# When player enters a zone, it will send a node with a ZoneName ENUM
+func _on_player_entered_zone_trigger(zone_name: int):
+	print("player entered zone trigger: ", zone_name)
+	
+	match zone_name:
+		ZoneName.id.NONE:
+			pass
+		ZoneName.id.ENTERING_CAVE:
+			print("ENTERING CAVE")
+			camera_instance.soundtrack_player.play()
+		ZoneName.id.ZONE1:
+			print("zone1 entered")
+		ZoneName.id.ZONE2:
+			print("zone2 entered")
+		_:
+			assert(false, "unhandled ZoneName.id was passed to the ship from a zone entrance")

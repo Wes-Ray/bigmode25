@@ -5,6 +5,7 @@ class_name ZoneName
 
 enum id {
     NONE,
+    ENTERING_CAVE,
     ZONE1,
     ZONE2,
 }

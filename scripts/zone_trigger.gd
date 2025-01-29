@@ -9,9 +9,10 @@ func _on_area_entered(area:Area3D) -> void:
 
 	var area_parent := area.get_parent()
 	assert(area_parent is Ship, "area collided isn't a ship")
-	var ship: Ship = area_parent
 
-	ship.entered_zone_trigger(zone_name)
+	EventsBus.player_entered_zone_trigger.emit(zone_name)
+
+	print("ENTERING ZONE TRIGGER")
 	call_deferred("disable_self")
 
 func disable_self() -> void:

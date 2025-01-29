@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dydrr63f746ur"]
+[gd_scene load_steps=17 format=3 uid="uid://dydrr63f746ur"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sebui"]
 [ext_resource type="PackedScene" uid="uid://wk8ox7egbudr" path="res://scenes/ship.tscn" id="2_kkbaq"]
@@ -7,32 +7,30 @@
 [ext_resource type="PackedScene" uid="uid://cctm4t5452j1g" path="res://scenes/levels/level_object_scenes/trench_02.tscn" id="5_8cavi"]
 [ext_resource type="Environment" uid="uid://dwo5bgnx8gesy" path="res://resources/canyon_run_world_environment.tres" id="5_jcujb"]
 [ext_resource type="PackedScene" uid="uid://d23s48brb7axp" path="res://assets/props/elbow_pipe01.glb" id="7_cfo38"]
-[ext_resource type="PackedScene" uid="uid://o1skyth3ebcm" path="res://scenes/light_bulb.tscn" id="7_p4ufl"]
 [ext_resource type="PackedScene" uid="uid://chtu5gyv4ebam" path="res://assets/props/straight_pipe01.glb" id="8_2pgjq"]
-[ext_resource type="PackedScene" uid="uid://b84gwpfj7j0eq" path="res://scenes/zone_trigger.tscn" id="8_tn0m6"]
 [ext_resource type="PackedScene" uid="uid://c3eftue5uxh0f" path="res://assets/props/straight_pipe_long01.glb" id="9_tgab0"]
-[ext_resource type="PackedScene" uid="uid://bjgbj1egj4yyk" path="res://scenes/prox_zone.tscn" id="11_f7bsd"]
 [ext_resource type="PackedScene" uid="uid://ca6tuggw5nlul" path="res://scenes/blast_wall/blast_door.tscn" id="12_8csq4"]
 [ext_resource type="PackedScene" uid="uid://cdrpc5daiyglh" path="res://scenes/turrets/laser_turret.tscn" id="13_2igwp"]
 [ext_resource type="PackedScene" uid="uid://t37eul41x86d" path="res://scenes/turrets/projectile_turret.tscn" id="14_1ols5"]
-[ext_resource type="PackedScene" path="res://scenes/levels/level_object_scenes/cave_01.tscn" id="16_wnt8b"]
+[ext_resource type="PackedScene" uid="uid://bjgbj1egj4yyk" path="res://scenes/prox_zone.tscn" id="14_5x7jb"]
+[ext_resource type="PackedScene" uid="uid://b84gwpfj7j0eq" path="res://scenes/zone_trigger.tscn" id="15_78gg4"]
+[ext_resource type="PackedScene" uid="uid://ddphuw4pwv8q8" path="res://scenes/levels/level_object_scenes/cave_01.tscn" id="16_wnt8b"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_gmr68"]
-size = Vector3(200, 200, 50)
+[sub_resource type="BoxShape3D" id="BoxShape3D_owxd3"]
+size = Vector3(323.042, 253.684, 238.07)
 
-[node name="Leve02" type="Node3D" node_paths=PackedStringArray("spawn_point", "debug_spawn_point")]
+[node name="Leve02" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 script = ExtResource("1_sebui")
 spawn_point = NodePath("Spawn")
-debug_spawn_point = NodePath("DebugSpawn")
 ship_scene = ExtResource("2_kkbaq")
 camera_scene = ExtResource("3_e40k6")
 hud_scene = ExtResource("4_a4gyl")
 
 [node name="Spawn" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4886.48, 16.6574, 1535.12)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4079.23, -556.218, 2391.06)
 
 [node name="DebugSpawn" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, -2029.72, -13.5939, 1617.67)
+transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, -1240.44, -600.998, 2705.13)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 unique_name_in_owner = true
@@ -54,22 +52,6 @@ shadow_enabled = true
 sky_mode = 2
 
 [node name="trench02" parent="." instance=ExtResource("5_8cavi")]
-
-[node name="ProxZone1" parent="." node_paths=PackedStringArray("zone_trigger_entrance") instance=ExtResource("11_f7bsd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4331, 11.5093, -148.917)
-zone_trigger_entrance = NodePath("ZoneTrigger")
-
-[node name="ZoneTrigger" parent="ProxZone1" instance=ExtResource("8_tn0m6")]
-zone_name = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone1/ZoneTrigger"]
-shape = SubResource("BoxShape3D_gmr68")
-
-[node name="testbulb1a" parent="ProxZone1" instance=ExtResource("7_p4ufl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.0652, -25.767, 23.3116)
-
-[node name="testbulb1b" parent="ProxZone1" instance=ExtResource("7_p4ufl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.087, -25.767, 17.0092)
 
 [node name="StaticPropsCanyon" type="Node3D" parent="."]
 
@@ -287,13 +269,24 @@ transform = Transform3D(-0.551529, 0, -0.834155, 0, 1, 0, 0.834155, 0, -0.551529
 transform = Transform3D(-0.782336, 0, -0.622856, 0, 1, 0, 0.622856, 0, -0.782336, -396.856, 16.6726, -3539.09)
 
 [node name="cave01" parent="." instance=ExtResource("16_wnt8b")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5000, 30, 1500)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4133.67, -510.453, 2399.87)
+
+[node name="ProxZone" parent="." node_paths=PackedStringArray("zone_trigger_entrance") instance=ExtResource("14_5x7jb")]
+transform = Transform3D(-0.983556, 0, 0.180605, 0, 1, 0, -0.180605, 0, -0.983556, -1135.92, -565.192, 1769.6)
+zone_trigger_entrance = NodePath("ZoneTrigger")
+
+[node name="ZoneTrigger" parent="ProxZone" instance=ExtResource("15_78gg4")]
+zone_name = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone/ZoneTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.97974, 2.43292, 112.44)
+shape = SubResource("BoxShape3D_owxd3")
 
 [node name="BlastDoor3" parent="." instance=ExtResource("12_8csq4")]
-transform = Transform3D(-0.983556, 0, 0.180605, 0, 1, 0, -0.180605, 0, -0.983556, -2002.25, -24.7391, 869.731)
+transform = Transform3D(-0.983556, 0, 0.180605, 0, 1, 0, -0.180605, 0, -0.983556, -1135.92, -565.192, 1769.6)
 
 [node name="StaticPropsCave" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5000, 30, 1500)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4133.67, -510.453, 2399.87)
 
 [node name="straight_pipe_long01" parent="StaticPropsCave" instance=ExtResource("9_tgab0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1423.61, -30, -232.379)
