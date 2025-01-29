@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://wk8ox7egbudr"]
+[gd_scene load_steps=20 format=3 uid="uid://wk8ox7egbudr"]
 
 [ext_resource type="Script" path="res://scripts/ship.gd" id="1_mn80g"]
 [ext_resource type="PackedScene" uid="uid://cg0i8u8sg1vf5" path="res://scenes/projectile.tscn" id="2_ax2a4"]
@@ -7,6 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://cx1pavpionhbx" path="res://assets/sound/ship_explosion.ogg" id="5_bdllt"]
 [ext_resource type="Texture2D" uid="uid://dsnwxsysv0uiw" path="res://assets/particles/white_square.png" id="6_ris36"]
 [ext_resource type="Script" path="res://scripts/contrail.gd" id="7_2vcrv"]
+[ext_resource type="AudioStream" uid="uid://xln40cbqv8mf" path="res://assets/sound/Ship_Idle.ogg" id="8_i8n8n"]
+[ext_resource type="AudioStream" uid="uid://cigxx4skberm8" path="res://assets/sound/Player_Hit.ogg" id="9_yivlk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2d3l7"]
 size = Vector3(1.63574, 0.267383, 1.6644)
@@ -108,6 +110,7 @@ one_shot = true
 
 [node name="crash" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_bdllt")
+bus = &"SFX"
 
 [node name="Contrail" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
@@ -124,6 +127,21 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_p7f8f")
 draw_pass_1 = SubResource("QuadMesh_do32g")
 script = ExtResource("7_2vcrv")
+
+[node name="ShipIdle" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_i8n8n")
+volume_db = -20.0
+autoplay = true
+bus = &"SFX"
+
+[node name="PlayerDamageSound" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("9_yivlk")
+attenuation_model = 2
+volume_db = -35.0
+pitch_scale = 0.85
+bus = &"SFX"
 
 [connection signal="area_entered" from="collision_area" to="." method="_on_collision_area_area_entered"]
 [connection signal="body_entered" from="collision_area" to="." method="_on_collision_area_body_entered"]

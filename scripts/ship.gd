@@ -4,16 +4,26 @@ class_name Ship
 signal player_crashed
 
 @export var camera_rig : CameraRig
+var camera : Camera3D 
+
+@export_category("field of view")
+@export var max_fov := 130.
+@export var mid_fov := 105.
+@export var min_fov := 85.
+@export var fov_accel := .3
 
 @export_category("foward speed")
-@export var max_speed := 140.
-@export var min_speed := 80.
-@export var forward_accel := 6.
-@export var boost_accel_mod := 3.
-@export var forward_deccel := 10.
-@export var brake_deccel_mod := 2.
+@export var max_speed := 100.
+@export var min_speed := 60.
+@export var boost_immediate := 15.
+@export var boost_max_speed := 140.
+@export var forward_accel := 8.
+@export var boost_accel_mod := 2.
+@export var forward_deccel := 3.
+@export var brake_deccel_mod := 6.
 
 var speed := min_speed
+var boosting := false
 
 @export_category("rotation speed")
 @export var pitch_speed := 4.
@@ -36,10 +46,14 @@ var current_ammo := 0
 @onready var contrail : GPUParticles3D = %Contrail
 @onready var bottom_contrail : GPUParticles3D = %BottomContrail
 
+@onready var ship_idle_sfx: AudioStreamPlayer3D = %ShipIdle
+@onready var player_dmg_sfx: AudioStreamPlayer3D = %PlayerDamageSound
+
 func _ready() -> void:
 	assert(camera_rig, "camera rig must be added before adding to scene")
 	#TODO: make a separate function / signal for when player dies to projectiles
 
+	camera = camera_rig.get_node("SpringArm3D").get_node("Camera3D")
 	health_component.died.connect(_died)
 
 	current_ammo = max_ammo
@@ -48,8 +62,9 @@ func _ready() -> void:
 	launchers.append(%LaunchPoint0)
 	launchers.append(%LaunchPoint1)
 
-
 func _process(delta: float) -> void:
+
+	# ORIENTATION LOGIC -----
 	var forward := basis.z
 
 	if not camera_rig.is_free_looking:
@@ -84,44 +99,78 @@ func _process(delta: float) -> void:
 
 		basis = basis.orthonormalized()
 
-	var boosting := false
+	# SPEED LOGIC -----
 	var braking := false
-	if Input.is_action_pressed("throttle_up"):
-		if Input.is_action_pressed("boost"):
-			boosting = true
-		speed = move_toward(
-			speed,
-			max_speed,
-			forward_accel * (boost_accel_mod if boosting else 1.) * delta
-		)
-	else:
-		if Input.is_action_pressed("throttle_down"):
-			braking = true
-		speed = move_toward(
-			speed,
-			min_speed,
-			forward_deccel * (brake_deccel_mod if braking else 1.) * delta
-		)
-	if boosting:
-		contrail.boost()
-		bottom_contrail.boost()
-	elif braking:
-		contrail.brake()
-		bottom_contrail.brake()
-	else:
-		contrail.throttle()
-		bottom_contrail.throttle()
 
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and not boosting:
 		shoot()
 	if current_ammo < max_ammo and rocket_recharge_timer.is_stopped():
 		rocket_recharge_timer.start()
 
+	if Input.is_action_just_pressed("boost"):
+		speed += boost_immediate
+	if Input.is_action_just_released("boost"):
+		speed -= boost_immediate
+
+	if Input.is_action_pressed("throttle_down"):
+		braking = true
+	if Input.is_action_pressed("boost"):
+		boosting = true
+	else:
+		boosting = false
+
+	if braking:
+		speed = move_toward(
+			speed,
+			min_speed,
+			brake_deccel_mod * forward_deccel * delta
+		)
+		contrail.brake()
+		bottom_contrail.brake()
+		camera.fov = move_toward(
+			camera.fov,
+			min_fov,
+			fov_accel)
+
+	elif boosting:
+		speed = move_toward(
+			speed,
+			boost_max_speed,
+			forward_accel * boost_accel_mod * delta)
+		contrail.boost()
+		bottom_contrail.boost()
+		camera.fov = move_toward(
+			camera.fov,
+			max_fov,
+			fov_accel)
+
+	else:
+		if Input.is_action_pressed("throttle_up"):
+			speed = move_toward(
+				speed,
+				max_speed,
+				forward_accel * delta
+			)
+		else: # no speed input
+			speed = move_toward(
+				speed,
+				min_speed,
+				forward_deccel * delta
+			)
+		contrail.throttle()
+		bottom_contrail.throttle()
+		camera.fov = move_toward(
+			camera.fov,
+			mid_fov,
+			fov_accel)
+
 	Logger.log("speed", speed)
-	velocity = forward * speed
+	velocity = forward * speed 
 	move_and_slide()
 	Logger.log("health", health_component.current_health)
-	
+
+	# adjust ship idle audio based on speed
+	ship_idle_sfx.pitch_scale = speed/100.
 
 func shoot():
 	if current_ammo > 0 and rocket_cooldown_timer.is_stopped():
@@ -144,8 +193,9 @@ func _on_collision_area_body_entered(_body: Node3D) -> void:
 	queue_free()
 
 func _on_collision_area_area_entered(_area: Area3D) -> void:
-	print("ship hit: ", _area)
+	# print("ship hit: ", _area)
 	health_component.take_damage(1)
+	player_dmg_sfx.play()
 
 func _died() -> void:
 	_death_sound()

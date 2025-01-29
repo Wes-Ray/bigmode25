@@ -2,6 +2,8 @@ extends Node3D
 
 var crystal_count := 2
 
+@onready var crystal_destroy_sound_player := %CrystalDestroyedSound
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	%Crystal1.destroyed.connect(_crystal_destroyed)
@@ -14,6 +16,7 @@ func _process(_delta):
 
 func _crystal_destroyed():
 	crystal_count -= 1
+	crystal_destroy_sound_player.play()
 	if crystal_count == 1:
 		$AnimationPlayer.play("shield_low")
 	elif crystal_count <= 0:

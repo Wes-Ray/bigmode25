@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cdrpc5daiyglh"]
+[gd_scene load_steps=11 format=3 uid="uid://cdrpc5daiyglh"]
 
 [ext_resource type="Script" path="res://scripts/laser_turret.gd" id="1_e7exr"]
+[ext_resource type="AudioStream" uid="uid://hpvplyxadtup" path="res://assets/sound/Laser_Startup4.ogg" id="2_m5aj6"]
 [ext_resource type="Material" uid="uid://cl10qqplchfhu" path="res://resources/turrets/laser_turret_top.tres" id="2_nanqa"]
 [ext_resource type="Material" uid="uid://ceatbkvs6fwxx" path="res://resources/turrets/turret_material.tres" id="3_7ungk"]
 [ext_resource type="Material" uid="uid://tgcgn4wu7f6q" path="res://resources/turrets/laser.tres" id="3_cy3ac"]
@@ -58,6 +59,11 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_ac2w7")
 }
+
+[node name="LaserInitChargeSound" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_m5aj6")
+unit_size = 30.0
 
 [node name="Top" type="Node3D" parent="."]
 unique_name_in_owner = true
