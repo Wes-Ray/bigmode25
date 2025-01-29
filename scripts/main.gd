@@ -7,6 +7,13 @@ class_name MainLevel
 @export var camera_scene: PackedScene
 @export var hud_scene: PackedScene
 
+@onready var world_environment: WorldEnvironment = %WorldEnvironment
+@onready var cave_world_env_res := preload("res://resources/cave_world_environment.tres")
+@onready var canyon_world_env_res := preload("res://resources/canyon_run_world_environment.tres")
+@onready var cave_directional_light: DirectionalLight3D = %CaveDirectionalLight
+@onready var canyon_directional_light: DirectionalLight3D = %CanyonDirectionalLight
+
+
 # For use by ProxZone direct children
 var active_prox_zone: ProxZone = null
 
@@ -21,6 +28,24 @@ func _ready() -> void:
 		spawn_point = debug_spawn_point
 
 	init()
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_released("debug1"):
+		switch_to_cave_world_environment()
+	if Input.is_action_just_released("debug2"):
+		switch_to_canyon_world_environment()
+
+func switch_to_cave_world_environment() -> void:
+	print("cave world env")
+	world_environment.environment = cave_world_env_res
+	cave_directional_light.show()
+	canyon_directional_light.hide()
+
+func switch_to_canyon_world_environment() -> void:
+	print("canyon world env")
+	world_environment.environment = canyon_world_env_res
+	cave_directional_light.hide()
+	canyon_directional_light.show()
 
 func init() -> void:
 	var ship_instance: Ship = ship_scene.instantiate()

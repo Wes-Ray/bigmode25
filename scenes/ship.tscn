@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://scripts/contrail.gd" id="7_2vcrv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2d3l7"]
-size = Vector3(1.63574, 0.267383, 1.6644)
+size = Vector3(3, 0.267, 1.664)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vkq2q"]
 radius = 0.0518926
@@ -63,7 +63,7 @@ collision_layer = 2
 collision_mask = 5
 
 [node name="Collision" type="CollisionShape3D" parent="collision_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00896844, 0.0932986, 0.633119)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0043295, 0.0251213, 0.633119)
 shape = SubResource("BoxShape3D_2d3l7")
 
 [node name="ignored" type="CollisionShape3D" parent="."]
