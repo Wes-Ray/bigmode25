@@ -47,6 +47,7 @@ var current_ammo := 0
 @onready var bottom_contrail : GPUParticles3D = %BottomContrail
 
 @onready var ship_idle_sfx: AudioStreamPlayer3D = %ShipIdle
+@onready var player_dmg_sfx: AudioStreamPlayer3D = %PlayerDamageSound
 
 func _ready() -> void:
 	assert(camera_rig, "camera rig must be added before adding to scene")
@@ -192,8 +193,9 @@ func _on_collision_area_body_entered(_body: Node3D) -> void:
 	queue_free()
 
 func _on_collision_area_area_entered(_area: Area3D) -> void:
-	print("ship hit: ", _area)
+	# print("ship hit: ", _area)
 	health_component.take_damage(1)
+	player_dmg_sfx.play()
 
 func _died() -> void:
 	_death_sound()
