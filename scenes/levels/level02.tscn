@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bag23ibu3ddf1" path="res://scenes/camera_rig.tscn" id="3_e40k6"]
 [ext_resource type="PackedScene" uid="uid://bv2g21feowrn3" path="res://scenes/hud.tscn" id="4_a4gyl"]
 [ext_resource type="PackedScene" uid="uid://cctm4t5452j1g" path="res://scenes/levels/level_object_scenes/trench_02.tscn" id="5_8cavi"]
-[ext_resource type="Environment" uid="uid://daogfloh8nu2y" path="res://resources/canyon_run_world_environment.tres" id="5_jcujb"]
+[ext_resource type="Environment" uid="uid://dwo5bgnx8gesy" path="res://resources/canyon_run_world_environment.tres" id="5_jcujb"]
 [ext_resource type="PackedScene" uid="uid://d23s48brb7axp" path="res://assets/props/elbow_pipe01.glb" id="7_cfo38"]
 [ext_resource type="PackedScene" uid="uid://o1skyth3ebcm" path="res://scenes/light_bulb.tscn" id="7_p4ufl"]
 [ext_resource type="PackedScene" uid="uid://chtu5gyv4ebam" path="res://assets/props/straight_pipe01.glb" id="8_2pgjq"]
@@ -15,14 +15,15 @@
 [ext_resource type="PackedScene" uid="uid://ca6tuggw5nlul" path="res://scenes/blast_wall/blast_door.tscn" id="12_8csq4"]
 [ext_resource type="PackedScene" uid="uid://cdrpc5daiyglh" path="res://scenes/turrets/laser_turret.tscn" id="13_2igwp"]
 [ext_resource type="PackedScene" uid="uid://t37eul41x86d" path="res://scenes/turrets/projectile_turret.tscn" id="14_1ols5"]
-[ext_resource type="PackedScene" uid="uid://ddphuw4pwv8q8" path="res://scenes/levels/level_object_scenes/cave_01.tscn" id="16_wnt8b"]
+[ext_resource type="PackedScene" path="res://scenes/levels/level_object_scenes/cave_01.tscn" id="16_wnt8b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gmr68"]
 size = Vector3(200, 200, 50)
 
-[node name="Leve02" type="Node3D" node_paths=PackedStringArray("spawn_point")]
+[node name="Leve02" type="Node3D" node_paths=PackedStringArray("spawn_point", "debug_spawn_point")]
 script = ExtResource("1_sebui")
 spawn_point = NodePath("Spawn")
+debug_spawn_point = NodePath("DebugSpawn")
 ship_scene = ExtResource("2_kkbaq")
 camera_scene = ExtResource("3_e40k6")
 hud_scene = ExtResource("4_a4gyl")
@@ -31,7 +32,7 @@ hud_scene = ExtResource("4_a4gyl")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4886.48, 16.6574, 1535.12)
 
 [node name="DebugSpawn" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, -35.9562, -13.5939, -678.491)
+transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, -2029.72, -13.5939, 1617.67)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 unique_name_in_owner = true
@@ -289,7 +290,7 @@ transform = Transform3D(-0.782336, 0, -0.622856, 0, 1, 0, 0.622856, 0, -0.782336
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5000, 30, 1500)
 
 [node name="BlastDoor3" parent="." instance=ExtResource("12_8csq4")]
-transform = Transform3D(0.401069, 0, 0.916048, 0, 1, 0, -0.916048, 0, 0.401069, -2459.12, -13.8085, 1859.34)
+transform = Transform3D(-0.983556, 0, 0.180605, 0, 1, 0, -0.180605, 0, -0.983556, -2002.25, -24.7391, 869.731)
 
 [node name="StaticPropsCave" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5000, 30, 1500)
@@ -326,12 +327,6 @@ transform = Transform3D(2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, 0, 1, 1894.93,
 
 [node name="straight_pipe_long13" parent="StaticPropsCave" instance=ExtResource("9_tgab0")]
 transform = Transform3D(2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, 0, 1, 1894.93, -162.08, 189.298)
-
-[node name="straight_pipe_long14" parent="StaticPropsCave" instance=ExtResource("9_tgab0")]
-transform = Transform3D(2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, 0, 1, 1876.84, -20.1553, 205.061)
-
-[node name="straight_pipe_long15" parent="StaticPropsCave" instance=ExtResource("9_tgab0")]
-transform = Transform3D(2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, 0, 1, 1876.84, -175.882, 205.061)
 
 [node name="straight_pipe01" parent="StaticPropsCave" instance=ExtResource("8_2pgjq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1221.04, 9.62837, -230.395)
