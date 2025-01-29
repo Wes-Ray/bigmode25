@@ -15,6 +15,7 @@ func _ready() -> void:
 	assert(spawn_point, "spawn point must be assigned to main script")
 	assert(ship_scene, "ship must be assigned")
 	assert(hud_scene, "HUD must be assigned")
+	assert(camera_scene, "camera must be assigned")
 	# print("main _ready called")
 
 	if OS.is_debug_build() and debug_spawn_point:
@@ -27,8 +28,15 @@ func init() -> void:
 	var camera_instance: CameraRig = camera_scene.instantiate()
 	var hud_instance: HUD = hud_scene.instantiate()
 	
+	# spider-man meme all nodes pointing to each other
 	ship_instance.camera_rig = camera_instance
+	ship_instance.hud = hud_instance
+
+	camera_instance.hud = hud_instance 
 	camera_instance.track_target = ship_instance
+	
+	hud_instance.player_ref = ship_instance
+	hud_instance.camera_rig = camera_instance
 
 	ship_instance.position = spawn_point.position
 	camera_instance.position = spawn_point.position

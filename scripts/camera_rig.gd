@@ -2,6 +2,8 @@ extends Node3D
 class_name CameraRig
 
 @export var track_target : Ship
+var hud : HUD 
+
 # @export var mouse_sensitivity := 1.  # get from global cfg
 @export var max_roll_speed := 3.
 @export var roll_accel := 10.

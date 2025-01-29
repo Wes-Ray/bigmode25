@@ -2,6 +2,7 @@ extends Control
 class_name HUD
 
 var player_ref : Ship
+var camera_rig : CameraRig
 
 @onready var debug_label := %DebugLabel
 @onready var status_label := %StatusLabel
@@ -24,6 +25,8 @@ var player_ref : Ship
 @onready var engines_label := %EnginesLabel
 @onready var engine_indicator := %EngineIndicator
 @onready var rocket_indicator := %RocketIndicator
+@onready var boost_shader := %BoostShader
+
 
 var rocket_timer : Timer
 var health_change_tween_time := 0.8

@@ -5,6 +5,7 @@ signal player_crashed
 
 @export var camera_rig : CameraRig
 var camera : Camera3D 
+var hud : HUD
 
 @export_category("field of view")
 @export var max_fov := 130.
@@ -144,6 +145,7 @@ func _process(delta: float) -> void:
 			max_fov,
 			fov_accel)
 
+
 	else:
 		if Input.is_action_pressed("throttle_up"):
 			speed = move_toward(
@@ -163,6 +165,9 @@ func _process(delta: float) -> void:
 			camera.fov,
 			mid_fov,
 			fov_accel)
+
+	# adjust shader speed lines according to speed
+	hud.boost_shader.material.set_shader_parameter("line_density", inverse_lerp(min_speed - 20, boost_max_speed, speed) - 0.35)
 
 	Logger.log("speed", speed)
 	velocity = forward * speed 
