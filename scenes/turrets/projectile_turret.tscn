@@ -1,42 +1,33 @@
 [gd_scene load_steps=5 format=3 uid="uid://t37eul41x86d"]
 
 [ext_resource type="Script" path="res://scripts/projectile_turret.gd" id="1_xb7b7"]
-[ext_resource type="Material" uid="uid://djwvlxkvbuaye" path="res://resources/turrets/projectile_turret_top_material.tres" id="2_a2tob"]
 [ext_resource type="PackedScene" uid="uid://cg0i8u8sg1vf5" path="res://scenes/projectile.tscn" id="2_giqmu"]
-[ext_resource type="Material" uid="uid://ceatbkvs6fwxx" path="res://resources/turrets/turret_material.tres" id="2_mk2f6"]
+[ext_resource type="PackedScene" uid="uid://dxe4brlf5a4y4" path="res://assets/Turrets/Turret_Base.glb" id="3_koh1i"]
+[ext_resource type="PackedScene" uid="uid://dm4op5k1rm16j" path="res://scenes/turrets/turret_top_mesh.tscn" id="4_156cd"]
 
 [node name="ProjectileTurret" type="Node3D"]
 script = ExtResource("1_xb7b7")
-fire_mode = null
-attack_range = null
-fire_rate = null
 projectile = ExtResource("2_giqmu")
-projectile_speed = null
-
-[node name="Mesh" type="Node3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
-
-[node name="Top" type="Node3D" parent="Mesh"]
-unique_name_in_owner = true
-
-[node name="Barrell" type="CSGBox3D" parent="Mesh/Top"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00580204, 1.48025, -0.571773)
-material_override = ExtResource("2_a2tob")
-size = Vector3(0.283081, 0.120117, 1)
-
-[node name="PivotPoint" type="CSGBox3D" parent="Mesh/Top"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00252888, 1.12029, -0.00542018)
-material_override = ExtResource("2_a2tob")
-size = Vector3(0.570313, 0.691284, 0.396484)
-
-[node name="ShootingPoint" type="Node3D" parent="Mesh/Top"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47382, -1.16511)
-
-[node name="BottomBox" type="CSGBox3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.517461, 0)
-material_override = ExtResource("2_mk2f6")
 
 [node name="AttackTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="DirectionFinder" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 22.9027, 0)
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="DirectionFinder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.32751)
+
+[node name="TurretBase" parent="." instance=ExtResource("3_koh1i")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 18.0901, 0)
+
+[node name="TurretTop" parent="." instance=ExtResource("4_156cd")]
+unique_name_in_owner = true
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 17.938, 0)
+
+[node name="ShootingPoint" type="Marker3D" parent="TurretTop"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.999465, 0.0327016, 0, -0.0327016, 0.999465, -5.3831, -0.164938, 3.23661)
