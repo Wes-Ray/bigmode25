@@ -385,18 +385,6 @@ offset_right = 358.0
 offset_bottom = 70.0
 color = Color(0.105882, 0.709804, 0, 1)
 
-[node name="RocketsLabel" type="RichTextLabel" parent="PowerModes/PowerDirection/RocketIndicator"]
-unique_name_in_owner = true
-layout_mode = 2
-offset_left = 254.0
-offset_top = 109.0
-offset_right = 472.0
-offset_bottom = 189.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-bbcode_enabled = true
-text = "[b]ROCKETS[/b]"
-
 [node name="ColorRect4" type="ColorRect" parent="PowerModes/PowerDirection/RocketIndicator"]
 layout_mode = 0
 offset_left = 358.0
@@ -435,42 +423,38 @@ offset_bottom = 76.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="PowerModes/Rockets"]
-layout_mode = 2
-offset_left = -476.0
-offset_top = -152.0
-offset_right = -20.0
-offset_bottom = -11.0
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 4
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="PowerModes/Rockets/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = -20
-
-[node name="VBoxContainer" type="GridContainer" parent="PowerModes/Rockets/MarginContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-columns = 2
-
-[node name="RocketCountLabel" type="RichTextLabel" parent="PowerModes/Rockets/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="RocketsLabel" type="RichTextLabel" parent="PowerModes/Rockets"]
 unique_name_in_owner = true
 layout_mode = 2
+offset_left = -464.0
+offset_top = -144.0
+offset_right = -246.0
+offset_bottom = -64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[b]ROCKETS[/b]"
+
+[node name="RocketCountLabel" type="RichTextLabel" parent="PowerModes/Rockets"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = -242.0
+offset_top = -144.0
+offset_right = -22.0
+offset_bottom = -64.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_enabled = true
 text = "[b]2/2[/b]"
 
-[node name="MarginContainer" type="MarginContainer" parent="PowerModes/Rockets/MarginContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_constants/margin_right = 128
-theme_override_constants/margin_bottom = 0
-
-[node name="RocketProgressBar" type="ProgressBar" parent="PowerModes/Rockets/MarginContainer/VBoxContainer2/MarginContainer"]
+[node name="RocketProgressBar" type="ProgressBar" parent="PowerModes/Rockets"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+offset_left = -464.0
+offset_top = -84.0
+offset_right = -152.0
+offset_bottom = -54.0
 theme_override_styles/background = SubResource("StyleBoxFlat_1qrup")
 theme_override_styles/fill = SubResource("StyleBoxFlat_wji3c")
 fill_mode = 1
