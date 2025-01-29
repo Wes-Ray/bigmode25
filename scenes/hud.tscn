@@ -1,13 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://bv2g21feowrn3"]
+[gd_scene load_steps=9 format=3 uid="uid://bv2g21feowrn3"]
 
 [ext_resource type="Theme" path="res://resources/themes/base.tres" id="1_cgph1"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_pr8ck"]
+[ext_resource type="Shader" path="res://assets/shaders/speed_lines.gdshader" id="3_oqk0y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1qrup"]
 bg_color = Color(0, 0.671449, 0.0862063, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wji3c"]
 bg_color = Color(0, 0.0941176, 0.0313726, 0.768627)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jwnvi"]
+noise_type = 5
+seed = 6
+frequency = 0.2
+fractal_type = 0
+fractal_gain = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_728pu"]
+noise = SubResource("FastNoiseLite_jwnvi")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g7qnh"]
+shader = ExtResource("3_oqk0y")
+shader_parameter/line_color = Color(0.819608, 0.768627, 0.737255, 0.278431)
+shader_parameter/line_count = 1.0
+shader_parameter/line_density = 0.5
+shader_parameter/line_falloff = 1.0
+shader_parameter/mask_size = 0.0
+shader_parameter/mask_edge = 0.5
+shader_parameter/animation_speed = 13.0
+shader_parameter/noise = SubResource("NoiseTexture2D_728pu")
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -363,6 +385,18 @@ offset_right = 358.0
 offset_bottom = 70.0
 color = Color(0.105882, 0.709804, 0, 1)
 
+[node name="RocketsLabel" type="RichTextLabel" parent="PowerModes/PowerDirection/RocketIndicator"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 254.0
+offset_top = 109.0
+offset_right = 472.0
+offset_bottom = 189.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[b]ROCKETS[/b]"
+
 [node name="ColorRect4" type="ColorRect" parent="PowerModes/PowerDirection/RocketIndicator"]
 layout_mode = 0
 offset_left = 358.0
@@ -420,14 +454,6 @@ custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 columns = 2
 
-[node name="RocketsLabel" type="RichTextLabel" parent="PowerModes/Rockets/MarginContainer/VBoxContainer2/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-bbcode_enabled = true
-text = "[b]ROCKETS[/b]"
-
 [node name="RocketCountLabel" type="RichTextLabel" parent="PowerModes/Rockets/MarginContainer/VBoxContainer2/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -449,6 +475,26 @@ theme_override_styles/background = SubResource("StyleBoxFlat_1qrup")
 theme_override_styles/fill = SubResource("StyleBoxFlat_wji3c")
 fill_mode = 1
 show_percentage = false
+
+[node name="Shaders" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BoostShader" type="ColorRect" parent="Shaders"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_g7qnh")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="button_up" from="Menu/LaunchButton" to="." method="_on_launch_button_button_up"]
 [connection signal="button_up" from="Menu/ButtonsContainer/RestartButton" to="." method="_on_restart_button_button_up"]
