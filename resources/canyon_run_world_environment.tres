@@ -1,0 +1,21 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://dwo5bgnx8gesy"]
+
+[ext_resource type="Texture2D" uid="uid://bgpiodebmm302" path="res://resources/night_sky1.tres" id="1_7hdsg"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_reb25"]
+rayleigh_coefficient = 1.0
+rayleigh_color = Color(0.613068, 0.335155, 0.7291, 1)
+mie_coefficient = 0.01
+mie_eccentricity = 0.9
+mie_color = Color(0.987376, 0.853289, 0.497841, 1)
+night_sky = ExtResource("1_7hdsg")
+
+[sub_resource type="Sky" id="Sky_kmt50"]
+sky_material = SubResource("PhysicalSkyMaterial_reb25")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_kmt50")
+ambient_light_source = 2
+ambient_light_color = Color(0.118581, 0.118581, 0.118581, 1)
+ambient_light_energy = 1.5
