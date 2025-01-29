@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://ca6tuggw5nlul"]
+[gd_scene load_steps=16 format=3 uid="uid://ca6tuggw5nlul"]
 
 [ext_resource type="Script" path="res://scripts/blast_door.gd" id="1_7vavr"]
 [ext_resource type="Texture2D" uid="uid://cmd2t41pnddfy" path="res://resources/environment/beach/aerial_beach_01_diff_1k.jpg" id="2_f632i"]
+[ext_resource type="AudioStream" uid="uid://wj3rtwa646u3" path="res://assets/sound/Generator_Explosion.ogg" id="3_7s28q"]
 [ext_resource type="PackedScene" uid="uid://dt66vume37wvj" path="res://scenes/blast_wall/slide_door.tscn" id="4_esp65"]
+[ext_resource type="AudioStream" uid="uid://dq8m264tga32x" path="res://assets/sound/Door Thud.ogg" id="4_nrviq"]
 [ext_resource type="PackedScene" uid="uid://yl20owsmi50l" path="res://scenes/crystal/crystal.tscn" id="4_y1267"]
 [ext_resource type="PackedScene" uid="uid://dadnkg4ji885p" path="res://scenes/blast_wall/blast_wall.tscn" id="5_wlooj"]
 
@@ -70,6 +72,18 @@ tracks/4/path = NodePath("blast-wall/Shield/StaticBody3D/CollisionShape3D:disabl
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DoorClosedSound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -199,6 +213,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DoorClosedSound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nkq4x"]
 _data = {
@@ -221,6 +247,22 @@ libraries = {
 "": SubResource("AnimationLibrary_nkq4x")
 }
 autoplay = "RESET"
+
+[node name="CrystalDestroyedSound" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_7s28q")
+volume_db = 20.0
+pitch_scale = 0.9
+bus = &"SFX"
+
+[node name="DoorClosedSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_nrviq")
+attenuation_model = 1
+volume_db = 20.0
+unit_size = 15.0
+max_db = 4.0
+pitch_scale = 0.8
+bus = &"SFX"
 
 [node name="blast-wall" parent="." instance=ExtResource("5_wlooj")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
