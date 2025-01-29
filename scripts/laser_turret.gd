@@ -12,6 +12,7 @@ var ship : Ship
 @onready var anim_player : AnimationPlayer = %AnimationPlayer
 @onready var laser_hum_sound_mover : SpringArm3D = %SpringArm3D
 @onready var laser_hum_sound : AudioStreamPlayer3D = %LaserHumSound
+@onready var laser_init_sound: AudioStreamPlayer3D = %LaserInitChargeSound
 
 
 func _ready() -> void:
@@ -32,6 +33,12 @@ func _physics_process(_delta: float) -> void:
 		laser_hum_sound_mover.spring_length = dist
 	else:
 		ship = get_tree().get_first_node_in_group("ship")
+	
+	# TODO: make this play when player appears
+	if Input.is_action_just_pressed("debug3"):
+		print("sound player")
+		laser_init_sound.play()
+
 		
 
 
