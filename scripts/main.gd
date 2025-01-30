@@ -1,8 +1,8 @@
 extends Node3D
 class_name MainLevel
 
-@export var spawn_point: Node3D
-@export var debug_spawn_point: Node3D
+@export var spawn_point: Marker3D
+@export var debug_spawn_point: Marker3D
 @export var ship_scene: PackedScene
 @export var camera_scene: PackedScene
 @export var hud_scene: PackedScene
@@ -97,11 +97,12 @@ func _on_player_entered_zone_trigger(zone_name: int):
 		ZoneName.id.NONE:
 			pass
 		ZoneName.id.ENTERING_CAVE:
-			print("ENTERING CAVE")
 			camera_instance.soundtrack_player.play()
-		ZoneName.id.ZONE1:
-			print("zone1 entered")
-		ZoneName.id.ZONE2:
-			print("zone2 entered")
+		ZoneName.id.SPAWN_CAVE:
+			print("spawn cave")
+			switch_to_cave_world_environment()
+		ZoneName.id.ENTERING_CANYON:
+			print("entering canyon")
+			switch_to_canyon_world_environment()
 		_:
 			assert(false, "unhandled ZoneName.id was passed to the ship from a zone entrance")
