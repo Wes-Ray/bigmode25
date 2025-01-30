@@ -19,3 +19,6 @@ sky = SubResource("Sky_kmt50")
 ambient_light_source = 2
 ambient_light_color = Color(0.118581, 0.118581, 0.118581, 1)
 ambient_light_energy = 1.5
+fog_enabled = true
+fog_light_color = Color(0.489178, 0.579585, 0.485024, 1)
+fog_density = 0.0002

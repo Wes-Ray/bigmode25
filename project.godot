@@ -37,7 +37,7 @@ window/size/viewport_height=1080
 
 [editor]
 
-movie_writer/movie_file="C:/Users/wes/Documents/windev/breach-vector/output/video/out.avi"
+movie_writer/movie_file="C:\\Users\\wes\\Documents\\windev\\bigmode25\\build\\video"
 
 [global_group]
 

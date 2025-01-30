@@ -1,9 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddphuw4pwv8q8"]
+[gd_scene load_steps=7 format=3 uid="uid://ddphuw4pwv8q8"]
 
 [ext_resource type="PackedScene" uid="uid://bbdybdwnycaph" path="res://assets/levels/cave01.glb" id="1_do63e"]
 [ext_resource type="Script" path="res://scripts/collision_shape_3d_util.gd" id="2_ipub0"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vfucn"]
+noise_type = 0
+frequency = 0.0096
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h15h6"]
+in_3d_space = true
+seamless = true
+noise = SubResource("FastNoiseLite_vfucn")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b5d4c"]
+cull_mode = 2
+albedo_color = Color(0.269829, 0.253221, 0.163008, 1)
+albedo_texture = SubResource("NoiseTexture2D_h15h6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fpcxj"]
+albedo_color = Color(0.427493, 0.427493, 0.427493, 1)
+
 [node name="cave01" instance=ExtResource("1_do63e")]
+
+[node name="cave01" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_b5d4c")
 
 [node name="CollisionShape3D" parent="cave01/StaticBody3D" index="0"]
 script = ExtResource("2_ipub0")
+
+[node name="Cylinder" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fpcxj")
