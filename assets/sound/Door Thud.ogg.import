@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Door Thud.ogg-fc83e2e625052347eac8471ef746278
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

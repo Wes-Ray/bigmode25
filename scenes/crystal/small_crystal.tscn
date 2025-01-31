@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch71v14koc1ab"]
+
+[ext_resource type="PackedScene" uid="uid://db2v0obybo48y" path="res://assets/props/small_crystal.glb" id="1_pmd8l"]
+[ext_resource type="Texture2D" uid="uid://cmd2t41pnddfy" path="res://resources/environment/beach/aerial_beach_01_diff_1k.jpg" id="2_fbmne"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6sykp"]
+transparency = 1
+albedo_color = Color(0, 0.627451, 0.929412, 0.85098)
+albedo_texture = ExtResource("2_fbmne")
+
+[node name="small_crystal" instance=ExtResource("1_pmd8l")]
+
+[node name="Crystal" parent="." index="0"]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_6sykp")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="1"]
+light_color = Color(0.107712, 0.777459, 0.980941, 1)
+light_energy = 16.0
+light_size = 0.367
+light_specular = 1.0
+omni_range = 60.0
+omni_attenuation = 0.7

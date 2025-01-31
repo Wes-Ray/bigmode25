@@ -8,27 +8,27 @@ enum firing_type {DIRECT, RANDOM, PREDICT}
 @export_range(0.5, 10) var fire_rate := 2.0
 @export var projectile : PackedScene
 @export_range(50, 500) var projectile_speed := 200.0
-var cannon_skeleton : Skeleton3D
-var cannon_bone_idx : int
 
 @onready var attack_timer : Timer = %AttackTimer
 @onready var ship : Ship = get_tree().get_first_node_in_group("ship")
 @onready var shooting_point : Marker3D = %ShootingPoint
-@onready var turret_top : Node3D = %TurretTop
+@onready var turret_top_model : Node3D = %TurretTopModel
 @onready var direction_finder : Node3D = %DirectionFinder
+
+@onready var turret_pitch_rig := $TurretTopModel/Turret_Vertical_Canon
+@onready var shoot_audio := %AudioStreamPlayer3D
 
 
 func _ready() -> void:
 	assert(projectile, "projectile scene must be assigned")
 	attack_timer.wait_time = fire_rate
-	cannon_skeleton = turret_top.find_child("Skeleton3D")
-	cannon_bone_idx = cannon_skeleton.find_bone("Bone.001")
-
 
 func _process(_delta: float) -> void:
 	if ship and get_distance(ship.global_position) < attack_range:
 		swivel()
+
 		if attack_timer.is_stopped():
+			shoot_audio.play()
 			match fire_mode:
 				firing_type.DIRECT:
 					direct_shoot(generic_shoot())
@@ -42,18 +42,10 @@ func _process(_delta: float) -> void:
 
 
 func swivel() -> void:
-	var dir : Vector3 = ship.global_position - turret_top.global_position
-	var dir_horizontal := Vector3(dir.x, 0, dir.z)
-	if dir_horizontal.length() < 0.001:
-		dir_horizontal = Vector3.FORWARD
-	else:
-		dir_horizontal = dir_horizontal.normalized()
-	var target_horizontal_rot = Basis.looking_at(dir_horizontal, Vector3.UP)
-	turret_top.quaternion = turret_top.quaternion.slerp(target_horizontal_rot.get_rotation_quaternion(), 0.5)
+	direction_finder.look_at(ship.global_position)
+	turret_top_model.rotation.y = direction_finder.rotation.y + TAU/2
 
-	# var pitch_angle := asin(dir.y)
-	# var target_pitch_rot = Quaternion(Vector3.RIGHT, pitch_angle)
-	# cannon_skeleton.set_bone_pose_rotation(cannon_bone_idx, target_pitch_rot)
+	turret_pitch_rig.rotation.x = -direction_finder.rotation.x - 0
 
 func generic_shoot() -> Projectile:
 	var proj : Projectile = projectile.instantiate()
