@@ -429,6 +429,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4139.
 
 [node name="ProxZone01" parent="." instance=ExtResource("14_5x7jb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3975.75, -288.521, 2637.5)
+start_with_children_enabled = true
 
 [node name="ZoneTrigger" parent="ProxZone01" instance=ExtResource("15_78gg4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.224121, -1.47867, -1.0354)
@@ -489,7 +490,6 @@ transform = Transform3D(-0.983556, 0, 0.180605, 0, 1, 0, -0.180605, 0, -0.983556
 
 [node name="ProxZone03EnteringCanyon" parent="." instance=ExtResource("14_5x7jb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78439, -61.886, 84.6579)
-start_with_children_enabled = true
 
 [node name="ZoneTrigger" parent="ProxZone03EnteringCanyon" instance=ExtResource("15_78gg4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.35433, 4.34367, -36.8469)
