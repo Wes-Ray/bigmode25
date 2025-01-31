@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cv37e16v5fatd"
+path="res://.godot/imported/what the hell was that!.ogg-37e342eb2f9a4ece0170a6c1d0ef3f1c.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/voicelines/enemy/what the hell was that!.ogg"
+dest_files=["res://.godot/imported/what the hell was that!.ogg-37e342eb2f9a4ece0170a6c1d0ef3f1c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

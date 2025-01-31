@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b3i8lgywj2are"
+path="res://.godot/imported/try to survive this!.ogg-3b0c99f41cffb2369afc77ed21ebbd5d.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/voicelines/enemy/try to survive this!.ogg"
+dest_files=["res://.godot/imported/try to survive this!.ogg-3b0c99f41cffb2369afc77ed21ebbd5d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
