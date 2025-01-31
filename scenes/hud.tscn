@@ -27,7 +27,7 @@ shader_parameter/line_count = 1.0
 shader_parameter/line_density = 0.0
 shader_parameter/line_falloff = 1.0
 shader_parameter/mask_size = 0.0
-shader_parameter/mask_edge = 0.5
+shader_parameter/mask_edge = 1.0
 shader_parameter/animation_speed = 13.0
 shader_parameter/noise = SubResource("NoiseTexture2D_728pu")
 
