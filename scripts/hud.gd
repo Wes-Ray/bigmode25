@@ -26,6 +26,7 @@ var camera_rig : CameraRig
 @onready var engine_indicator := %EngineIndicator
 @onready var rocket_indicator := %RocketIndicator
 @onready var boost_shader := %BoostShader
+@onready var height_warning := %CeilingWarning
 
 
 var rocket_timer : Timer
@@ -57,6 +58,9 @@ func _ready() -> void:
 	current_health = Logger.get_health()
 
 	EventsBus.rocket_count_changed.connect(_on_rocket_count_changed)
+
+	EventsBus.ceiling_warning_started.connect(_on_ceiling_warning_started)
+	EventsBus.ceiling_warning_stopped.connect(_on_ceiling_warning_stopped)
 
 
 func _process(_delta: float) -> void:
@@ -179,3 +183,9 @@ func _on_invert_check_button_toggled(toggled_on:bool) -> void:
 
 func _on_rocket_count_changed(rockets: int) -> void:
 	rockets_count_label.text = "[b]" + str(rockets) + "/2[/b]"
+
+func _on_ceiling_warning_started() -> void:
+	height_warning.show()
+
+func _on_ceiling_warning_stopped() -> void:
+	height_warning.hide()
