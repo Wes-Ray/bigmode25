@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dydrr63f746ur"]
+[gd_scene load_steps=25 format=3 uid="uid://dydrr63f746ur"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sebui"]
 [ext_resource type="PackedScene" uid="uid://wk8ox7egbudr" path="res://scenes/ship.tscn" id="2_kkbaq"]
@@ -10,12 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://chtu5gyv4ebam" path="res://assets/props/straight_pipe01.glb" id="8_2pgjq"]
 [ext_resource type="PackedScene" uid="uid://c3eftue5uxh0f" path="res://assets/props/straight_pipe_long01.glb" id="9_tgab0"]
 [ext_resource type="PackedScene" uid="uid://ca6tuggw5nlul" path="res://scenes/blast_wall/blast_door.tscn" id="12_8csq4"]
+[ext_resource type="PackedScene" uid="uid://yl20owsmi50l" path="res://scenes/crystal/crystal.tscn" id="12_nbgno"]
 [ext_resource type="PackedScene" uid="uid://bjgbj1egj4yyk" path="res://scenes/prox_zone.tscn" id="14_5x7jb"]
 [ext_resource type="PackedScene" uid="uid://b84gwpfj7j0eq" path="res://scenes/zone_trigger.tscn" id="15_78gg4"]
 [ext_resource type="PackedScene" uid="uid://b3auk0it0a8fw" path="res://scenes/levels/level_object_scenes/omni_light_cave.tscn" id="16_31mbo"]
 [ext_resource type="Script" path="res://scripts/y_checker.gd" id="16_mxk7d"]
 [ext_resource type="PackedScene" uid="uid://ddphuw4pwv8q8" path="res://scenes/levels/level_object_scenes/cave_01.tscn" id="16_wnt8b"]
 [ext_resource type="PackedScene" uid="uid://cdrpc5daiyglh" path="res://scenes/turrets/laser_turret.tscn" id="17_cu70w"]
+[ext_resource type="PackedScene" uid="uid://t37eul41x86d" path="res://scenes/turrets/projectile_turret.tscn" id="17_f2ymy"]
+[ext_resource type="PackedScene" uid="uid://c6iaef804diea" path="res://scenes/levels/level_object_scenes/omni_light_canyon.tscn" id="19_u6n46"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_avpex"]
 radius = 800.0
@@ -26,9 +29,18 @@ size = Vector3(323.042, 253.684, 238.07)
 [sub_resource type="SphereShape3D" id="SphereShape3D_cllpk"]
 radius = 152.94
 
-[node name="Leve02" type="Node3D" node_paths=PackedStringArray("spawn_point")]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4o5e8"]
+radius = 162.691
+height = 628.769
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0biq1"]
+radius = 174.262
+height = 500.0
+
+[node name="Leve02" type="Node3D" node_paths=PackedStringArray("spawn_point", "debug_spawn_point")]
 script = ExtResource("1_sebui")
 spawn_point = NodePath("Spawn")
+debug_spawn_point = NodePath("DebugSpawn")
 ship_scene = ExtResource("2_kkbaq")
 camera_scene = ExtResource("3_e40k6")
 hud_scene = ExtResource("4_a4gyl")
@@ -38,7 +50,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3188.
 gizmo_extents = 50.0
 
 [node name="DebugSpawn" type="Marker3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 43.2798, -19.026, -341.791)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -17.6779, -19.026, -9.94827)
 
 [node name="YChecker" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -224,19 +236,19 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 708.83
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 708.838, 33.8695, -1747.45)
 
 [node name="straight_pipe_long06" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 721.371, 0.975159, -1784.05)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 721.371, -6.93709, -1784.05)
 
 [node name="straight_pipe_long07" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 721.371, 0.975159, -1940.92)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 721.371, -6.93709, -1940.92)
 
 [node name="straight_pipe_long04" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 717.448, -34.0575, -1917.67)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 717.448, -45.7576, -1917.67)
 
 [node name="straight_pipe_long05" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 717.448, -34.0575, -1760.8)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 717.448, -45.7576, -1760.8)
 
 [node name="straight_pipe_long09" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
-transform = Transform3D(0.885345, 0, 0.464935, 0, 1, 0, -0.464935, 0, 0.885345, 1323.7, 24.1006, -1179.29)
+transform = Transform3D(0.885345, 0, 0.464935, 0, 1, 0, -0.464935, 0, 0.885345, 1323.7, 3.65113, -1179.29)
 
 [node name="straight_pipe_long15" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2096.77, 123.187, -1031.99)
@@ -245,34 +257,52 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2096.77, 123.187, -1031.99)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2254.23, 123.187, -1031.99)
 
 [node name="straight_pipe_long17" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
-transform = Transform3D(0.840425, 0, -0.541928, 0, 1, 0, 0.541928, 0, 0.840425, 2091.32, 20.7434, -1253.94)
+transform = Transform3D(0.840425, 0, -0.541928, 0, 1, 0, 0.541928, 0, 0.840425, 2071.23, 30.2502, -1215)
 
 [node name="straight_pipe_long18" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
-transform = Transform3D(0.840425, 0, -0.541928, 0, 1, 0, 0.541928, 0, 0.840425, 2223.64, 20.7434, -1168.61)
+transform = Transform3D(0.840425, 0, -0.541928, 0, 1, 0, 0.541928, 0, 0.840425, 2203.55, 30.2502, -1129.67)
 
 [node name="straight_pipe_long19" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
-transform = Transform3D(0.91252, 0, -0.409031, 0, 1, 0, 0.409031, 0, 0.91252, 2206.91, 38.0048, -1348.97)
+transform = Transform3D(0.91252, 0, -0.409031, 0, 1, 0, 0.409031, 0, 0.91252, 2206.91, 43.9445, -1348.97)
 
 [node name="straight_pipe_long20" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
-transform = Transform3D(0.91252, 0, -0.409031, 0, 1, 0, 0.409031, 0, 0.91252, 2350.59, 38.0048, -1284.57)
+transform = Transform3D(0.91252, 0, -0.409031, 0, 1, 0, 0.409031, 0, 0.91252, 2350.59, 43.9445, -1284.57)
 
 [node name="straight_pipe_long25" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
-transform = Transform3D(0.91252, 0, -0.409031, 0, 1, 0, 0.409031, 0, 0.91252, 2180.74, -18.7523, -1361.85)
+transform = Transform3D(0.91252, 0, -0.409031, 0, 1, 0, 0.409031, 0, 0.91252, 2180.74, -3.46419, -1361.85)
 
 [node name="straight_pipe_long26" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
-transform = Transform3D(0.91252, 0, -0.409031, 0, 1, 0, 0.409031, 0, 0.91252, 2324.42, -18.7523, -1297.44)
+transform = Transform3D(0.91252, 0, -0.409031, 0, 1, 0, 0.409031, 0, 0.91252, 2324.42, -3.46419, -1297.44)
+
+[node name="straight_pipe_long40" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
+transform = Transform3D(0.91252, 0, -0.409031, 0, 1, 0, 0.409031, 0, 0.91252, 2180.74, -58.0067, -1361.85)
+
+[node name="straight_pipe_long41" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
+transform = Transform3D(0.91252, 0, -0.409031, 0, 1, 0, 0.409031, 0, 0.91252, 2324.42, -58.0067, -1297.44)
 
 [node name="straight_pipe_long27" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
-transform = Transform3D(0.91252, 0, -0.409031, 0, 1, 0, 0.409031, 0, 0.91252, 2206.91, -44.4349, -1348.97)
+transform = Transform3D(0.91252, 0, -0.409031, 0, 1, 0, 0.409031, 0, 0.91252, 2206.91, -29.6887, -1348.97)
 
 [node name="straight_pipe_long28" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
-transform = Transform3D(0.91252, 0, -0.409031, 0, 1, 0, 0.409031, 0, 0.91252, 2350.59, -44.4349, -1284.57)
+transform = Transform3D(0.91252, 0, -0.409031, 0, 1, 0, 0.409031, 0, 0.91252, 2350.59, -29.6887, -1284.57)
+
+[node name="straight_pipe_long42" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
+transform = Transform3D(0.91252, 0, -0.409031, 0, 1, 0, 0.409031, 0, 0.91252, 2195.66, -84.1715, -1354.44)
+
+[node name="straight_pipe_long43" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
+transform = Transform3D(0.91252, 0, -0.409031, 0, 1, 0, 0.409031, 0, 0.91252, 2339.34, -84.1715, -1290.04)
 
 [node name="straight_pipe_long21" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
 transform = Transform3D(0.993367, 0, -0.114989, 0, 1, 0, 0.114989, 0, 0.993367, 2198.71, 0.198318, -1528.63)
 
 [node name="straight_pipe_long22" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
 transform = Transform3D(0.993367, 0, -0.114989, 0, 1, 0, 0.114989, 0, 0.993367, 2355.12, 0.198318, -1510.52)
+
+[node name="straight_pipe_long44" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
+transform = Transform3D(0.993367, 0, -0.114989, 0, 1, 0, 0.114989, 0, 0.993367, 2221.15, -23.692, -1526.11)
+
+[node name="straight_pipe_long45" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
+transform = Transform3D(0.993367, 0, -0.114989, 0, 1, 0, 0.114989, 0, 0.993367, 2377.56, -23.692, -1508)
 
 [node name="straight_pipe_long31" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
 transform = Transform3D(0.993367, 0, -0.114989, 0, 1, 0, 0.114989, 0, 0.993367, 2210.64, 48.1284, -1535.16)
@@ -314,13 +344,19 @@ transform = Transform3D(0.494761, 0, -0.869029, 0, 1, 0, 0.869029, 0, 0.494761, 
 transform = Transform3D(0.810113, 0, 0.586274, 0, 1, 0, -0.586274, 0, 0.810113, -349.269, -59.7048, -3564.11)
 
 [node name="straight_pipe_long10" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
-transform = Transform3D(0.885345, 0, 0.464935, 0, 1, 0, -0.464935, 0, 0.885345, 1207.91, 24.1006, -1118.48)
+transform = Transform3D(0.885345, 0, 0.464935, 0, 1, 0, -0.464935, 0, 0.885345, 1207.91, 3.65113, -1118.48)
 
 [node name="straight_pipe_long11" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
-transform = Transform3D(0.885345, 0, 0.464935, 0, 1, 0, -0.464935, 0, 0.885345, 1343.08, 47.7189, -1190.87)
+transform = Transform3D(0.885345, 0, 0.464935, 0, 1, 0, -0.464935, 0, 0.885345, 1335.54, 27.2694, -1186.89)
 
 [node name="straight_pipe_long33" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
-transform = Transform3D(0.885345, 0, 0.464935, 0, 1, 0, -0.464935, 0, 0.885345, 1227.28, 47.7189, -1130.06)
+transform = Transform3D(0.885345, 0, 0.464935, 0, 1, 0, -0.464935, 0, 0.885345, 1219.74, 27.2694, -1126.08)
+
+[node name="straight_pipe_long38" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
+transform = Transform3D(0.885345, 0, 0.464935, 0, 1, 0, -0.464935, 0, 0.885345, 1359.07, 49.4814, -1196.4)
+
+[node name="straight_pipe_long39" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
+transform = Transform3D(0.885345, 0, 0.464935, 0, 1, 0, -0.464935, 0, 0.885345, 1243.28, 49.4814, -1135.59)
 
 [node name="straight_pipe04" parent="StaticPropsCanyon" instance=ExtResource("8_2pgjq")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1240.22, -2.20417, -1462.22)
@@ -347,13 +383,13 @@ transform = Transform3D(2.10126e-08, 0.480713, 0.876878, 1, -4.37114e-08, 0, 3.8
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2021.76, 137.984, -1257.9)
 
 [node name="straight_pipe15" parent="StaticPropsCanyon" instance=ExtResource("8_2pgjq")]
-transform = Transform3D(0.858208, 0, 0.513302, 0, 1, 0, -0.513302, 0, 0.858208, 2101.54, 2.16286, -1749.39)
+transform = Transform3D(0.858208, 0, 0.513302, 0, 1, 0, -0.513302, 0, 0.858208, 2101.54, -4.95826, -1749.39)
 
 [node name="straight_pipe16" parent="StaticPropsCanyon" instance=ExtResource("8_2pgjq")]
-transform = Transform3D(-3.75135e-08, -0.858208, 0.513302, 1, -4.37114e-08, 0, 2.24371e-08, 0.513302, 0.858208, 2150.4, -54.8835, -1778.62)
+transform = Transform3D(-3.75135e-08, -0.858208, 0.513302, 1, -4.37114e-08, 0, 2.24371e-08, 0.513302, 0.858208, 2150.4, -62.0046, -1778.62)
 
 [node name="elbow_pipe07" parent="StaticPropsCanyon" instance=ExtResource("7_cfo38")]
-transform = Transform3D(0.858208, 0, 0.513302, 0, 1, 0, -0.513302, 0, 0.858208, 2145.34, 1.43235, -1775.82)
+transform = Transform3D(0.858208, 0, 0.513302, 0, 1, 0, -0.513302, 0, 0.858208, 2145.34, -5.68877, -1775.82)
 
 [node name="straight_pipe19" parent="StaticPropsCanyon" instance=ExtResource("8_2pgjq")]
 transform = Transform3D(0.858208, 0, 0.513302, 0, 1, 0, -0.513302, 0, 0.858208, 2075.19, -25.7548, -1734.2)
@@ -365,37 +401,40 @@ transform = Transform3D(-3.75135e-08, -0.858208, 0.513302, 1, -4.37114e-08, 0, 2
 transform = Transform3D(0.858208, 0, 0.513302, 0, 1, 0, -0.513302, 0, 0.858208, 2119, -26.4853, -1760.62)
 
 [node name="straight_pipe17" parent="StaticPropsCanyon" instance=ExtResource("8_2pgjq")]
-transform = Transform3D(-0.958909, 0, -0.283714, 0, 1, 0, 0.283714, 0, -0.958909, 2245.65, 2.16287, -1817.61)
+transform = Transform3D(-0.958909, 0, -0.283714, 0, 1, 0, 0.283714, 0, -0.958909, 2245.65, -4.95825, -1817.61)
 
 [node name="straight_pipe18" parent="StaticPropsCanyon" instance=ExtResource("8_2pgjq")]
-transform = Transform3D(4.19152e-08, 0.958909, -0.283714, 1, -4.37114e-08, 1.82361e-15, -1.24015e-08, -0.283714, -0.958909, 2191.06, -54.8835, -1801.46)
+transform = Transform3D(4.19152e-08, 0.958909, -0.283714, 1, -4.37114e-08, 1.82361e-15, -1.24015e-08, -0.283714, -0.958909, 2191.06, -62.0046, -1801.46)
 
 [node name="elbow_pipe08" parent="StaticPropsCanyon" instance=ExtResource("7_cfo38")]
-transform = Transform3D(-0.958909, 0, -0.283714, 0, 1, 0, 0.283714, 0, -0.958909, 2196.65, 1.43235, -1802.92)
+transform = Transform3D(-0.958909, 0, -0.283714, 0, 1, 0, 0.283714, 0, -0.958909, 2196.65, -5.68877, -1802.92)
 
 [node name="elbow_pipe04" parent="StaticPropsCanyon" instance=ExtResource("7_cfo38")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1189.09, -2.61634, -1462.42)
 
 [node name="straight_pipe07" parent="StaticPropsCanyon" instance=ExtResource("8_2pgjq")]
-transform = Transform3D(0.875591, 0, 0.483053, 0, 1, 0, -0.483053, 0, 0.875591, 1164.48, -2.93426, -1099.96)
+transform = Transform3D(0.875591, 0, 0.483053, 0, 1, 0, -0.483053, 0, 0.875591, 1164.48, -17.5564, -1099.96)
 
 [node name="straight_pipe08" parent="StaticPropsCanyon" instance=ExtResource("8_2pgjq")]
-transform = Transform3D(-3.82733e-08, -0.875591, 0.483053, 1, -4.37114e-08, 1.1382e-16, 2.11149e-08, 0.483053, 0.875591, 1214.24, -58.6905, -1127.41)
+transform = Transform3D(-3.82733e-08, -0.875591, 0.483053, 1, -4.37114e-08, 1.1382e-16, 2.11149e-08, 0.483053, 0.875591, 1214.24, -73.3127, -1127.41)
 
 [node name="elbow_pipe05" parent="StaticPropsCanyon" instance=ExtResource("7_cfo38")]
-transform = Transform3D(0.875591, 0, 0.483053, 0, 1, 0, -0.483053, 0, 0.875591, 1209.34, -3.34643, -1124.49)
+transform = Transform3D(0.875591, 0, 0.483053, 0, 1, 0, -0.483053, 0, 0.875591, 1209.34, -17.9686, -1124.49)
 
 [node name="straight_pipe09" parent="StaticPropsCanyon" instance=ExtResource("8_2pgjq")]
-transform = Transform3D(-0.875591, 0, -0.483053, 0, 1, 0, 0.483053, 0, -0.875591, 1306.69, -2.93426, -1178.27)
+transform = Transform3D(-0.875591, 0, -0.483053, 0, 1, 0, 0.483053, 0, -0.875591, 1306.69, -17.5564, -1178.27)
 
 [node name="straight_pipe10" parent="StaticPropsCanyon" instance=ExtResource("8_2pgjq")]
-transform = Transform3D(3.82733e-08, 0.875591, -0.483053, 1, -4.37114e-08, 0, -2.11149e-08, -0.483053, -0.875591, 1256.94, -58.6905, -1150.82)
+transform = Transform3D(3.82733e-08, 0.875591, -0.483053, 1, -4.37114e-08, 0, -2.11149e-08, -0.483053, -0.875591, 1256.94, -73.3127, -1150.82)
 
 [node name="elbow_pipe06" parent="StaticPropsCanyon" instance=ExtResource("7_cfo38")]
-transform = Transform3D(-0.875591, 0, -0.483053, 0, 1, 0, 0.483053, 0, -0.875591, 1261.83, -3.34643, -1153.74)
+transform = Transform3D(-0.875591, 0, -0.483053, 0, 1, 0, 0.483053, 0, -0.875591, 1261.83, -17.9686, -1153.74)
 
 [node name="BlastDoor" parent="." instance=ExtResource("12_8csq4")]
-transform = Transform3D(-0.914098, 0, 0.405492, 0, 1, 0, -0.405492, 0, -0.914098, -141.275, 16.4942, -1490.92)
+transform = Transform3D(-0.914098, 0, 0.405492, 0, 1, 0, -0.405492, 0, -0.914098, -141.275, -14.78, -1490.92)
+
+[node name="Crystal" parent="BlastDoor" instance=ExtResource("12_nbgno")]
+transform = Transform3D(-0.914099, 0.405493, 1.77246e-08, 0, -4.37114e-08, 1, 0.405493, 0.914099, 3.99566e-08, 60.3384, 50.78, -17.6127)
 
 [node name="BlastDoor2" parent="." instance=ExtResource("12_8csq4")]
 transform = Transform3D(-0.782336, 0, -0.622856, 0, 1, 0, 0.622856, 0, -0.782336, -396.856, 16.6726, -3539.09)
@@ -456,6 +495,9 @@ transform = Transform3D(-0.983555, 0, -0.180605, 0, 1, 0, 0.180605, 0, -0.983555
 [node name="BlastDoor3" parent="." instance=ExtResource("12_8csq4")]
 transform = Transform3D(-0.983556, 0, 0.180605, 0, 1, 0, -0.180605, 0, -0.983556, -796.462, -321.905, 1062.52)
 
+[node name="Crystal" parent="BlastDoor3" instance=ExtResource("12_nbgno")]
+transform = Transform3D(1, 0, -2.66454e-15, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 68.2771, 0, -19.431)
+
 [node name="ProxZone03EnteringCanyon" parent="." instance=ExtResource("14_5x7jb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78439, -61.886, 84.6579)
 
@@ -464,11 +506,65 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.35433, 4.34367, -36.8469)
 zone_name = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone03EnteringCanyon/ZoneTrigger"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 84.695, 126.431)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 84.695, -7.52441)
 shape = SubResource("SphereShape3D_cllpk")
 
 [node name="LaserTurret" parent="ProxZone03EnteringCanyon" instance=ExtResource("17_cu70w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -204.617, 23.8501, -935.517)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290.196, 75.2176, -1166.11)
 
 [node name="OmniLightCave2" parent="ProxZone03EnteringCanyon" instance=ExtResource("16_31mbo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.51362, 73.2851, -17.8133)
+
+[node name="ProxZone" parent="." instance=ExtResource("14_5x7jb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.8154, -91.8972, -1578.22)
+
+[node name="ZoneTrigger" parent="ProxZone" instance=ExtResource("15_78gg4")]
+zone_name = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone/ZoneTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1168, 0, -15.7448)
+shape = SubResource("CapsuleShape3D_4o5e8")
+
+[node name="ProjectileTurret" parent="ProxZone" instance=ExtResource("17_f2ymy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1054.35, 9.34546, -266.359)
+fire_mode = 2
+
+[node name="ProjectileTurret2" parent="ProxZone" instance=ExtResource("17_f2ymy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1025.89, 42.0864, -151.782)
+fire_mode = 2
+
+[node name="LaserTurret" parent="ProxZone" instance=ExtResource("17_cu70w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 641.14, 88.6557, -224.687)
+
+[node name="LaserTurret2" parent="ProxZone" instance=ExtResource("17_cu70w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1234.44, 94.724, -57.8811)
+
+[node name="BlastDoor4" parent="." instance=ExtResource("12_8csq4")]
+transform = Transform3D(-0.542339, 0, 0.84016, 0, 1, 0, -0.84016, 0, -0.542339, 1909.69, -11.3916, -1035.01)
+
+[node name="Crystal" parent="BlastDoor4" instance=ExtResource("12_nbgno")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -72.4954, 16.1085, -18.6318)
+
+[node name="Crystal2" parent="BlastDoor4" instance=ExtResource("12_nbgno")]
+transform = Transform3D(1, 0, 3.55271e-15, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.92725, 53.3405, -15.5671)
+
+[node name="ProxZone2" parent="." instance=ExtResource("14_5x7jb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2049.46, -91.3923, -1083.98)
+
+[node name="ZoneTrigger" parent="ProxZone2" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25293, 0.783089, -3.16138)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone2/ZoneTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.7188, 0, -40.5579)
+shape = SubResource("CapsuleShape3D_0biq1")
+
+[node name="ProjectileTurret" parent="ProxZone2" instance=ExtResource("17_f2ymy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -374.636, -1.07572, -1102.17)
+fire_mode = 2
+
+[node name="ProjectileTurret2" parent="ProxZone2" instance=ExtResource("17_f2ymy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -370.516, -1.07572, -1170.09)
+fire_mode = 1
+
+[node name="OmniLightCanyon" parent="." instance=ExtResource("19_u6n46")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1600.28, -81.9168, -2263.71)
