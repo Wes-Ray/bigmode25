@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://2pdtggy016hs"
+path="res://.godot/imported/DIE SCUM.ogg-73c33dfd2eccf2b40585485a4202607d.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/voicelines/enemy/DIE SCUM.ogg"
+dest_files=["res://.godot/imported/DIE SCUM.ogg-73c33dfd2eccf2b40585485a4202607d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bxusajqjv6gkm"
+path="res://.godot/imported/he wont survive the generator room.ogg-6c45521ecee4d48f6f9430c3ee47f398.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/voicelines/enemy/he wont survive the generator room.ogg"
+dest_files=["res://.godot/imported/he wont survive the generator room.ogg-6c45521ecee4d48f6f9430c3ee47f398.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

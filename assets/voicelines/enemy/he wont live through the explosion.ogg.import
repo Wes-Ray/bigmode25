@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://mikxxdjovpgt"
+path="res://.godot/imported/he wont live through the explosion.ogg-9284ac7294939d01da51e536552b08fb.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/voicelines/enemy/he wont live through the explosion.ogg"
+dest_files=["res://.godot/imported/he wont live through the explosion.ogg-9284ac7294939d01da51e536552b08fb.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

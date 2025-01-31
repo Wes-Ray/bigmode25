@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b8mi00xcrklca"
+path="res://.godot/imported/can you hit anything.ogg-3ce4de5cdf8899d2e83946cf6994e5c4.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/voicelines/enemy/can you hit anything.ogg"
+dest_files=["res://.godot/imported/can you hit anything.ogg-3ce4de5cdf8899d2e83946cf6994e5c4.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
