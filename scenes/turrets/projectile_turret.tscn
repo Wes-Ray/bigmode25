@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://t37eul41x86d"]
+[gd_scene load_steps=6 format=3 uid="uid://t37eul41x86d"]
 
 [ext_resource type="Script" path="res://scripts/projectile_turret.gd" id="1_xb7b7"]
 [ext_resource type="PackedScene" uid="uid://cg0i8u8sg1vf5" path="res://scenes/projectile.tscn" id="2_giqmu"]
-[ext_resource type="PackedScene" uid="uid://dxe4brlf5a4y4" path="res://assets/Turrets/Turret_Base.glb" id="3_koh1i"]
+[ext_resource type="PackedScene" uid="uid://dxe4brlf5a4y4" path="res://assets/turrets/Turret_Base.glb" id="3_koh1i"]
 [ext_resource type="PackedScene" uid="uid://dm4op5k1rm16j" path="res://scenes/turrets/turret_top_mesh.tscn" id="4_156cd"]
+[ext_resource type="AudioStream" uid="uid://dwmu1du0sxcd8" path="res://assets/sound/Turret_Rocket_Shot.ogg" id="5_bcbcs"]
 
 [node name="ProjectileTurret" type="Node3D"]
 script = ExtResource("1_xb7b7")
@@ -16,18 +17,24 @@ one_shot = true
 [node name="DirectionFinder" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 22.9027, 0)
-visible = false
 
 [node name="CSGBox3D" type="CSGBox3D" parent="DirectionFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.32751)
+visible = false
 
 [node name="TurretBase" parent="." instance=ExtResource("3_koh1i")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 18.0901, 0)
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 18.0901, 0)
 
-[node name="TurretTop" parent="." instance=ExtResource("4_156cd")]
+[node name="TurretTopModel" parent="." instance=ExtResource("4_156cd")]
 unique_name_in_owner = true
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 17.938, 0)
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 23.4709, 0)
 
-[node name="ShootingPoint" type="Marker3D" parent="TurretTop"]
+[node name="ShootingPoint" type="Marker3D" parent="TurretTopModel"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.999465, 0.0327016, 0, -0.0327016, 0.999465, -5.3831, -0.164938, 3.23661)
+transform = Transform3D(1, 0, 0, 0, 0.999465, 0.0327016, 0, -0.0327016, 0.999465, 0, 1.07402, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_bcbcs")
+volume_db = 30.0
+unit_size = 15.0
