@@ -2,41 +2,82 @@
 
 [ext_resource type="Script" path="res://scripts/laser_turret.gd" id="1_e7exr"]
 [ext_resource type="AudioStream" uid="uid://hpvplyxadtup" path="res://assets/sound/Laser_Startup4.ogg" id="2_m5aj6"]
-[ext_resource type="Material" uid="uid://cl10qqplchfhu" path="res://resources/turrets/laser_turret_top.tres" id="2_nanqa"]
-[ext_resource type="Material" uid="uid://ceatbkvs6fwxx" path="res://resources/turrets/turret_material.tres" id="3_7ungk"]
 [ext_resource type="Material" uid="uid://tgcgn4wu7f6q" path="res://resources/turrets/laser.tres" id="3_cy3ac"]
 [ext_resource type="AudioStream" uid="uid://di08nkdef0syl" path="res://assets/sound/laser_hum.ogg" id="4_lni1s"]
+[ext_resource type="PackedScene" uid="uid://1fef574besl" path="res://assets/turrets/turret_laser.glb" id="6_djacm"]
+[ext_resource type="PackedScene" uid="uid://dxe4brlf5a4y4" path="res://assets/turrets/Turret_Base.glb" id="7_fpx20"]
 
 [sub_resource type="Animation" id="Animation_r71sr"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Top:rotation")
+tracks/0/path = NodePath(".:current_pitch")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.092101, 0, 0)]
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:firing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_ud8iy"]
 resource_name = "up-down"
-length = 6.0
-loop_mode = 1
+length = 5.0
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Top:rotation")
+tracks/0/path = NodePath(".:current_pitch")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
+"times": PackedFloat32Array(2.06667, 4.06667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.174533, 0, 0), Vector3(0.673749, 0, 0)]
+"values": [-0.785, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:firing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.2, 4.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.86667, 4.06667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"fire_laser"
+}, {
+"args": [],
+"method": &"done_firing_laser"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ac2w7"]
@@ -65,107 +106,133 @@ unique_name_in_owner = true
 stream = ExtResource("2_m5aj6")
 unit_size = 30.0
 
-[node name="Top" type="Node3D" parent="."]
+[node name="PlayerRaycast" type="RayCast3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.995762, 0.0919709, 0, -0.0919709, 0.995762, 0, 13.2011, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31.5766, 0)
 
-[node name="Barrell" type="CSGBox3D" parent="Top"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00580204, 1.80625, -4.10137)
-material_override = ExtResource("2_nanqa")
-size = Vector3(2.83, 1.2, 10)
-
-[node name="PivotPoint" type="CSGBox3D" parent="Top"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00252888, 0.266981, -0.0842338)
-material_override = ExtResource("2_nanqa")
-size = Vector3(5.7, 6.91, 3.96)
-
-[node name="ShootingPoint1" type="Node3D" parent="Top"]
+[node name="PlayerLooker" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0, 1.47382, -1.16511)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31.5766, 0)
 
-[node name="Laser" type="Node3D" parent="Top/ShootingPoint1"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="PlayerLooker"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.0639057, -7.30603)
+visible = false
+radius = 1.5
+height = 15.0
+
+[node name="YawRig" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.2011, 0)
+
+[node name="turret_laser" parent="YawRig" instance=ExtResource("6_djacm")]
+transform = Transform3D(-16, 0, -1.39876e-06, 0, 16, 0, 1.39876e-06, 0, -16, 0, -13.1451, -1.21412)
+
+[node name="PitchRig" type="Node3D" parent="YawRig"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.8718)
+
+[node name="ShootingPoint1" type="Node3D" parent="YawRig/PitchRig"]
+unique_name_in_owner = true
+transform = Transform3D(0.965926, 0, -0.258819, 3.72529e-09, 1, 0, 0.258819, -1.49012e-08, 0.965926, 8.35804, 12.2357, 6.40937)
+
+[node name="Laser" type="Node3D" parent="YawRig/PitchRig/ShootingPoint1"]
 transform = Transform3D(0.1, 0, 0, 0, -3.72529e-08, -0.1, 0, 1, -4.65661e-09, 0, 0, 0)
 
-[node name="Cylinder" type="CSGCylinder3D" parent="Top/ShootingPoint1/Laser"]
+[node name="Cylinder" type="CSGCylinder3D" parent="YawRig/PitchRig/ShootingPoint1/Laser"]
 material_override = ExtResource("3_cy3ac")
 
-[node name="Area3D" type="Area3D" parent="Top/ShootingPoint1/Laser" groups=["enemy"]]
+[node name="Area3D" type="Area3D" parent="YawRig/PitchRig/ShootingPoint1/Laser" groups=["enemy"]]
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Top/ShootingPoint1/Laser/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="YawRig/PitchRig/ShootingPoint1/Laser/Area3D"]
 shape = SubResource("CapsuleShape3D_s8t72")
 
-[node name="ShootingPoint2" type="Node3D" parent="Top"]
+[node name="ShootingPoint2" type="Node3D" parent="YawRig/PitchRig"]
 unique_name_in_owner = true
-transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 0, 1.47382, -1.16511)
+transform = Transform3D(0.992546, 0, -0.121869, 0, 1, 0, 0.121869, 0, 0.992546, 4.79262, 12.2357, 2.39054)
 
-[node name="Laser" type="Node3D" parent="Top/ShootingPoint2"]
+[node name="Laser" type="Node3D" parent="YawRig/PitchRig/ShootingPoint2"]
 transform = Transform3D(0.1, 0, 0, 0, -3.72529e-08, -0.1, 0, 1, -4.65661e-09, 0, 0, 0)
 
-[node name="Cylinder" type="CSGCylinder3D" parent="Top/ShootingPoint2/Laser"]
+[node name="Cylinder" type="CSGCylinder3D" parent="YawRig/PitchRig/ShootingPoint2/Laser"]
 material_override = ExtResource("3_cy3ac")
 
-[node name="Area3D" type="Area3D" parent="Top/ShootingPoint2/Laser" groups=["enemy"]]
+[node name="Area3D" type="Area3D" parent="YawRig/PitchRig/ShootingPoint2/Laser" groups=["enemy"]]
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Top/ShootingPoint2/Laser/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="YawRig/PitchRig/ShootingPoint2/Laser/Area3D"]
 shape = SubResource("CapsuleShape3D_s8t72")
 
-[node name="ShootingPoint3" type="Node3D" parent="Top"]
+[node name="ShootingPoint3" type="Node3D" parent="YawRig/PitchRig"]
 unique_name_in_owner = true
-transform = Transform3D(0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195, 0, 1.47382, -1.16511)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0524583, 12.2357, 0.185338)
 
-[node name="Laser" type="Node3D" parent="Top/ShootingPoint3"]
+[node name="Laser" type="Node3D" parent="YawRig/PitchRig/ShootingPoint3"]
 transform = Transform3D(0.1, 0, 0, 0, -3.72529e-08, -0.1, 0, 1, -4.65661e-09, 0, 0, 0)
 
-[node name="Cylinder" type="CSGCylinder3D" parent="Top/ShootingPoint3/Laser"]
+[node name="Cylinder" type="CSGCylinder3D" parent="YawRig/PitchRig/ShootingPoint3/Laser"]
 material_override = ExtResource("3_cy3ac")
 
-[node name="Area3D" type="Area3D" parent="Top/ShootingPoint3/Laser" groups=["enemy"]]
+[node name="Area3D" type="Area3D" parent="YawRig/PitchRig/ShootingPoint3/Laser" groups=["enemy"]]
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Top/ShootingPoint3/Laser/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="YawRig/PitchRig/ShootingPoint3/Laser/Area3D"]
 shape = SubResource("CapsuleShape3D_s8t72")
 
-[node name="ShootingPoint4" type="Node3D" parent="Top"]
+[node name="ShootingPoint4" type="Node3D" parent="YawRig/PitchRig"]
 unique_name_in_owner = true
-transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0, 1.47382, -1.16511)
+transform = Transform3D(0.992546, 0, 0.121869, 0, 1, 0, -0.121869, 0, 0.992546, -4.72892, 12.2357, 2.36994)
 
-[node name="Laser" type="Node3D" parent="Top/ShootingPoint4"]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-08, -0.1, 0, 1, -4.37114e-09, 0, 0, 0)
+[node name="Laser" type="Node3D" parent="YawRig/PitchRig/ShootingPoint4"]
+transform = Transform3D(0.1, 0, 0, 0, -3.72529e-08, -0.1, 0, 1, -4.65661e-09, 0, 0, 0)
 
-[node name="Cylinder" type="CSGCylinder3D" parent="Top/ShootingPoint4/Laser"]
+[node name="Cylinder" type="CSGCylinder3D" parent="YawRig/PitchRig/ShootingPoint4/Laser"]
 material_override = ExtResource("3_cy3ac")
 
-[node name="Area3D" type="Area3D" parent="Top/ShootingPoint4/Laser" groups=["enemy"]]
+[node name="Area3D" type="Area3D" parent="YawRig/PitchRig/ShootingPoint4/Laser" groups=["enemy"]]
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Top/ShootingPoint4/Laser/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="YawRig/PitchRig/ShootingPoint4/Laser/Area3D"]
 shape = SubResource("CapsuleShape3D_s8t72")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="Top"]
+[node name="ShootingPoint5" type="Node3D" parent="YawRig/PitchRig"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 1.47382, -1.16511)
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -8.1777, 12.2357, 5.98304)
+
+[node name="Laser" type="Node3D" parent="YawRig/PitchRig/ShootingPoint5"]
+transform = Transform3D(0.1, 0, 0, 0, -3.72529e-08, -0.1, 0, 1, -4.65661e-09, 0, 0, 0)
+
+[node name="Cylinder" type="CSGCylinder3D" parent="YawRig/PitchRig/ShootingPoint5/Laser"]
+material_override = ExtResource("3_cy3ac")
+
+[node name="Area3D" type="Area3D" parent="YawRig/PitchRig/ShootingPoint5/Laser" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="YawRig/PitchRig/ShootingPoint5/Laser/Area3D"]
+shape = SubResource("CapsuleShape3D_s8t72")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="YawRig/PitchRig"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -1, -8.9407e-08, 0, 8.9407e-08, -1, 0, 1.47382, 7.189)
 spring_length = 10.0
 
-[node name="LaserHumSound" type="AudioStreamPlayer3D" parent="Top/SpringArm3D"]
+[node name="LaserHumSound" type="AudioStreamPlayer3D" parent="YawRig/PitchRig/SpringArm3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, -5.96046e-08, 0, 6.70552e-08, 1, -0.070179, -0.22051, -0.112709)
 stream = ExtResource("4_lni1s")
 attenuation_model = 1
 volume_db = 12.598
-autoplay = true
 
-[node name="BottomBox" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.17461, 2.98023e-08)
-material_override = ExtResource("3_7ungk")
-size = Vector3(10, 10, 10)
+[node name="Turret_Base" parent="." instance=ExtResource("7_fpx20")]
+transform = Transform3D(16, 0, 0, 0, 16, 0, 0, 0, 16, 0, 0, 0)
 
-[connection signal="area_entered" from="Top/ShootingPoint1/Laser/Area3D" to="." method="_on_area_3d_area_entered"]
-[connection signal="area_entered" from="Top/ShootingPoint2/Laser/Area3D" to="." method="_on_area_3d_area_entered"]
-[connection signal="area_entered" from="Top/ShootingPoint3/Laser/Area3D" to="." method="_on_area_3d_area_entered"]
-[connection signal="area_entered" from="Top/ShootingPoint4/Laser/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="YawRig/PitchRig/ShootingPoint1/Laser/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="YawRig/PitchRig/ShootingPoint2/Laser/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="YawRig/PitchRig/ShootingPoint3/Laser/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="YawRig/PitchRig/ShootingPoint4/Laser/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="YawRig/PitchRig/ShootingPoint5/Laser/Area3D" to="." method="_on_area_3d_area_entered"]
