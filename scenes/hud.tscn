@@ -122,7 +122,8 @@ grow_horizontal = 0
 bbcode_enabled = true
 text = "Roll Plane: a/d
 Throttle:   w
-Free look:  Mouse2"
+Free look:  Mouse2
+Boost:      Shift"
 
 [node name="Crosshair" type="Control" parent="."]
 unique_name_in_owner = true
@@ -482,6 +483,7 @@ mouse_filter = 2
 
 [node name="CeilingWarning" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

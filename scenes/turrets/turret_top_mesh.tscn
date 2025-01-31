@@ -1,5 +1,5 @@
 [gd_scene load_steps=2 format=3 uid="uid://dm4op5k1rm16j"]
 
-[ext_resource type="PackedScene" uid="uid://kfcad26gcwmy" path="res://assets/turrets/Turret_Rocket.glb" id="1_ytuot"]
+[ext_resource type="PackedScene" uid="uid://kfcad26gcwmy" path="res://assets/Turrets/Turret_Rocket.glb" id="1_ytuot"]
 
 [node name="Turret_Rocket" instance=ExtResource("1_ytuot")]
