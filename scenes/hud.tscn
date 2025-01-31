@@ -482,7 +482,6 @@ mouse_filter = 2
 
 [node name="CeilingWarning" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -506,7 +505,7 @@ anchor_bottom = 0.5
 offset_left = -366.0
 offset_top = -20.0
 offset_right = 366.0
-offset_bottom = 20.0
+offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true

@@ -4,8 +4,8 @@
 [ext_resource type="AudioStream" uid="uid://hpvplyxadtup" path="res://assets/sound/Laser_Startup4.ogg" id="2_m5aj6"]
 [ext_resource type="Material" uid="uid://tgcgn4wu7f6q" path="res://resources/turrets/laser.tres" id="3_cy3ac"]
 [ext_resource type="AudioStream" uid="uid://di08nkdef0syl" path="res://assets/sound/laser_hum.ogg" id="4_lni1s"]
-[ext_resource type="PackedScene" uid="uid://1fef574besl" path="res://assets/Turrets/turret_laser.glb" id="6_djacm"]
-[ext_resource type="PackedScene" uid="uid://dxe4brlf5a4y4" path="res://assets/Turrets/Turret_Base.glb" id="7_fpx20"]
+[ext_resource type="PackedScene" uid="uid://1fef574besl" path="res://assets/turrets/turret_laser.glb" id="6_djacm"]
+[ext_resource type="PackedScene" uid="uid://dxe4brlf5a4y4" path="res://assets/turrets/Turret_Base.glb" id="7_fpx20"]
 
 [sub_resource type="Animation" id="Animation_r71sr"]
 length = 0.001
