@@ -16,6 +16,7 @@ enum firing_type {DIRECT, RANDOM, PREDICT}
 @onready var direction_finder : Node3D = %DirectionFinder
 
 @onready var turret_pitch_rig := $TurretTopModel/Turret_Vertical_Canon
+@onready var shoot_audio := %AudioStreamPlayer3D
 
 
 func _ready() -> void:
@@ -27,6 +28,7 @@ func _process(_delta: float) -> void:
 		swivel()
 
 		if attack_timer.is_stopped():
+			shoot_audio.play()
 			match fire_mode:
 				firing_type.DIRECT:
 					direct_shoot(generic_shoot())
