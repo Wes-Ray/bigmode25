@@ -39,11 +39,12 @@ bus = &"Music"
 [node name="ChaseSoundtrack" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_tmqj6")
-volume_db = -15.0
+volume_db = -13.0
 bus = &"Music"
 
 [node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
 process_mode = 3
 stream = ExtResource("3_ltkqa")
+volume_db = -18.624
 bus = &"SFX"

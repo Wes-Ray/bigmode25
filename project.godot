@@ -25,6 +25,7 @@ Logger="*res://scripts/logger.gd"
 GameConfig="*res://scripts/config.gd"
 EventsBus="*res://scripts/events_bus.gd"
 ZoneNames="*res://scripts/zone_names.gd"
+Checkpoint="*res://scripts/checkpoint.gd"
 
 [debug]
 

@@ -20,6 +20,8 @@ var return_camera_to_center_time := 0.2
 var soundtrack_on := false
 @onready var cave_soundtrack := %CaveSoundtrack
 @onready var canyon_soundtrack := %CanyonSoundtrack
+@onready var boss_soundtrack := %BossSoundtrack
+@onready var final_run_soundtrack := %ChaseSoundtrack
 @onready var deathsound_player := %DeathSound
 
 

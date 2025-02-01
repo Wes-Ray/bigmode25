@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfn4f3en4ursj"]
+
+[ext_resource type="PackedScene" uid="uid://bkr45y3e1b70f" path="res://assets/levels/chase01.glb" id="1_lra86"]
+[ext_resource type="Script" path="res://scripts/collision_shape_3d_util.gd" id="2_foa16"]
+[ext_resource type="Material" uid="uid://cplik166fvpp" path="res://scenes/levels/level_object_scenes/cave_texture.tres" id="2_oakdg"]
+
+[node name="chase01" instance=ExtResource("1_lra86")]
+
+[node name="Chase" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_oakdg")
+
+[node name="CollisionShape3D" parent="Chase/StaticBody3D" index="0"]
+script = ExtResource("2_foa16")
