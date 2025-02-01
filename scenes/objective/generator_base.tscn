@@ -1,10 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://cfclqkm2ihib0"]
+[gd_scene load_steps=14 format=3 uid="uid://cfclqkm2ihib0"]
 
 [ext_resource type="PackedScene" uid="uid://ctphr40abjgul" path="res://assets/levels/generator_base.glb" id="1_yom2o"]
 [ext_resource type="PackedScene" uid="uid://ckis6oj8abag" path="res://scenes/crystal/crystal_objective.tscn" id="2_6bx8h"]
 [ext_resource type="Script" path="res://scripts/generator_base.gd" id="2_58njf"]
+[ext_resource type="Texture2D" uid="uid://bdyr55313rt3e" path="res://resources/environment/concrete/concrete_layers_02_diff_1k.jpg" id="3_7smq2"]
 [ext_resource type="Shader" path="res://scenes/blast_wall/electric_wall.gdshader" id="4_av4p6"]
 [ext_resource type="AudioStream" uid="uid://hx6pwvvb0xeg" path="res://assets/sound/Alarm.ogg" id="5_4adqo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6rgg"]
+albedo_texture = ExtResource("3_7smq2")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kdk0f"]
 transparency = 1
@@ -36,6 +40,9 @@ size = Vector2(70, 120)
 [node name="generator_base" instance=ExtResource("1_yom2o")]
 script = ExtResource("2_58njf")
 
+[node name="Base" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_s6rgg")
+
 [node name="Crystal" parent="." index="1" instance=ExtResource("2_6bx8h")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.11794, 43.3198, 17.278)
 
@@ -64,8 +71,9 @@ cast_shadow = 0
 mesh = SubResource("PlaneMesh_ytpqn")
 
 [node name="AlarmSound" type="AudioStreamPlayer3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 62.4439, -123.072)
 stream = ExtResource("5_4adqo")
-volume_db = 30.476
+volume_db = 20.0
 unit_size = 35.9
 pitch_scale = 0.85
 bus = &"SFX"

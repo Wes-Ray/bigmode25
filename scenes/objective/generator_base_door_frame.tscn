@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0oi5pmunnlf8"]
+
+[ext_resource type="PackedScene" uid="uid://dshexspw5bjra" path="res://assets/levels/generator_base_door_frame.glb" id="1_1qlce"]
+[ext_resource type="Texture2D" uid="uid://bdyr55313rt3e" path="res://resources/environment/concrete/concrete_layers_02_diff_1k.jpg" id="2_danex"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tlrj4"]
+albedo_texture = ExtResource("2_danex")
+
+[node name="generator_base_door_frame" instance=ExtResource("1_1qlce")]
+
+[node name="DoorFrame" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_tlrj4")
