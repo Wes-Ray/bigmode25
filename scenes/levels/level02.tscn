@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dydrr63f746ur"]
+[gd_scene load_steps=32 format=3 uid="uid://dydrr63f746ur"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sebui"]
 [ext_resource type="PackedScene" uid="uid://wk8ox7egbudr" path="res://scenes/ship.tscn" id="2_kkbaq"]
@@ -19,6 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://cdrpc5daiyglh" path="res://scenes/turrets/laser_turret.tscn" id="17_cu70w"]
 [ext_resource type="PackedScene" uid="uid://t37eul41x86d" path="res://scenes/turrets/projectile_turret.tscn" id="17_f2ymy"]
 [ext_resource type="PackedScene" uid="uid://c6iaef804diea" path="res://scenes/levels/level_object_scenes/omni_light_canyon.tscn" id="19_u6n46"]
+[ext_resource type="PackedScene" uid="uid://cfclqkm2ihib0" path="res://scenes/objective/generator_base.tscn" id="20_i4ycx"]
+[ext_resource type="PackedScene" uid="uid://csl63b474abnd" path="res://scenes/objective/objective_door.tscn" id="21_auxj4"]
+[ext_resource type="PackedScene" uid="uid://c0oi5pmunnlf8" path="res://scenes/objective/generator_base_door_frame.tscn" id="22_8g6bb"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_avpex"]
 radius = 800.0
@@ -66,7 +69,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3188.
 gizmo_extents = 50.0
 
 [node name="DebugSpawn" type="Marker3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1957.93, -19.026, -1932.56)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1494.13, -19.0261, -4763.69)
 
 [node name="YChecker" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -1270,3 +1273,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1357.27, -93.6868, -5077.08)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone6/ZoneTrigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.0051, 0, 97.1025)
 shape = SubResource("CapsuleShape3D_y5jgu")
+
+[node name="BlastDoor5" parent="." instance=ExtResource("12_8csq4")]
+transform = Transform3D(0.942104, 0, -0.33532, 0, 1, 0, 0.33532, 0, 0.942104, -1539.72, -18.8362, -4547.9)
+
+[node name="Crystal" parent="BlastDoor5" instance=ExtResource("12_nbgno")]
+transform = Transform3D(1, 0, 8.88178e-16, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 7.30225, 57.1529, -17.6843)
+
+[node name="generator_base" parent="." instance=ExtResource("20_i4ycx")]
+transform = Transform3D(0.919588, 0, -0.392883, 0, 1, 0, 0.392883, 0, 0.919588, -1784.22, -77.5422, -4101.69)
+
+[node name="Crystal2" parent="generator_base" instance=ExtResource("12_nbgno")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 310.874, 30.1782, 109.509)
+
+[node name="Crystal3" parent="generator_base" instance=ExtResource("12_nbgno")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -342.868, 22.349, -7.55957)
+
+[node name="Crystal4" parent="generator_base" instance=ExtResource("12_nbgno")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -177.631, 29.6901, 441.993)
+
+[node name="Crystal5" parent="generator_base" instance=ExtResource("12_nbgno")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 169.36, 22.322, 422.335)
+
+[node name="ObjectiveDoor" parent="generator_base" instance=ExtResource("21_auxj4")]
+transform = Transform3D(1, 0, -0.00069806, 0, 1, 0, 0.00069806, 0, 1, 1.40405, 44.4434, 116.693)
+anim_speed = 2.0
+
+[node name="ObjectiveDoor2" parent="generator_base" instance=ExtResource("21_auxj4")]
+transform = Transform3D(-4.36141e-08, 0.997774, 0.0666919, -1, -4.37114e-08, -1.62223e-15, 2.91519e-09, -0.0666919, 0.997774, -23.1125, 53.8456, 624.543)
+anim_speed = 0.6
+
+[node name="generator_base_door_frame2" parent="generator_base" instance=ExtResource("22_8g6bb")]
+transform = Transform3D(0.996907, 0, 0.0785985, 0, 1, 0, -0.0785985, 0, 0.996907, -3.21362, 35.3393, 623.235)
+
+[node name="OmniLightCanyon" parent="generator_base" instance=ExtResource("19_u6n46")]
+transform = Transform3D(0.995405, -0.095759, -4.18576e-09, 2.37717e-16, -4.37114e-08, 1, -0.095759, -0.995405, -4.35105e-08, 1.78198, 148.43, 601.298)

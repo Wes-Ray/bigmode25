@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=3 uid="uid://csl63b474abnd"]
+
+[ext_resource type="Script" path="res://scripts/objective_door.gd" id="1_3dou1"]
+[ext_resource type="AudioStream" uid="uid://dq8m264tga32x" path="res://assets/sound/Door Thud.ogg" id="2_fm2an"]
+[ext_resource type="AudioStream" uid="uid://hx6pwvvb0xeg" path="res://assets/sound/Alarm.ogg" id="3_ct0hn"]
+[ext_resource type="PackedScene" uid="uid://uxwfymccvjj0" path="res://scenes/objective/generator_base_door_model.tscn" id="4_kji26"]
+
+[sub_resource type="Animation" id="Animation_3i7tt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorClosedSound:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AlarmSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("generator_base_door")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_h7ide"]
+resource_name = "shut_door"
+length = 6.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorClosedSound:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AlarmSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("generator_base_door")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0.1, 1, 0, 0, 0, 3.9, 1, 0, -100, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nkq4x"]
+_data = {
+"RESET": SubResource("Animation_3i7tt"),
+"shut_door": SubResource("Animation_h7ide")
+}
+
+[node name="ObjectiveDoor" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28.3018, 0)
+script = ExtResource("1_3dou1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nkq4x")
+}
+autoplay = "RESET"
+
+[node name="DoorClosedSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_fm2an")
+attenuation_model = 1
+volume_db = 30.0
+unit_size = 15.0
+max_db = 4.0
+pitch_scale = 0.8
+bus = &"SFX"
+
+[node name="AlarmSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_ct0hn")
+volume_db = 5.0
+unit_size = 40.0
+bus = &"SFX"
+
+[node name="generator_base_door" parent="." instance=ExtResource("4_kji26")]

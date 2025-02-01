@@ -33,7 +33,8 @@ func _ready() -> void:
 	assert(camera_scene, "camera must be assigned")
 	# print("main _ready called")
 
-	if OS.is_debug_build() and debug_spawn_point:
+	# if OS.is_debug_build() and debug_spawn_point:
+	if debug_spawn_point:
 		spawn_point = debug_spawn_point
 
 	init()

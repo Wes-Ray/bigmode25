@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://uxwfymccvjj0"]
+
+[ext_resource type="PackedScene" uid="uid://c05a5l7y06m8v" path="res://assets/levels/generator_base_door.glb" id="1_10dip"]
+[ext_resource type="Texture2D" uid="uid://dt6uedg311a33" path="res://resources/environment/metal/metal_plate_diff_1k.jpg" id="2_jybkk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8l7p"]
+albedo_texture = ExtResource("2_jybkk")
+metallic = 0.1
+uv1_scale = Vector3(3, 3, 3)
+point_size = 56.0
+
+[node name="generator_base_door" instance=ExtResource("1_10dip")]
+
+[node name="Door" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_n8l7p")
