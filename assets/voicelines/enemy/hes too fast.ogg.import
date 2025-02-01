@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://byqlq7gii1wio"
+path="res://.godot/imported/hes too fast.ogg-c05e9e8228fd611ed65fb9f5c7abf108.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/voicelines/enemy/hes too fast.ogg"
+dest_files=["res://.godot/imported/hes too fast.ogg-c05e9e8228fd611ed65fb9f5c7abf108.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

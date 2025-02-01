@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://du0wtylhk3xls"
+path="res://.godot/imported/motion detected.ogg-a86fd82d5f475b26a781d3998c932d3c.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/voicelines/enemy/motion detected.ogg"
+dest_files=["res://.godot/imported/motion detected.ogg-a86fd82d5f475b26a781d3998c932d3c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

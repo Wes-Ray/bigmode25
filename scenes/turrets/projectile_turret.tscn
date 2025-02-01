@@ -36,5 +36,6 @@ transform = Transform3D(1, 0, 0, 0, 0.999465, 0.0327016, 0, -0.0327016, 0.999465
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_bcbcs")
-volume_db = 30.0
-unit_size = 15.0
+attenuation_model = 1
+volume_db = 9.074
+unit_size = 98.4

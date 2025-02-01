@@ -8,4 +8,5 @@ enum id {
     SPAWN_CAVE,
     ENTERING_CAVE,
     ENTERING_CANYON,
+    FIRST_CANYON_GATE,
 }

@@ -2,7 +2,8 @@ class_name LaserTurret
 extends Node3D
 
 @export var attack_range := 1000.
-@export var laser_thickness := 14.
+# @export var attack_range := 400.
+@export var laser_thickness := 30.
 var ship : Ship
 
 @onready var lasers : Array[Node3D] = [
@@ -36,19 +37,24 @@ var ship : Ship
 
 func _ready() -> void:
 	for laser in lasers:
+		# laser.spring_length = attack_range
 		laser.get_node("Area3D/CollisionShape3D").shape.set_radius(laser_thickness)
 		laser.get_node("Area3D/CollisionShape3D").shape.set_height(attack_range)
 		laser.get_node("Cylinder").height = attack_range
 		laser.get_node("Cylinder").radius = laser_thickness 
 		laser.position.z -= attack_range / 2.
+	
+	# lasers[2].get_node("SpringArm3D").spring_length = attack_range * 2
 
-	laser_hum_sound.pitch_scale += randf_range(-1, 1)
+	laser_hum_sound.pitch_scale += randf_range(-1, 0.2)
 	done_firing_laser()
 
 func _physics_process(_delta: float) -> void:
 	if not is_instance_valid(ship):
 		ship = get_tree().get_first_node_in_group("ship")
 		return
+
+	# Logger.log("spring", lasers[2].get_node("SpringArm3D").spring_length)
 
 	var dist := get_distance(ship.global_position)
 	laser_hum_sound_mover.spring_length = dist
@@ -82,12 +88,17 @@ func _physics_process(_delta: float) -> void:
 		# laser.rotation.x = current_pitch
 	for sp in shooting_positions:
 		sp.rotation.x = current_pitch
+	# for laser in lasers:
+	# 	# laser.get_node("Cylinder").height = laser.spring_length
+	# 	laser.get_node("Cylinder").height = 200
+	
+	# Logger.log("laser0", lasers[2].spring_length)
 
 func _on_area_3d_area_entered(_area:Area3D) -> void:
 	print("laser turret hit")
 
 func fire_laser():
-	print("print laser")
+	# print("print laser")
 	pitch_rig.show()
 	laser_init_sound.play()
 	laser_hum_sound.play()
@@ -95,11 +106,11 @@ func fire_laser():
 	pitch_rig.process_mode = Node.PROCESS_MODE_INHERIT
 
 func done_firing_laser():
-	print("finished firing")
+	# print("finished firing")
 	laser_init_sound.stop()
 	laser_hum_sound.stop()
 	pitch_rig.hide()
-	anim_player.play("RESET")
+	# anim_player.play("RESET")
 	pitch_rig.process_mode = Node.PROCESS_MODE_DISABLED
 
 

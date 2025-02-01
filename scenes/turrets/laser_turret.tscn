@@ -36,7 +36,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_ud8iy"]
 resource_name = "up-down"
-length = 5.0
+length = 5.5
 loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -48,7 +48,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(2.06667, 4.06667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.785, 1.0]
+"values": [-0.785, 0.4]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -57,7 +57,7 @@ tracks/1/path = NodePath(".:firing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(2.2, 4.06667),
+"times": PackedFloat32Array(2.43333, 4.06667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -69,7 +69,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.86667, 4.06667),
+"times": PackedFloat32Array(1.86667, 4.03333),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -167,7 +167,7 @@ shape = SubResource("CapsuleShape3D_s8t72")
 
 [node name="ShootingPoint3" type="Node3D" parent="YawRig/PitchRig"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0524583, 12.2357, 0.185338)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0524583, 12.2357, 0.481332)
 
 [node name="Laser" type="Node3D" parent="YawRig/PitchRig/ShootingPoint3"]
 transform = Transform3D(0.1, 0, 0, 0, -3.72529e-08, -0.1, 0, 1, -4.65661e-09, 0, 0, 0)

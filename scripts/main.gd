@@ -97,12 +97,14 @@ func _on_player_entered_zone_trigger(zone_name: int):
 		ZoneName.id.NONE:
 			pass
 		ZoneName.id.ENTERING_CAVE:
-			camera_instance.soundtrack_player.play()
+			camera_instance.cave_soundtrack.play()
 		ZoneName.id.SPAWN_CAVE:
 			print("spawn cave")
 			switch_to_cave_world_environment()
 		ZoneName.id.ENTERING_CANYON:
 			print("entering canyon")
 			switch_to_canyon_world_environment()
+		ZoneName.id.FIRST_CANYON_GATE:
+			camera_instance.canyon_soundtrack.play()
 		_:
 			assert(false, "unhandled ZoneName.id was passed to the ship from a zone entrance")

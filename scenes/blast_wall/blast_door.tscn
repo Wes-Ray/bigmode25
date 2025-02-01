@@ -1,10 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://ca6tuggw5nlul"]
+[gd_scene load_steps=16 format=3 uid="uid://ca6tuggw5nlul"]
 
 [ext_resource type="Script" path="res://scripts/blast_door.gd" id="1_7vavr"]
 [ext_resource type="AudioStream" uid="uid://hx6pwvvb0xeg" path="res://assets/sound/Alarm.ogg" id="3_xwikr"]
 [ext_resource type="PackedScene" uid="uid://dt66vume37wvj" path="res://scenes/blast_wall/slide_door.tscn" id="4_esp65"]
 [ext_resource type="AudioStream" uid="uid://dq8m264tga32x" path="res://assets/sound/Door Thud.ogg" id="4_nrviq"]
-[ext_resource type="PackedScene" uid="uid://yl20owsmi50l" path="res://scenes/crystal/crystal.tscn" id="4_y1267"]
 [ext_resource type="PackedScene" uid="uid://dadnkg4ji885p" path="res://scenes/blast_wall/blast_wall.tscn" id="5_wlooj"]
 [ext_resource type="Shader" path="res://scenes/blast_wall/electric_wall.gdshader" id="7_5fsps"]
 
@@ -401,11 +400,3 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5, 0, 
 
 [node name="Door2" parent="blast-wall" instance=ExtResource("4_esp65")]
 transform = Transform3D(-1, -8.74228e-08, 1.06581e-14, 8.74228e-08, -1, 0, 1.06581e-14, 8.47033e-22, 1, 5, 0, -86.6438)
-
-[node name="Crystal1" parent="." instance=ExtResource("4_y1267")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 3.59989e-21, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 78.3924, 0, -17.3437)
-
-[node name="Crystal2" parent="." instance=ExtResource("4_y1267")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 3.59989e-21, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -75.0961, 0, -17.3437)

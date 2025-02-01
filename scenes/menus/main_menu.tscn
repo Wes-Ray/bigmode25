@@ -19,10 +19,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -926.0
-offset_top = 26.0
-offset_right = 567.0
-offset_bottom = 268.0
+offset_left = -746.0
+offset_top = 9.0
+offset_right = 747.0
+offset_bottom = 251.0
 grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 200
 text = "WILD WEASELS"
@@ -37,7 +37,7 @@ offset_bottom = 565.0
 [node name="SwitchSceneButton2" parent="VBoxContainer" instance=ExtResource("3_llabq")]
 layout_mode = 2
 text = "level02"
-scene_select = "res://scenes/levels/level02.tscn"
+scene_select = "res://scenes/menus/loading_screen.tscn"
 
 [node name="SwitchSceneButton3" parent="VBoxContainer" instance=ExtResource("3_llabq")]
 layout_mode = 2
@@ -62,6 +62,7 @@ grow_horizontal = 0
 bbcode_enabled = true
 text = "Roll Plane: a/d
 Throttle:   w
-Free look:  Mouse2"
+Free look:  Mouse2
+Boost:      Shift"
 
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
