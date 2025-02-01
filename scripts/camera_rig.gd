@@ -18,7 +18,8 @@ var center_camera_tween : Tween
 var return_camera_to_center_time := 0.2
 
 var soundtrack_on := false
-@onready var soundtrack_player := %CaveSoundtrack
+@onready var cave_soundtrack := %CaveSoundtrack
+@onready var canyon_soundtrack := %CanyonSoundtrack
 @onready var deathsound_player := %DeathSound
 
 
@@ -87,7 +88,7 @@ func _input(event: InputEvent) -> void:
 func soundtrack(do_play : bool) -> void:
 	if not do_play:
 		return
-	soundtrack_player.play()
+	cave_soundtrack.play()
 
 func on_player_crashed() -> void:
 	print("camera saw player crashed")

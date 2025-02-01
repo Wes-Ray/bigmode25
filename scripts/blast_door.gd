@@ -11,7 +11,7 @@ var ship : Ship
 func _ready():
 	for node in get_children():
 		if node is Crystal:
-			print("found crystal")
+			# print("found crystal")
 			crystal_count += 1
 			node.destroyed.connect(_crystal_destroyed)
 

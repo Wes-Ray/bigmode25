@@ -4,8 +4,8 @@
 [ext_resource type="AudioStream" uid="uid://hpvplyxadtup" path="res://assets/sound/Laser_Startup4.ogg" id="2_m5aj6"]
 [ext_resource type="Material" uid="uid://tgcgn4wu7f6q" path="res://resources/turrets/laser.tres" id="3_cy3ac"]
 [ext_resource type="AudioStream" uid="uid://di08nkdef0syl" path="res://assets/sound/laser_hum.ogg" id="4_lni1s"]
-[ext_resource type="PackedScene" uid="uid://1fef574besl" path="res://assets/Turrets/turret_laser.glb" id="6_djacm"]
-[ext_resource type="PackedScene" uid="uid://dxe4brlf5a4y4" path="res://assets/Turrets/Turret_Base.glb" id="7_fpx20"]
+[ext_resource type="PackedScene" uid="uid://1fef574besl" path="res://assets/turrets/turret_laser.glb" id="6_djacm"]
+[ext_resource type="PackedScene" uid="uid://dxe4brlf5a4y4" path="res://assets/turrets/Turret_Base.glb" id="7_fpx20"]
 
 [sub_resource type="Animation" id="Animation_r71sr"]
 length = 0.001
@@ -36,7 +36,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_ud8iy"]
 resource_name = "up-down"
-length = 5.0
+length = 5.5
 loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -48,7 +48,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(2.06667, 4.06667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.785, 1.0]
+"values": [-0.785, 0.4]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -57,7 +57,7 @@ tracks/1/path = NodePath(".:firing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(2.2, 4.06667),
+"times": PackedFloat32Array(2.43333, 4.06667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -69,7 +69,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.86667, 4.06667),
+"times": PackedFloat32Array(1.86667, 4.03333),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -167,7 +167,7 @@ shape = SubResource("CapsuleShape3D_s8t72")
 
 [node name="ShootingPoint3" type="Node3D" parent="YawRig/PitchRig"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0524583, 12.2357, 0.185338)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0524583, 12.2357, 0.481332)
 
 [node name="Laser" type="Node3D" parent="YawRig/PitchRig/ShootingPoint3"]
 transform = Transform3D(0.1, 0, 0, 0, -3.72529e-08, -0.1, 0, 1, -4.65661e-09, 0, 0, 0)

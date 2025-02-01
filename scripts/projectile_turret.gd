@@ -22,6 +22,8 @@ enum firing_type {DIRECT, RANDOM, PREDICT}
 func _ready() -> void:
 	assert(projectile, "projectile scene must be assigned")
 	attack_timer.wait_time = fire_rate
+	attack_timer.wait_time += randf_range(-.5, .5)
+	attack_timer.wait_time = clampf(attack_timer.wait_time, 0.5, INF)
 
 func _process(_delta: float) -> void:
 	if ship and get_distance(ship.global_position) < attack_range:
