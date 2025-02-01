@@ -1,0 +1,402 @@
+[gd_scene load_steps=16 format=3 uid="uid://csl63b474abnd"]
+
+[ext_resource type="Script" path="res://scripts/objective_door.gd" id="1_3dou1"]
+[ext_resource type="AudioStream" uid="uid://dq8m264tga32x" path="res://assets/sound/Door Thud.ogg" id="2_fm2an"]
+[ext_resource type="AudioStream" uid="uid://hx6pwvvb0xeg" path="res://assets/sound/Alarm.ogg" id="3_ct0hn"]
+[ext_resource type="PackedScene" uid="uid://dadnkg4ji885p" path="res://scenes/blast_wall/blast_wall.tscn" id="4_qvdaj"]
+[ext_resource type="Shader" path="res://scenes/blast_wall/electric_wall.gdshader" id="5_j3qne"]
+[ext_resource type="PackedScene" uid="uid://dt66vume37wvj" path="res://scenes/blast_wall/slide_door.tscn" id="6_xi62e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_by47e"]
+transparency = 1
+albedo_color = Color(0, 0.491717, 0.829985, 0.85098)
+emission = Color(0, 0, 1, 1)
+rim_tint = 1.0
+
+[sub_resource type="Animation" id="Animation_3i7tt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("blast-wall/Shield:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("blast-wall/Door1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(5, 0, 87.4888)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("blast-wall/Door2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(5, 0, -86.6438)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("blast-wall/Shield/StaticBody3D/CollisionShape3D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DoorClosedSound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("blast-wall/Shield:material_override:albedo_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.491717, 0.829985, 0.85098)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("blast-wall/Shield:material_override")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("StandardMaterial3D_by47e")]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("blast-wall/Shield/ZapEffect:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AlarmSound:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_h7uik"]
+resource_name = "shield_low"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("blast-wall/Shield:material_override")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [SubResource("StandardMaterial3D_by47e")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("blast-wall/Shield:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("blast-wall/Door1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(5, 0, 87.489)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("blast-wall/Door2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(5, 0, -86.644)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("blast-wall/Shield/StaticBody3D/CollisionShape3D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("blast-wall/Shield:material_override:albedo_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0.491717, 0.829985, 0.85098), Color(0.586389, 0.490259, 0.48549, 0.85098)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("blast-wall/Shield/ZapEffect:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_h7ide"]
+resource_name = "shut_door"
+length = 6.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("blast-wall/Shield:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("blast-wall/Door1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.4, 4, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(5, 0, 87.489), Vector3(-9.81565e-07, 0, 21.4556), Vector3(-1.94294e-08, 0, -0.555508), Vector3(-1.94294e-08, 0, -0.555508)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("blast-wall/Door2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.4, 4, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(5, 0, -86.644), Vector3(9.4683e-07, 0, -21.6609), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("blast-wall/Shield/StaticBody3D/CollisionShape3D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DoorClosedSound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("blast-wall/Shield:material_override")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("StandardMaterial3D_by47e")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("blast-wall/Shield:material_override:albedo_color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.586389, 0.490259, 0.48549, 0.85098), Color(0.636981, 0.553784, 0.438917, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("blast-wall/Shield/ZapEffect:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AlarmSound:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 3.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nkq4x"]
+_data = {
+"RESET": SubResource("Animation_3i7tt"),
+"shield_low": SubResource("Animation_h7uik"),
+"shut_door": SubResource("Animation_h7ide")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_v52l2"]
+size = Vector3(18, 70, 130)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rr7nb"]
+size = Vector3(18, 75, 130)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_boopi"]
+render_priority = 0
+shader = ExtResource("5_j3qne")
+shader_parameter/color = Color(0.374456, 0.74506, 0.963789, 1)
+shader_parameter/zoom = 6.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dy5r8"]
+size = Vector2(70, 120)
+
+[node name="BlastDoor" type="Node3D"]
+script = ExtResource("1_3dou1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nkq4x")
+}
+autoplay = "RESET"
+
+[node name="DoorClosedSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_fm2an")
+attenuation_model = 1
+volume_db = 30.0
+unit_size = 15.0
+max_db = 4.0
+pitch_scale = 0.8
+bus = &"SFX"
+
+[node name="AlarmSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_ct0hn")
+volume_db = 5.0
+unit_size = 40.0
+
+[node name="blast-wall" parent="." instance=ExtResource("4_qvdaj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Shield" type="MeshInstance3D" parent="blast-wall"]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 3.2688, 0, 1.42884e-07)
+material_override = SubResource("StandardMaterial3D_by47e")
+mesh = SubResource("BoxMesh_v52l2")
+skeleton = NodePath("")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="blast-wall/Shield"]
+light_color = Color(0.344936, 0.746622, 0.979416, 1)
+light_energy = 6.0
+omni_range = 50.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="blast-wall/Shield"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="blast-wall/Shield/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.072, 0, 0)
+shape = SubResource("BoxShape3D_rr7nb")
+
+[node name="ZapEffect" type="MeshInstance3D" parent="blast-wall/Shield"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 11.6828, 0, 5.10671e-07)
+material_override = SubResource("ShaderMaterial_boopi")
+mesh = SubResource("PlaneMesh_dy5r8")
+
+[node name="Door1" parent="blast-wall" instance=ExtResource("6_xi62e")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5, 0, 87.4888)
+
+[node name="Door2" parent="blast-wall" instance=ExtResource("6_xi62e")]
+transform = Transform3D(-1, -8.74228e-08, 1.06581e-14, 8.74228e-08, -1, 0, 1.06581e-14, 8.47033e-22, 1, 5, 0, -86.6438)
