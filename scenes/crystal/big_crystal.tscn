@@ -11,7 +11,7 @@ surface_material_override/0 = ExtResource("2_dp40s")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="1"]
 light_color = Color(0.105882, 0.776471, 0.980392, 1)
-light_energy = 16.0
+light_energy = 64.0
 light_specular = 1.0
 omni_range = 100.0
 omni_attenuation = 0.8
