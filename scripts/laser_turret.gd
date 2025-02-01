@@ -1,9 +1,9 @@
 class_name LaserTurret
 extends Node3D
 
-# @export var attack_range := 1000.
-@export var attack_range := 400.
-@export var laser_thickness := 14.
+@export var attack_range := 1000.
+# @export var attack_range := 400.
+@export var laser_thickness := 30.
 var ship : Ship
 
 @onready var lasers : Array[Node3D] = [
