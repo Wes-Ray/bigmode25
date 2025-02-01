@@ -25,25 +25,32 @@ var hud_instance: HUD
 # For use by ProxZone direct children
 var active_prox_zone: ProxZone = null
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	assert(spawn_point, "spawn point must be assigned to main script")
 	assert(ship_scene, "ship must be assigned")
 	assert(hud_scene, "HUD must be assigned")
 	assert(camera_scene, "camera must be assigned")
-	# print("main _ready called")
 
 	# if OS.is_debug_build() and debug_spawn_point:
 	if debug_spawn_point:
 		spawn_point = debug_spawn_point
-
+	
+	print("loading checkpoint: ", Checkpoint.current_checkpoint)
+	match Checkpoint.current_checkpoint:
+		Checkpoint.id.START:
+			pass
+		Checkpoint.id.ENTERING_CANYON:
+			spawn_point = %ProxZone03EnteringCanyon
+		Checkpoint.id.FAST_SHOOT_TURRETS:
+			spawn_point = %SpawnAfterFastShootTurrets
+		Checkpoint.id.BEFORE_CHASE:
+			spawn_point = %SpawnBeforeChase
+			%generator_base._obj_crystal_destroyed()
 	init()
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_released("debug1"):
-		switch_to_cave_world_environment()
-	if Input.is_action_just_released("debug2"):
-		switch_to_canyon_world_environment()
+		Checkpoint.current_checkpoint = Checkpoint.id.BEFORE_CHASE
 
 func switch_to_cave_world_environment() -> void:
 	print("cave world env")
@@ -105,7 +112,21 @@ func _on_player_entered_zone_trigger(zone_name: int):
 		ZoneName.id.ENTERING_CANYON:
 			print("entering canyon")
 			switch_to_canyon_world_environment()
+			Checkpoint.current_checkpoint = Checkpoint.id.ENTERING_CANYON
 		ZoneName.id.FIRST_CANYON_GATE:
 			camera_instance.canyon_soundtrack.play()
+		ZoneName.id.BEFORE_FAST_SHOOT_TURRETS:
+			if not camera_instance.canyon_soundtrack.playing:
+				camera_instance.canyon_soundtrack.play()
+		ZoneName.id.FAST_SHOOT_TURRETS:
+			Checkpoint.current_checkpoint = Checkpoint.id.FAST_SHOOT_TURRETS
+		ZoneName.id.ENTERING_BOSS_AREA:
+			camera_instance.canyon_soundtrack.stop()
+			camera_instance.boss_soundtrack.play()
+		ZoneName.id.ENTERING_FINAL_RUN:
+			camera_instance.boss_soundtrack.stop()
+			camera_instance.final_run_soundtrack.play()
+			switch_to_cave_world_environment()
+			Checkpoint.current_checkpoint = Checkpoint.id.BEFORE_CHASE
 		_:
 			assert(false, "unhandled ZoneName.id was passed to the ship from a zone entrance")
