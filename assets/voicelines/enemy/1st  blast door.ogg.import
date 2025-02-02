@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://qecya07lje3"
+path="res://.godot/imported/1st  blast door.ogg-21b56bb48b414840092e940e92c9b91d.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/voicelines/enemy/1st  blast door.ogg"
+dest_files=["res://.godot/imported/1st  blast door.ogg-21b56bb48b414840092e940e92c9b91d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

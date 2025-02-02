@@ -60,11 +60,11 @@ func _ready() -> void:
 
 	init()
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_released("debug1"):
-		switch_to_cave_world_environment()
-	if Input.is_action_just_released("debug2"):
-		switch_to_canyon_world_environment()
+# func _process(_delta: float) -> void:
+# 	if Input.is_action_just_released("debug1"):
+# 		switch_to_cave_world_environment()
+# 	if Input.is_action_just_released("debug2"):
+# 		switch_to_canyon_world_environment()
 	# if sky_debug:
 	# 	Logger.log("tree: ", get_tree().root.get_children())
 
