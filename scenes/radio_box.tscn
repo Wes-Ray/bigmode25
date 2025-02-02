@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca0mr6ymyv64s"]
+
+[ext_resource type="Script" path="res://scripts/radio_box.gd" id="1_ah456"]
+
+[node name="RadioBox" type="Node3D"]
+script = ExtResource("1_ah456")
+
+[node name="AllyRadio" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+
+[node name="EnemyRadio" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
