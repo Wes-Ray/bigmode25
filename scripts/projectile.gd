@@ -7,6 +7,7 @@ var speed := 200.0
 var direction := Vector3(0, 0, 0)
 var spawner := NONE
 
+@onready var explosion_particles : SkyExplosion = %SkyExplosion
 @onready var cylinder : CSGCylinder3D = %CSGCylinder3D
 
 
@@ -40,8 +41,8 @@ func _on_area_3d_body_entered(_body:Node3D) -> void:
 func explode_projectile():
 	speed = 0
 	set_deferred("$Explosion/Area3D/CollisionShape3D.disabled", false)
-	$Explosion.visible = true
-	await get_tree().create_timer(0.4).timeout
+	explosion_particles.explode()
+	await get_tree().create_timer(1.5).timeout
 	queue_free()
 
 

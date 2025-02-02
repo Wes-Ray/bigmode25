@@ -1,12 +1,80 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckis6oj8abag"]
+[gd_scene load_steps=18 format=3 uid="uid://ckis6oj8abag"]
 
 [ext_resource type="Script" path="res://scripts/crystal_objective.gd" id="1_6e8oh"]
 [ext_resource type="AudioStream" uid="uid://wj3rtwa646u3" path="res://assets/sound/Generator_Explosion.ogg" id="3_1f5tu"]
 [ext_resource type="PackedScene" uid="uid://bloer0qmctnhd" path="res://scenes/crystal/big_crystal.tscn" id="3_sluc3"]
+[ext_resource type="Script" path="res://assets/props/sky_props/sky_explosion.gd" id="4_l3hyq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a6n3c"]
 radius = 20.7713
 height = 87.1678
+
+[sub_resource type="Curve" id="Curve_mb6ns"]
+_data = [Vector2(0.535519, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qr3wv"]
+curve = SubResource("Curve_mb6ns")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lpvt8"]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_min = 15.0
+scale_max = 20.0
+scale_curve = SubResource("CurveTexture_qr3wv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0m2bj"]
+albedo_color = Color(0.316017, 0.508108, 1, 1)
+emission_enabled = true
+emission = Color(0.162199, 0.25637, 1, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_psxnx"]
+material = SubResource("StandardMaterial3D_0m2bj")
+top_radius = 0.1
+bottom_radius = 0.0
+
+[sub_resource type="Curve" id="Curve_pjkmu"]
+max_value = 2.0
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(1, 0.813187), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1e1hj"]
+curve = SubResource("Curve_pjkmu")
+
+[sub_resource type="Curve" id="Curve_kqgak"]
+_data = [Vector2(0, 0.208791), 0.0, 0.0, 0, 0, Vector2(0.47541, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.032967), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_e7qi1"]
+curve = SubResource("Curve_kqgak")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bywy8"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 25.0
+initial_velocity_max = 45.0
+gravity = Vector3(0, 0, 0)
+scale_min = 40.0
+scale_max = 60.0
+scale_curve = SubResource("CurveTexture_e7qi1")
+emission_curve = SubResource("CurveTexture_1e1hj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rnvet"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.368627, 1, 1, 1)
+emission_enabled = true
+emission = Color(0.335351, 0.67547, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_uwg8u"]
+material = SubResource("StandardMaterial3D_rnvet")
+radial_segments = 8
+rings = 8
 
 [node name="Crystal" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -28,6 +96,31 @@ pitch_scale = 0.7
 bus = &"SFX"
 
 [node name="big_crystal" parent="." instance=ExtResource("3_sluc3")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="SkyExplosion" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_l3hyq")
+
+[node name="Debris" type="GPUParticles3D" parent="SkyExplosion"]
+unique_name_in_owner = true
+emitting = false
+amount = 24
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_lpvt8")
+draw_pass_1 = SubResource("CylinderMesh_psxnx")
+
+[node name="Fire" type="GPUParticles3D" parent="SkyExplosion"]
+unique_name_in_owner = true
+emitting = false
+amount = 15
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_bywy8")
+draw_pass_1 = SubResource("SphereMesh_uwg8u")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
