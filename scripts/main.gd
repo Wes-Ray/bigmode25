@@ -217,12 +217,16 @@ func _on_player_entered_zone_trigger(zone_name: int):
 		ZoneNames.id.TUT_POWER_MANAGEMENT:
 			hud_instance.play_tutorial("your ship only has enough power to shoot or boost, not both")
 		
-		# MISSION FAILURE TRIGGERS
+		# MISSION TRIGGERS
 		ZoneNames.id.FAILED_TO_CROSS_GATE_IN_TIME:
 			hud_instance.play_tutorial("failed to breach security gate in time")
 			camera_instance.radio_box.play_ally_radio("doorshut1_redleader")
 			await get_tree().create_timer(4.).timeout
 			ship_instance.failed_to_reach_gate()
+		ZoneNames.id.PLAYER_REACH_END:
+			switch_to_canyon_world_environment()
+			await get_tree().create_timer(7.).timeout
+			hud_instance.player_reached_end()
 
 		_:
 			assert(false, "unhandled ZoneNames.id was passed to the ship from a zone entrance")
