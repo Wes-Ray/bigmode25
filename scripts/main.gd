@@ -36,11 +36,11 @@ func _ready() -> void:
 	assert(hud_scene, "HUD must be assigned")
 	assert(camera_scene, "camera must be assigned")
 
-	# if OS.is_debug_build() and debug_spawn_point:
-	if debug_spawn_point:
+	if OS.is_debug_build() and debug_spawn_point:
+	# if debug_spawn_point:
 		spawn_point = debug_spawn_point
 	
-	if debug_checkpoint != Checkpoint.id.START:
+	if OS.is_debug_build() and debug_checkpoint != Checkpoint.id.START:
 		Checkpoint.current_checkpoint = debug_checkpoint
 
 	
@@ -114,39 +114,91 @@ func init() -> void:
 	add_child(hud_instance)
 
 	EventsBus.player_entered_zone_trigger.connect(_on_player_entered_zone_trigger)
+	EventsBus.player_objective_complete_trigger.connect(_on_player_entered_zone_trigger)
 
 	hud_instance.pause()
 
-# When player enters a zone, it will send a node with a ZoneName ENUM
+# When player enters a zone, it will send a node with a ZoneNames ENUM
 func _on_player_entered_zone_trigger(zone_name: int):
 	print("player entered zone trigger: ", zone_name)
 	
 	match zone_name:
-		ZoneName.id.NONE:
+		# PRIMARY ZONES
+		ZoneNames.id.NONE:
 			pass
-		ZoneName.id.ENTERING_CAVE:
+		ZoneNames.id.ENTERING_CAVE:
 			camera_instance.cave_soundtrack.play()
-		ZoneName.id.SPAWN_CAVE:
+		ZoneNames.id.SPAWN_CAVE:
 			print("spawn cave")
 			switch_to_cave_world_environment()
-		ZoneName.id.ENTERING_CANYON:
+		ZoneNames.id.ENTERING_CANYON:
 			print("entering canyon")
 			switch_to_canyon_world_environment()
 			Checkpoint.current_checkpoint = Checkpoint.id.ENTERING_CANYON
-		ZoneName.id.FIRST_CANYON_GATE:
+		ZoneNames.id.FIRST_CANYON_GATE:
 			camera_instance.canyon_soundtrack.play()
-		ZoneName.id.BEFORE_FAST_SHOOT_TURRETS:
+		ZoneNames.id.BEFORE_FAST_SHOOT_TURRETS:
 			if not camera_instance.canyon_soundtrack.playing:
 				camera_instance.canyon_soundtrack.play()
-		ZoneName.id.FAST_SHOOT_TURRETS:
+		ZoneNames.id.FAST_SHOOT_TURRETS:
 			Checkpoint.current_checkpoint = Checkpoint.id.FAST_SHOOT_TURRETS
-		ZoneName.id.ENTERING_BOSS_AREA:
+		ZoneNames.id.ENTERING_BOSS_AREA:
 			camera_instance.canyon_soundtrack.stop()
 			camera_instance.boss_soundtrack.play()
-		ZoneName.id.ENTERING_FINAL_RUN:
+		ZoneNames.id.ENTERING_FINAL_RUN:
 			camera_instance.boss_soundtrack.stop()
 			camera_instance.final_run_soundtrack.play()
 			switch_to_cave_world_environment()
 			Checkpoint.current_checkpoint = Checkpoint.id.BEFORE_CHASE
+		
+		# ALLY VOICE TRIGGERS
+		ZoneNames.id.COMMS_CHECK:
+			camera_instance.radio_box.play_ally_radio("intro1_readleader")
+		ZoneNames.id.REVIEWED_CONOP:
+			camera_instance.radio_box.play_ally_radio("intro2_readleader")
+		ZoneNames.id.JERRY_RIGGED:
+			camera_instance.radio_box.play_ally_radio("firstgate1_redleader")
+		ZoneNames.id.WEAPONS_FREE:
+			camera_instance.radio_box.play_ally_radio("firstgate2_redleader")
+		# called from tutorial zone activation by shooting tutorial gate
+		ZoneNames.id.GATE_CYCLING:
+			camera_instance.radio_box.play_ally_radio("firstgate3_redleader")
+		# TODO: maybe move this to the last chase sequence?
+		ZoneNames.id.THREAD_NEEDLE:
+			camera_instance.radio_box.play_ally_radio("firstgate4_readleader")
+		ZoneNames.id.CLEAN_INSERTION:
+			camera_instance.radio_box.play_ally_radio("exiting1_redleader")
+		ZoneNames.id.DEFENSE_POWER_ON:
+			camera_instance.radio_box.play_ally_radio("exiting2_redleader")
+		ZoneNames.id.MAIN_GENERATOR_TWO_KLICKS:
+			camera_instance.radio_box.play_ally_radio("midway 1_redleader")
+		ZoneNames.id.FOUR_POWER_CRYSTALS:
+			camera_instance.radio_box.play_ally_radio("entering1_redleader")
+		ZoneNames.id.SHIELD_COLLAPSE:
+			camera_instance.radio_box.play_ally_radio("entering2_redleader")
+		ZoneNames.id.CORE_GOING_CRITICAL:
+			camera_instance.radio_box.play_ally_radio("entering3_redleader")
+		ZoneNames.id.MOVE_IT_PRISM:
+			camera_instance.radio_box.play_ally_radio("move it prism one")
+		ZoneNames.id.COME_ON_PRISM:
+			camera_instance.radio_box.play_ally_radio("comeon2_redleader")
+		ZoneNames.id.T_MINUS_30:
+			camera_instance.radio_box.play_ally_radio("core meltdown")
+		ZoneNames.id.OUTSTANDING_WORK:
+			camera_instance.radio_box.play_ally_radio("escaping1_redleader")
+		ZoneNames.id.GATE_SEALED:
+			camera_instance.radio_box.play_ally_radio("doorshut1_redleader")
+		ZoneNames.id.TOO_HIGH:
+			camera_instance.radio_box.play_ally_radio("toohigh1_redleader")
+		ZoneNames.id.DEATH_VARIANT:
+			var rand_select := randi_range(0, 2)
+			match rand_select:
+				0:
+					camera_instance.radio_box.play_ally_radio("death1_redleader")
+				1:
+					camera_instance.radio_box.play_ally_radio("death2_redleader")
+				2:
+					camera_instance.radio_box.play_ally_radio("death3_redleader")
+
 		_:
-			assert(false, "unhandled ZoneName.id was passed to the ship from a zone entrance")
+			assert(false, "unhandled ZoneNames.id was passed to the ship from a zone entrance")

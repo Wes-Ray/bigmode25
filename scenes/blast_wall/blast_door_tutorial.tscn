@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgajnpjqbepw0"]
+
+[ext_resource type="PackedScene" uid="uid://ca6tuggw5nlul" path="res://scenes/blast_wall/blast_door.tscn" id="1_hcvtr"]
+[ext_resource type="Script" path="res://scripts/blast_door_tutorial.gd" id="2_2lwqh"]
+
+[node name="BlastDoor" instance=ExtResource("1_hcvtr")]
+script = ExtResource("2_2lwqh")
+MIN_CLOSE_SPEED = 0.5
+MAX_CLOSE_SPEED = 2.0
