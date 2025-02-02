@@ -262,3 +262,10 @@ func _on_ceiling_warning_started() -> void:
 
 func _on_ceiling_warning_stopped() -> void:
 	height_warning.hide()
+
+func player_reached_end() -> void:
+	deactivate_chase_timer()
+	status_label.text = "[b][color=green]VICTORY![/color][/b]"
+	launch_button.hide()
+	EventsBus.game_reset.emit()
+	pause()
