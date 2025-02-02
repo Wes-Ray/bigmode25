@@ -1265,6 +1265,9 @@ fire_rate = 1.2
 [node name="LaserTurret" parent="ProxZone" instance=ExtResource("17_cu70w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 641.14, 88.6557, -224.687)
 
+[node name="OmniLightCanyon" parent="ProxZone" instance=ExtResource("19_u6n46")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1317.58, -2.07185, 353.084)
+
 [node name="BlastDoor4" parent="." instance=ExtResource("12_8csq4")]
 transform = Transform3D(-0.542339, 0, 0.84016, 0, 1, 0, -0.84016, 0, -0.542339, 1909.69, -11.3916, -1035.01)
 
