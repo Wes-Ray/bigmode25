@@ -2,6 +2,7 @@ extends Node
 
 @export var mouse_sens :float= 1.1
 @export var mouse_inverted :bool= false
+@export var full_screen :bool= false
 
 @onready var sfx_volume := 50.0
 @onready var music_volume := 50.0

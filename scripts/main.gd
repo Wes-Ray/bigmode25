@@ -80,7 +80,7 @@ func switch_to_canyon_world_environment() -> void:
 	cave_directional_light.hide()
 	canyon_directional_light.show()
 
-	get_tree().root.add_child(sky_chaos)
+	add_child(sky_chaos)
 	sky_chaos.global_position = Vector3.ZERO
 	# sky_debug = true
 
@@ -227,6 +227,36 @@ func _on_player_entered_zone_trigger(zone_name: int):
 			switch_to_canyon_world_environment()
 			await get_tree().create_timer(7.).timeout
 			hud_instance.player_reached_end()
+		ZoneNames.id.FIRST_DOOR:
+			camera_instance.radio_box.play_enemy_radio("1st blast door")
+		ZoneNames.id.ANOTHER_DOOR:
+			camera_instance.radio_box.play_enemy_radio("another blast door")
+		ZoneNames.id.HIT_ANYTHING:
+			camera_instance.radio_box.play_enemy_radio("can you hit anything")
+		ZoneNames.id.DIE_SCUM:
+			camera_instance.radio_box.play_enemy_radio("DIE SCUM")
+		ZoneNames.id.WONT_LIVE:
+			camera_instance.radio_box.play_enemy_radio("he wont live through the explosion")
+		ZoneNames.id.SURVIVE_GENERATOR:
+			camera_instance.radio_box.play_enemy_radio("he wont survive the generator room")
+		ZoneNames.id.GOING_FOR_CRYSTALS:
+			camera_instance.radio_box.play_enemy_radio("Hes going for the cystals")
+		ZoneNames.id.TOO_FAST:
+			camera_instance.radio_box.play_enemy_radio("hes too fast")
+		ZoneNames.id.DO_IT_MYSELF:
+			camera_instance.radio_box.play_enemy_radio("Ill do it myself")
+		ZoneNames.id.LOOK_ALIVE:
+			camera_instance.radio_box.play_enemy_radio("look alive")
+		ZoneNames.id.MOTION_DETECTED:
+			camera_instance.radio_box.play_enemy_radio("motion detected")
+		ZoneNames.id.STOP_THIS_GUY:
+			camera_instance.radio_box.play_enemy_radio("somebody stop this guy")
+		ZoneNames.id.STATION_COMING_DOWN:
+			camera_instance.radio_box.play_enemy_radio("stations coming down")
+		ZoneNames.id.SURVIVE_THIS:
+			camera_instance.radio_box.play_enemy_radio("try to survive this")
+		ZoneNames.id.HELL_WAS_THAT:
+			camera_instance.radio_box.play_enemy_radio("what the hell was that")
 
 		_:
 			assert(false, "unhandled ZoneNames.id was passed to the ship from a zone entrance")

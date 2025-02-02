@@ -88,7 +88,6 @@ height = 400.0
 [node name="Leve02" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 script = ExtResource("1_sebui")
 spawn_point = NodePath("Spawn")
-debug_checkpoint = 3
 ship_scene = ExtResource("2_kkbaq")
 camera_scene = ExtResource("3_e40k6")
 hud_scene = ExtResource("4_a4gyl")
@@ -224,15 +223,71 @@ transform = Transform3D(0.173528, 0, 0.984829, 0, 1, 0, -0.984829, 0, 0.173528, 
 shape = SubResource("BoxShape3D_j3b1t")
 
 [node name="ZoneTrigger7" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -133.658, 2.4902, -898.679)
+transform = Transform3D(0.361348, 0, -0.932431, 0, 1, 0, 0.932431, 0, 0.361348, 1087.73, 2.4902, -3571.42)
 zone_name = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger7"]
 transform = Transform3D(-0.503035, 0, 0.864266, 0, 1, 0, -0.864266, 0, -0.503035, 0, 0, 0)
 shape = SubResource("BoxShape3D_j3b1t")
 
+[node name="ZoneTrigger13" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.3066, 2.4902, -622.041)
+zone_name = 44
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger13"]
+transform = Transform3D(-0.396795, 0, 0.917907, 0, 1, 0, -0.917907, 0, -0.396795, 43.7099, 0, -27.4747)
+shape = SubResource("BoxShape3D_j3b1t")
+
+[node name="ZoneTrigger14" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 566.667, 2.4902, -1868.2)
+zone_name = 43
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger14"]
+transform = Transform3D(0.998995, 0, 0.0448222, 0, 1, 0, -0.0448222, 0, 0.998995, 43.7099, 0, -27.4747)
+shape = SubResource("BoxShape3D_j3b1t")
+
+[node name="ZoneTrigger15" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1221.56, 2.4902, -1286.17)
+zone_name = 48
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger15"]
+transform = Transform3D(-0.301887, 0, 0.953344, 0, 1, 0, -0.953344, 0, -0.301887, 43.7098, 0, -27.4747)
+shape = SubResource("BoxShape3D_j3b1t")
+
+[node name="ZoneTrigger16" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(0.245849, 0, -0.969308, 0, 1, 0, 0.969308, 0, 0.245849, 1986.35, 2.4902, -1076.3)
+zone_name = 35
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger16"]
+transform = Transform3D(-0.301887, 0, 0.953344, 0, 1, 0, -0.953344, 0, -0.301887, 43.7098, 0, -27.4747)
+shape = SubResource("BoxShape3D_j3b1t")
+
+[node name="ZoneTrigger17" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(-0.885499, 0, -0.464641, 0, 1, 0, 0.464641, 0, -0.885499, 1786.26, 2.4902, -2145.7)
+zone_name = 45
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger17"]
+transform = Transform3D(-0.301887, 0, 0.953344, 0, 1, 0, -0.953344, 0, -0.301887, 43.7098, 0, -27.4747)
+shape = SubResource("BoxShape3D_j3b1t")
+
+[node name="ZoneTrigger18" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(-0.885499, 0, -0.464641, 0, 1, 0, 0.464641, 0, -0.885499, 208.076, 2.4902, -2964.87)
+zone_name = 47
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger18"]
+transform = Transform3D(-0.301887, 0, 0.953344, 0, 1, 0, -0.953344, 0, -0.301887, 43.7098, 0, -27.4747)
+shape = SubResource("BoxShape3D_j3b1t")
+
+[node name="ZoneTrigger19" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -435.439, 2.4902, -3694.64)
+zone_name = 36
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger19"]
+transform = Transform3D(-0.084043, 0, 0.996462, 0, 1, 0, -0.996462, 0, -0.084043, 0, 0, 0)
+shape = SubResource("BoxShape3D_j3b1t")
+
 [node name="ZoneTrigger8" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -413.121, 2.4902, -3822)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.7202, 2.4902, -4529.96)
 zone_name = 17
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger8"]
@@ -245,6 +300,22 @@ zone_name = 18
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger9"]
 transform = Transform3D(0.431063, 0, 0.902322, 0, 1, 0, -0.902322, 0, 0.431063, 0, 0, 0)
+shape = SubResource("BoxShape3D_j3b1t")
+
+[node name="ZoneTrigger20" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1618.29, 2.4902, -3907.59)
+zone_name = 40
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger20"]
+transform = Transform3D(0.921144, 0, -0.389221, 0, 1, 0, 0.389221, 0, 0.921144, 0, 0, 0)
+shape = SubResource("BoxShape3D_j3b1t")
+
+[node name="ZoneTrigger21" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2047.09, 2.4902, -4218.87)
+zone_name = 38
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger21"]
+transform = Transform3D(0.802442, 0, -0.59673, 0, 1, 0, 0.59673, 0, 0.802442, 0, 0, 0)
 shape = SubResource("BoxShape3D_j3b1t")
 
 [node name="ZoneTrigger10" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
@@ -260,6 +331,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5707.35, -1173.99, -57.6251)
 zone_name = 24
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger11"]
+transform = Transform3D(0.965958, 0, -0.258701, 0, 1, 0, 0.258701, 0, 0.965958, 83.9194, 0, 19.7356)
+shape = SubResource("BoxShape3D_j3b1t")
+
+[node name="ZoneTrigger22" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(0.151589, 0, -0.988444, 0, 1, 0, 0.988444, 0, 0.151589, -2453.27, -524.785, -2298.52)
+zone_name = 46
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger22"]
 transform = Transform3D(0.965958, 0, -0.258701, 0, 1, 0, 0.258701, 0, 0.965958, 83.9194, 0, 19.7356)
 shape = SubResource("BoxShape3D_j3b1t")
 

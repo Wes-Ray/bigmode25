@@ -12,6 +12,7 @@ var camera_rig : CameraRig
 @onready var debug_node := $Debug
 @onready var invert_check := %InvertCheckButton
 @onready var sens_spinbox := %SensSpinBox
+@onready var fullscreen_button := %FullscreenButton
 @onready var setting_root := %Settings
 @onready var player_stats_root := %PlayerStats
 @onready var speedometer_label := %SpeedometerLabel
@@ -62,6 +63,8 @@ func _ready() -> void:
 
 	sens_spinbox.value = GameConfig.mouse_sens
 	invert_check.button_pressed = GameConfig.mouse_inverted
+	fullscreen_button.button_pressed = GameConfig.full_screen
+	update_screen_setting()
 
 	current_health = Logger.get_health()
 
@@ -269,3 +272,15 @@ func player_reached_end() -> void:
 	launch_button.hide()
 	EventsBus.game_reset.emit()
 	pause()
+
+func _on_fullscreen_button_toggled(toggled_on:bool) -> void:
+	GameConfig.full_screen = toggled_on
+	update_screen_setting()
+
+func update_screen_setting() -> void:
+	if GameConfig.full_screen:
+		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else: # not full screen
+		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)

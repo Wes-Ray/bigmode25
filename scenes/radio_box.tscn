@@ -12,6 +12,6 @@ bus = &"Voice"
 
 [node name="EnemyRadio" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
-volume_db = -25.0
+volume_db = -18.0
 bus = &"Voice"
 playback_type = 1

@@ -508,6 +508,7 @@ grow_vertical = 2
 
 [node name="TutorialLabel" type="RichTextLabel" parent="TutorialDisplay"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = -757.0
 offset_top = 207.0
@@ -572,6 +573,18 @@ custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 
+[node name="FullscreenLabel" type="RichTextLabel" parent="Settings/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 48
+text = "Full screen"
+
+[node name="FullscreenButton" type="CheckBox" parent="Settings/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+
 [node name="MarginContainer" type="MarginContainer" parent="Settings/PanelContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
 
@@ -626,3 +639,4 @@ script = ExtResource("6_a6v7l")
 [connection signal="button_up" from="Menu/LaunchButton" to="." method="_on_launch_button_button_up"]
 [connection signal="button_up" from="Menu/ButtonsContainer/RestartButton" to="." method="_on_restart_button_button_up"]
 [connection signal="button_up" from="Menu/ButtonsContainer/ExitToMenu" to="." method="_on_exit_to_menu_button_up"]
+[connection signal="toggled" from="Settings/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]

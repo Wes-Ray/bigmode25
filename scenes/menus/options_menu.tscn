@@ -77,6 +77,18 @@ custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 
+[node name="FullscreenLabel" type="RichTextLabel" parent="Settings/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 48
+text = "full screen"
+
+[node name="FullscreenButton" type="CheckBox" parent="Settings/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+
 [node name="MarginContainer" type="MarginContainer" parent="Settings/PanelContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
 
@@ -130,16 +142,17 @@ script = ExtResource("5_owy6k")
 
 [node name="SwitchSceneButton" parent="." instance=ExtResource("3_vufs0")]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 0
+anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = -153.0
-offset_top = 18.0
-offset_right = -25.0
-offset_bottom = 71.0
-grow_horizontal = 0
+offset_left = 35.0
+offset_top = 35.0
+offset_right = 163.0
+offset_bottom = 88.0
+grow_horizontal = 1
 grow_vertical = 1
 text = "back"
 
 [connection signal="value_changed" from="Settings/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/SensSpinBox" to="." method="_on_sens_spin_box_value_changed"]
 [connection signal="toggled" from="Settings/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/InvertCheckButton" to="." method="_on_invert_check_button_toggled"]
+[connection signal="toggled" from="Settings/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
