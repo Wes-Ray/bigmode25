@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqhlh27axx4qy"]
+[gd_scene load_steps=5 format=3 uid="uid://cqhlh27axx4qy"]
 
 [ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_si6tt"]
 [ext_resource type="Theme" path="res://resources/themes/base.tres" id="1_vihyd"]
+[ext_resource type="Script" path="res://scripts/music_volume_slider.gd" id="3_pbaco"]
 [ext_resource type="PackedScene" uid="uid://c6d2kxsd2345a" path="res://scenes/menus/switch_scene_button.tscn" id="3_vufs0"]
 
 [node name="OptionsMenu" type="Control"]
@@ -32,34 +33,52 @@ theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 4
 
-[node name="VBoxContainer" type="GridContainer" parent="Settings/PanelContainer/MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Settings/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="GridContainer" parent="Settings/PanelContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
 columns = 2
 
-[node name="SensLabel" type="RichTextLabel" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SensLabel" type="RichTextLabel" parent="Settings/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 48
 text = "Sensitivity"
 
-[node name="SensSpinBox" type="SpinBox" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SensSpinBox" type="SpinBox" parent="Settings/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 max_value = 20.0
 step = 0.1
 
-[node name="InvertLabel" type="RichTextLabel" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="InvertLabel" type="RichTextLabel" parent="Settings/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 48
 text = "Invert Mouse"
 
-[node name="InvertCheckButton" type="CheckBox" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="InvertCheckButton" type="CheckBox" parent="Settings/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings/PanelContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="MusicVolumeSlider" type="HSlider" parent="Settings/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+script = ExtResource("3_pbaco")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Settings/PanelContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="SFXVolumeSlider" type="HSlider" parent="Settings/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
 
 [node name="SwitchSceneButton" parent="." instance=ExtResource("3_vufs0")]
 layout_mode = 1
@@ -74,5 +93,5 @@ grow_horizontal = 0
 grow_vertical = 1
 text = "back"
 
-[connection signal="value_changed" from="Settings/PanelContainer/MarginContainer/VBoxContainer/SensSpinBox" to="." method="_on_sens_spin_box_value_changed"]
-[connection signal="toggled" from="Settings/PanelContainer/MarginContainer/VBoxContainer/InvertCheckButton" to="." method="_on_invert_check_button_toggled"]
+[connection signal="value_changed" from="Settings/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/SensSpinBox" to="." method="_on_sens_spin_box_value_changed"]
+[connection signal="toggled" from="Settings/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/InvertCheckButton" to="." method="_on_invert_check_button_toggled"]
