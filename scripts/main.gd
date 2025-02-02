@@ -65,8 +65,8 @@ func _process(_delta: float) -> void:
 		switch_to_cave_world_environment()
 	if Input.is_action_just_released("debug2"):
 		switch_to_canyon_world_environment()
-	if sky_debug:
-		Logger.log("tree: ", get_tree().root.get_children())
+	# if sky_debug:
+	# 	Logger.log("tree: ", get_tree().root.get_children())
 
 func switch_to_cave_world_environment() -> void:
 	print("cave world env")
@@ -82,7 +82,7 @@ func switch_to_canyon_world_environment() -> void:
 
 	get_tree().root.add_child(sky_chaos)
 	sky_chaos.global_position = Vector3.ZERO
-	sky_debug = true
+	# sky_debug = true
 
 func init() -> void:
 	ship_instance = ship_scene.instantiate()
