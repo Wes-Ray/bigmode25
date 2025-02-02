@@ -7,10 +7,12 @@ class_name MainLevel
 @export var ship_scene: PackedScene
 @export var camera_scene: PackedScene
 @export var hud_scene: PackedScene
+var sky_chaos : Node3D
 
 @onready var world_environment: WorldEnvironment = %WorldEnvironment
 @onready var cave_world_env_res := preload("res://resources/cave_world_environment.tres")
 @onready var canyon_world_env_res := preload("res://resources/canyon_run_world_environment.tres")
+@onready var sky_chaos_packed := preload("res://scenes/sky_scenes/sky_chaos.tscn")
 @onready var cave_directional_light: DirectionalLight3D = %CaveDirectionalLight
 @onready var canyon_directional_light: DirectionalLight3D = %CanyonDirectionalLight
 
@@ -22,6 +24,8 @@ class_name MainLevel
 var ship_instance: Ship
 var camera_instance: CameraRig
 var hud_instance: HUD
+
+var sky_debug := false
 
 # For use by ProxZone direct children
 var active_prox_zone: ProxZone = null
@@ -51,11 +55,18 @@ func _ready() -> void:
 		Checkpoint.id.BEFORE_CHASE:
 			spawn_point = %SpawnBeforeChase
 			%generator_base._obj_crystal_destroyed()
+
+	sky_chaos = sky_chaos_packed.instantiate()
+
 	init()
 
-# func _process(_delta: float) -> void:
-# 	if Input.is_action_just_released("debug1"):
-# 		Checkpoint.current_checkpoint = Checkpoint.id.BEFORE_CHASE
+func _process(_delta: float) -> void:
+	if Input.is_action_just_released("debug1"):
+		switch_to_cave_world_environment()
+	if Input.is_action_just_released("debug2"):
+		switch_to_canyon_world_environment()
+	if sky_debug:
+		Logger.log("tree: ", get_tree().root.get_children())
 
 func switch_to_cave_world_environment() -> void:
 	print("cave world env")
@@ -68,6 +79,10 @@ func switch_to_canyon_world_environment() -> void:
 	world_environment.environment = canyon_world_env_res
 	cave_directional_light.hide()
 	canyon_directional_light.show()
+
+	get_tree().root.add_child(sky_chaos)
+	sky_chaos.global_position = Vector3.ZERO
+	sky_debug = true
 
 func init() -> void:
 	ship_instance = ship_scene.instantiate()

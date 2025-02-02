@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://dstgwvm8kfii3"]
+
+[ext_resource type="Texture2D" uid="uid://dsnwxsysv0uiw" path="res://assets/particles/white_square.png" id="1_tx86e"]
+
+[sub_resource type="Curve" id="Curve_xxac7"]
+max_value = 1024.0
+_data = [Vector2(0, 1024), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_o0cha"]
+curve_x = SubResource("Curve_xxac7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_essir"]
+directional_velocity_min = 1.0
+directional_velocity_max = 1.0
+directional_velocity_curve = SubResource("CurveXYZTexture_o0cha")
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8i88"]
+albedo_color = Color(0.446663, 1, 0.999181, 1)
+albedo_texture = ExtResource("1_tx86e")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_et7gn"]
+material = SubResource("StandardMaterial3D_m8i88")
+size = Vector2(35, 4)
+
+[node name="SkyLasersMaker" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 9
+lifetime = 5.78
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_essir")
+draw_pass_1 = SubResource("QuadMesh_et7gn")
