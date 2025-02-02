@@ -39,3 +39,4 @@ stream = ExtResource("5_bcbcs")
 attenuation_model = 1
 volume_db = 9.074
 unit_size = 98.4
+bus = &"SFX"

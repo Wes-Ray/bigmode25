@@ -86,7 +86,7 @@ size = Vector3(1, 1, 0.7)
 
 [node name="LaunchPoint0" type="Node3D" parent="Launchers/RocketLauncher0"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.35799, 7.14958)
 
 [node name="RocketLauncher1" type="CSGBox3D" parent="Launchers"]
 transform = Transform3D(0.252854, 0, 0, 0, 0.279167, 0, 0, 0, 0.949353, -0.655484, -0.0789429, 1.69253)
@@ -95,7 +95,7 @@ size = Vector3(1, 1, 0.7)
 
 [node name="LaunchPoint1" type="Node3D" parent="Launchers/RocketLauncher1"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.35799, 7.29761)
 
 [node name="HealthComponent" type="Node" parent="."]
 unique_name_in_owner = true
