@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://cplik166fvpp"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vfucn"]
+noise_type = 0
+frequency = 0.0096
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h15h6"]
+in_3d_space = true
+seamless = true
+noise = SubResource("FastNoiseLite_vfucn")
+
+[resource]
+cull_mode = 2
+albedo_color = Color(0.269829, 0.253221, 0.163008, 1)
+albedo_texture = SubResource("NoiseTexture2D_h15h6")

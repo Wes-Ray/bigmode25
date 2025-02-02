@@ -98,7 +98,11 @@ void fragment()
 
 	// Make bright areas fully visible, dark areas fully transparent
 	//ALPHA = smoothstep(0.2, 0.5, brightness);
-	ALPHA = clamp(brightness-0.5, 0.0, 1.0);
+	//ALPHA = clamp(brightness-0.5, 0.0, 1.0);
+	float threshold = 1.0;  // Increase this to make more areas transparent
+	float smoothness = 0.8; // Adjust this to control the transition
+	ALPHA = smoothstep(threshold - smoothness, threshold + smoothness, brightness);
+
 
 	ALBEDO = color * brightness * ALPHA;
 	EMISSION = color * brightness;

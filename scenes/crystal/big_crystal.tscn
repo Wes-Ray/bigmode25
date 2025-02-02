@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bloer0qmctnhd"]
+
+[ext_resource type="PackedScene" uid="uid://txe0gspseub0" path="res://assets/props/big_crystal.glb" id="1_b8lhu"]
+[ext_resource type="Material" uid="uid://djj0konohiv7b" path="res://scenes/crystal/small_crystal.tres" id="2_dp40s"]
+
+[node name="big_crystal" instance=ExtResource("1_b8lhu")]
+
+[node name="Big Crystal" parent="." index="0"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+surface_material_override/0 = ExtResource("2_dp40s")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="1"]
+light_color = Color(0.105882, 0.776471, 0.980392, 1)
+light_energy = 64.0
+light_specular = 1.0
+omni_range = 100.0
+omni_attenuation = 0.8

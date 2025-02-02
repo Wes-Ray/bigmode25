@@ -1,0 +1,79 @@
+[gd_scene load_steps=14 format=3 uid="uid://cfclqkm2ihib0"]
+
+[ext_resource type="PackedScene" uid="uid://ctphr40abjgul" path="res://assets/levels/generator_base.glb" id="1_yom2o"]
+[ext_resource type="PackedScene" uid="uid://ckis6oj8abag" path="res://scenes/crystal/crystal_objective.tscn" id="2_6bx8h"]
+[ext_resource type="Script" path="res://scripts/generator_base.gd" id="2_58njf"]
+[ext_resource type="Texture2D" uid="uid://bdyr55313rt3e" path="res://resources/environment/concrete/concrete_layers_02_diff_1k.jpg" id="3_7smq2"]
+[ext_resource type="Shader" path="res://scenes/blast_wall/electric_wall.gdshader" id="4_av4p6"]
+[ext_resource type="AudioStream" uid="uid://hx6pwvvb0xeg" path="res://assets/sound/Alarm.ogg" id="5_4adqo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6rgg"]
+albedo_texture = ExtResource("3_7smq2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kdk0f"]
+transparency = 1
+albedo_color = Color(0, 0.491717, 0.829985, 0.85098)
+emission = Color(0, 0, 1, 1)
+rim_tint = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_q14vl"]
+size = Vector3(18, 70, 130)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45a10"]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3q13s"]
+size = Vector3(18, 75, 130)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1v6g3"]
+render_priority = 0
+shader = ExtResource("4_av4p6")
+shader_parameter/color = Color(0.374456, 0.74506, 0.963789, 1)
+shader_parameter/zoom = 6.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ytpqn"]
+size = Vector2(70, 120)
+
+[node name="generator_base" instance=ExtResource("1_yom2o")]
+script = ExtResource("2_58njf")
+
+[node name="Base" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_s6rgg")
+
+[node name="Crystal" parent="." index="1" instance=ExtResource("2_6bx8h")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.11794, 43.3198, 56.5199)
+
+[node name="Shield" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1.5866, 0, -1, 0, 1.31134e-07, -1.44314, 69.5584, -111.371)
+material_override = SubResource("StandardMaterial3D_kdk0f")
+mesh = SubResource("BoxMesh_q14vl")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_45a10")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Shield" index="0"]
+light_color = Color(0.344936, 0.746622, 0.979416, 1)
+light_energy = 6.0
+omni_range = 50.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Shield" index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shield/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.072, 0, 0)
+shape = SubResource("BoxShape3D_3q13s")
+
+[node name="ZapEffect" type="MeshInstance3D" parent="Shield" index="2"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 11.6828, 0, 5.10671e-07)
+material_override = SubResource("ShaderMaterial_1v6g3")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_ytpqn")
+
+[node name="AlarmSound" type="AudioStreamPlayer3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 62.4439, -123.072)
+stream = ExtResource("5_4adqo")
+volume_db = 20.0
+unit_size = 35.9
+pitch_scale = 0.85
+bus = &"SFX"

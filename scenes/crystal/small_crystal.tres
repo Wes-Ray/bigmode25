@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://djj0konohiv7b"]
+
+[ext_resource type="Texture2D" uid="uid://cmd2t41pnddfy" path="res://resources/environment/beach/aerial_beach_01_diff_1k.jpg" id="1_ueqfj"]
+
+[resource]
+transparency = 1
+albedo_color = Color(0, 0.627451, 0.929412, 0.85098)
+albedo_texture = ExtResource("1_ueqfj")
