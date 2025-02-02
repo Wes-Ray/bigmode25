@@ -96,3 +96,6 @@ func soundtrack(do_play : bool) -> void:
 func on_player_crashed() -> void:
 	print("camera saw player crashed")
 	deathsound_player.play()
+
+func on_player_failed_to_reach_gate() -> void:
+	pass

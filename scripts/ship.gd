@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name Ship
 
 signal player_crashed
+signal player_failed_to_reach_gate
 
 @export var camera_rig : CameraRig
 var camera : Camera3D 
@@ -208,6 +209,9 @@ func _died() -> void:
 	_death_sound()
 	player_crashed.emit()
 	queue_free()
+
+func failed_to_reach_gate() -> void:
+	player_failed_to_reach_gate.emit()
 
 func _on_rocket_recharge_timeout() -> void:
 	current_ammo += 1
