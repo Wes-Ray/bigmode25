@@ -87,6 +87,7 @@ height = 400.0
 [node name="Leve02" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 script = ExtResource("1_sebui")
 spawn_point = NodePath("Spawn")
+debug_checkpoint = 3
 ship_scene = ExtResource("2_kkbaq")
 camera_scene = ExtResource("3_e40k6")
 hud_scene = ExtResource("4_a4gyl")
@@ -160,6 +161,22 @@ zone_name = 30
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTriggers/ZoneTrigger5"]
 transform = Transform3D(0.3317, 0, 0.943385, 0, 1, 0, -0.943385, 0, 0.3317, 67.2115, 94.9595, 19.2306)
+shape = SubResource("BoxShape3D_pxy5w")
+
+[node name="ZoneTrigger6" parent="TutorialTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1526.47, 364.387, -4665.12)
+zone_name = 29
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTriggers/ZoneTrigger6"]
+transform = Transform3D(0.403386, 0, 0.91503, 0, 1, 0, -0.91503, 0, 0.403386, 67.2114, 94.9595, 19.2307)
+shape = SubResource("BoxShape3D_pxy5w")
+
+[node name="ZoneTrigger7" parent="TutorialTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1746.93, 364.387, -5474.92)
+zone_name = 28
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTriggers/ZoneTrigger7"]
+transform = Transform3D(0.403386, 0, 0.91503, 0, 1, 0, -0.91503, 0, 0.403386, 67.2114, 94.9595, 19.2307)
 shape = SubResource("BoxShape3D_pxy5w")
 
 [node name="VoiceTriggers" type="Node3D" parent="."]
