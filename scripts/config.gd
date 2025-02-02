@@ -5,6 +5,7 @@ extends Node
 
 @onready var sfx_volume := 50.0
 @onready var music_volume := 50.0
+@onready var voice_volume := 50.0
 
 
 func convert_percentage_to_decibels(percent: float) -> float:

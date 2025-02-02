@@ -1,12 +1,80 @@
-[gd_scene load_steps=5 format=3 uid="uid://yl20owsmi50l"]
+[gd_scene load_steps=18 format=3 uid="uid://yl20owsmi50l"]
 
 [ext_resource type="Script" path="res://scripts/crystal.gd" id="2_tvrly"]
 [ext_resource type="AudioStream" uid="uid://wj3rtwa646u3" path="res://assets/sound/Generator_Explosion.ogg" id="3_4hba7"]
 [ext_resource type="PackedScene" uid="uid://ch71v14koc1ab" path="res://scenes/crystal/small_crystal.tscn" id="3_yrrfx"]
+[ext_resource type="Script" path="res://assets/props/sky_props/sky_explosion.gd" id="4_55te8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a6n3c"]
 radius = 15.0
 height = 45.0
+
+[sub_resource type="Curve" id="Curve_cqu8p"]
+_data = [Vector2(0.535519, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xcq7t"]
+curve = SubResource("Curve_cqu8p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5i2ny"]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
+scale_min = 7.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_xcq7t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0b7gu"]
+albedo_color = Color(0.316017, 0.508108, 1, 1)
+emission_enabled = true
+emission = Color(0.162199, 0.25637, 1, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_cdo2r"]
+material = SubResource("StandardMaterial3D_0b7gu")
+top_radius = 0.1
+bottom_radius = 0.0
+
+[sub_resource type="Curve" id="Curve_nje4f"]
+max_value = 2.0
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(1, 0.813187), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_na3bc"]
+curve = SubResource("Curve_nje4f")
+
+[sub_resource type="Curve" id="Curve_ijoms"]
+_data = [Vector2(0, 0.208791), 0.0, 0.0, 0, 0, Vector2(0.47541, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.032967), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qlns2"]
+curve = SubResource("Curve_ijoms")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v4axx"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 25.0
+initial_velocity_max = 45.0
+gravity = Vector3(0, 0, 0)
+scale_min = 10.0
+scale_max = 30.0
+scale_curve = SubResource("CurveTexture_qlns2")
+emission_curve = SubResource("CurveTexture_na3bc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s45wb"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.368627, 1, 1, 1)
+emission_enabled = true
+emission = Color(0.335351, 0.67547, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_k5d1i"]
+material = SubResource("StandardMaterial3D_s45wb")
+radial_segments = 8
+rings = 8
 
 [node name="Crystal" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -21,6 +89,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 shape = SubResource("CapsuleShape3D_a6n3c")
 
 [node name="small_crystal" parent="." instance=ExtResource("3_yrrfx")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 
 [node name="CrystalDestroyedSound" type="AudioStreamPlayer3D" parent="."]
@@ -29,5 +98,32 @@ stream = ExtResource("3_4hba7")
 volume_db = 20.0
 pitch_scale = 0.9
 bus = &"SFX"
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+
+[node name="SkyExplosion" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_55te8")
+
+[node name="Debris" type="GPUParticles3D" parent="SkyExplosion"]
+unique_name_in_owner = true
+emitting = false
+amount = 24
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_5i2ny")
+draw_pass_1 = SubResource("CylinderMesh_cdo2r")
+
+[node name="Fire" type="GPUParticles3D" parent="SkyExplosion"]
+unique_name_in_owner = true
+emitting = false
+amount = 15
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_v4axx")
+draw_pass_1 = SubResource("SphereMesh_k5d1i")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
