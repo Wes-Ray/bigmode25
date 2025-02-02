@@ -80,7 +80,6 @@ height = 400.0
 [node name="Leve02" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 script = ExtResource("1_sebui")
 spawn_point = NodePath("Spawn")
-debug_checkpoint = 1
 ship_scene = ExtResource("2_kkbaq")
 camera_scene = ExtResource("3_e40k6")
 hud_scene = ExtResource("4_a4gyl")
@@ -199,16 +198,10 @@ transform = Transform3D(-0.999982, -8.74228e-08, 0.00598648, -8.79445e-08, 1, -8
 transform = Transform3D(-4.37122e-08, 0.999982, 0.00598648, 1, 4.42331e-08, -8.68978e-08, -8.71611e-08, 0.00598648, -0.999982, 4153.45, 389.369, -1910.56)
 
 [node name="straight_pipe_long02" parent="StaticPropsCave" instance=ExtResource("9_tgab0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3259.13, 265.163, -1152.56)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3259.13, 278.145, -1152.56)
 
 [node name="straight_pipe_long03" parent="StaticPropsCave" instance=ExtResource("9_tgab0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3416.04, 265.163, -1152.56)
-
-[node name="straight_pipe_long14" parent="StaticPropsCave" instance=ExtResource("9_tgab0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3199.48, 170.25, -1152.56)
-
-[node name="straight_pipe_long15" parent="StaticPropsCave" instance=ExtResource("9_tgab0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3356.39, 170.25, -1152.56)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3416.04, 278.145, -1152.56)
 
 [node name="straight_pipe_long16" parent="StaticPropsCave" instance=ExtResource("9_tgab0")]
 transform = Transform3D(0.538569, -0.538569, 0.647987, 0.707107, 0.707107, 0, -0.458196, 0.458196, 0.761651, 3412.73, 224.265, -2276.72)
