@@ -3,6 +3,7 @@ class_name MainLevel
 
 @export var spawn_point: Marker3D
 @export var debug_spawn_point: Marker3D
+@export var debug_checkpoint: Checkpoint.id
 @export var ship_scene: PackedScene
 @export var camera_scene: PackedScene
 @export var hud_scene: PackedScene
@@ -35,6 +36,10 @@ func _ready() -> void:
 	if debug_spawn_point:
 		spawn_point = debug_spawn_point
 	
+	if debug_checkpoint != Checkpoint.id.START:
+		Checkpoint.current_checkpoint = debug_checkpoint
+
+	
 	print("loading checkpoint: ", Checkpoint.current_checkpoint)
 	match Checkpoint.current_checkpoint:
 		Checkpoint.id.START:
@@ -48,9 +53,9 @@ func _ready() -> void:
 			%generator_base._obj_crystal_destroyed()
 	init()
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_released("debug1"):
-		Checkpoint.current_checkpoint = Checkpoint.id.BEFORE_CHASE
+# func _process(_delta: float) -> void:
+# 	if Input.is_action_just_released("debug1"):
+# 		Checkpoint.current_checkpoint = Checkpoint.id.BEFORE_CHASE
 
 func switch_to_cave_world_environment() -> void:
 	print("cave world env")
