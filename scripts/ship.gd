@@ -105,6 +105,8 @@ func _process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("shoot") and not boosting:
 		shoot()
+	elif Input.is_action_just_pressed("shoot") and boosting:
+		hud.shoot_with_no_power()
 	if current_ammo < max_ammo and rocket_recharge_timer.is_stopped():
 		rocket_recharge_timer.start()
 

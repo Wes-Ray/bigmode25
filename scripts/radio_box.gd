@@ -53,17 +53,6 @@ extends Node3D
 # 	print("ALLY VOICES")
 # 	print(ally_voices)
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("debug1"):
-		print("DEBUG VOICE")
-		_play_radio(ally_radio, "comeon1_redleader", ally_voices)
-	if Input.is_action_just_pressed("debug2"):
-		print("DEBUG VOICE")
-		_play_radio(ally_radio, "move it prism one", ally_voices)
-	if Input.is_action_just_pressed("debug3"):
-		print("DEBUG VOICE")
-		_play_radio(enemy_radio, "1st blast door", enemy_voices)
-
 func play_enemy_radio(file_name: String) -> void:
 	if ally_radio.playing or enemy_radio.playing:
 		return

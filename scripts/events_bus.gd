@@ -10,3 +10,5 @@ signal ceiling_warning_started()
 signal ceiling_warning_stopped()
 
 signal player_objective_complete_trigger(zone_name: int)
+
+signal player_failed_chase
