@@ -3,7 +3,10 @@
 [resource]
 background_mode = 1
 background_color = Color(0.453141, 0.455805, 0.463093, 1)
+sdfgi_enabled = true
 fog_enabled = true
 fog_light_color = Color(0.47949, 0.631548, 0.740791, 1)
 fog_light_energy = 0.35
 fog_density = 0.001
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(0.779388, 0.919741, 1, 1)

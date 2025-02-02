@@ -2,7 +2,7 @@
 
 [sub_resource type="Gradient" id="Gradient_piddk"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.259887, 0.497175, 1)
+offsets = PackedFloat32Array(0.259887, 0.497175, 0.896861)
 colors = PackedColorArray(0, 0, 0, 1, 0.0879608, 0.0879608, 0.0879608, 1, 1, 1, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_p718x"]

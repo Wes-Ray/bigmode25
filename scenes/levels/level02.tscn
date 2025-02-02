@@ -87,6 +87,7 @@ height = 400.0
 [node name="Leve02" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 script = ExtResource("1_sebui")
 spawn_point = NodePath("Spawn")
+debug_checkpoint = 3
 ship_scene = ExtResource("2_kkbaq")
 camera_scene = ExtResource("3_e40k6")
 hud_scene = ExtResource("4_a4gyl")
@@ -111,9 +112,10 @@ environment = ExtResource("5_jcujb")
 [node name="CanyonDirectionalLight" type="DirectionalLight3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(0.523894, 0.822714, 0.220628, -0.801444, 0.388387, 0.4548, 0.288481, -0.415088, 0.862833, 0, 36.2723, 0)
-shadow_bias = 10.0
-shadow_normal_bias = 10.0
-shadow_reverse_cull_face = true
+shadow_enabled = true
+shadow_opacity = 0.6
+directional_shadow_fade_start = 0.4
+directional_shadow_max_distance = 500.0
 
 [node name="CaveDirectionalLight" type="DirectionalLight3D" parent="."]
 unique_name_in_owner = true
@@ -478,10 +480,10 @@ transform = Transform3D(0.993367, 0, -0.114989, 0, 1, 0, 0.114989, 0, 0.993367, 
 transform = Transform3D(0.993367, 0, -0.114989, 0, 1, 0, 0.114989, 0, 0.993367, 2355.12, 0.198318, -1510.52)
 
 [node name="straight_pipe_long44" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
-transform = Transform3D(0.993367, 0, -0.114989, 0, 1, 0, 0.114989, 0, 0.993367, 2221.15, -23.692, -1526.11)
+transform = Transform3D(0.993367, 0, -0.114989, 0, 1, 0, 0.114989, 0, 0.993367, 2221.15, -72.8511, -1526.11)
 
 [node name="straight_pipe_long45" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
-transform = Transform3D(0.993367, 0, -0.114989, 0, 1, 0, 0.114989, 0, 0.993367, 2377.56, -23.692, -1508)
+transform = Transform3D(0.993367, 0, -0.114989, 0, 1, 0, 0.114989, 0, 0.993367, 2377.56, -72.8511, -1508)
 
 [node name="straight_pipe_long31" parent="StaticPropsCanyon" instance=ExtResource("9_tgab0")]
 transform = Transform3D(0.993367, 0, -0.114989, 0, 1, 0, 0.114989, 0, 0.993367, 2210.64, 48.1284, -1535.16)
