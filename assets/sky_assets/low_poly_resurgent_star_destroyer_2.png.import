@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://cv6j4wvnrrqdy"
+path.s3tc="res://.godot/imported/low_poly_resurgent_star_destroyer_2.png-eec01aadd322abba2b8bdbbbe2a28cb1.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "3e7f26ceb0ba041f659f417d1d534969"
+}
+
+[deps]
+
+source_file="res://assets/sky_assets/low_poly_resurgent_star_destroyer_2.png"
+dest_files=["res://.godot/imported/low_poly_resurgent_star_destroyer_2.png-eec01aadd322abba2b8bdbbbe2a28cb1.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

@@ -8,4 +8,3 @@ extends Node3D
 func explode() -> void:
 	debris.emitting = true
 	fire.emitting = true
-	
