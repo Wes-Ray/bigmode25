@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dydrr63f746ur"]
+[gd_scene load_steps=38 format=3 uid="uid://dydrr63f746ur"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sebui"]
 [ext_resource type="PackedScene" uid="uid://wk8ox7egbudr" path="res://scenes/ship.tscn" id="2_kkbaq"]
@@ -61,9 +61,26 @@ height = 500.0
 radius = 100.0
 height = 200.0
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_776jv"]
+radius = 100.0
+height = 200.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0h33b"]
+radius = 100.0
+height = 200.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ai3w1"]
+radius = 200.0
+height = 400.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l5y27"]
+radius = 100.0
+height = 400.0
+
 [node name="Leve02" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 script = ExtResource("1_sebui")
 spawn_point = NodePath("Spawn")
+debug_checkpoint = 3
 ship_scene = ExtResource("2_kkbaq")
 camera_scene = ExtResource("3_e40k6")
 hud_scene = ExtResource("4_a4gyl")
@@ -1148,11 +1165,13 @@ fire_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1025.89, 42.0864, -151.782)
 fire_mode = 2
 
+[node name="ProjectileTurret3" parent="ProxZone" instance=ExtResource("17_f2ymy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1204.15, 26.5828, -73.4077)
+fire_mode = 1
+fire_rate = 1.2
+
 [node name="LaserTurret" parent="ProxZone" instance=ExtResource("17_cu70w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 641.14, 88.6557, -224.687)
-
-[node name="LaserTurret2" parent="ProxZone" instance=ExtResource("17_cu70w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1234.44, 94.724, -57.8811)
 
 [node name="BlastDoor4" parent="." instance=ExtResource("12_8csq4")]
 transform = Transform3D(-0.542339, 0, 0.84016, 0, 1, 0, -0.84016, 0, -0.542339, 1909.69, -11.3916, -1035.01)
@@ -1195,7 +1214,7 @@ zone_name = 5
 shape = SubResource("CapsuleShape3D_rfqhx")
 
 [node name="OmniLightCanyon2" parent="ProxZone3" instance=ExtResource("19_u6n46")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1325.2, 11.5141, 398.787)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1270.45, 23.4494, 260.566)
 
 [node name="LaserTurret" parent="ProxZone3" instance=ExtResource("17_cu70w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1204.81, 92.0359, 7.73462)
@@ -1212,7 +1231,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 590.946, -95.9912, -2826.33)
 zone_name = 6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone4/ZoneTrigger"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -104.353, 0, 76.6001)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -177.459, 0, 72.7827)
 shape = SubResource("CapsuleShape3D_bd06s")
 
 [node name="ProjectileTurret" parent="ProxZone4" instance=ExtResource("17_f2ymy")]
@@ -1293,6 +1312,26 @@ zone_name = 7
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.3884, 0, 53.5054)
 shape = SubResource("CapsuleShape3D_y5jgu")
 
+[node name="ProjectileTurret" parent="ProxZone6" instance=ExtResource("17_f2ymy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.324, 20.9193, 1002.91)
+fire_mode = 2
+fire_rate = 1.5
+
+[node name="ProjectileTurret2" parent="ProxZone6" instance=ExtResource("17_f2ymy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -307.057, 20.9193, 1322.99)
+fire_mode = 2
+fire_rate = 1.5
+
+[node name="ProjectileTurret3" parent="ProxZone6" instance=ExtResource("17_f2ymy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -822.274, 20.9193, 1127.37)
+fire_mode = 2
+fire_rate = 1.5
+
+[node name="ProjectileTurret4" parent="ProxZone6" instance=ExtResource("17_f2ymy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -522.045, 20.9193, 693.78)
+fire_mode = 2
+fire_rate = 1.5
+
 [node name="BlastDoor5" parent="." instance=ExtResource("12_8csq4")]
 transform = Transform3D(0.942104, 0, -0.33532, 0, 1, 0, 0.33532, 0, 0.942104, -1539.72, -18.8362, -4547.9)
 
@@ -1343,3 +1382,97 @@ zone_name = 8
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone7/ZoneTrigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -17, 0)
 shape = SubResource("CapsuleShape3D_p07io")
+
+[node name="OmniLightCave" parent="ProxZone7" instance=ExtResource("16_31mbo")]
+transform = Transform3D(1, 0, 0, 0, 0.710357, -0.703841, 0, 0.703841, 0.710357, -218.684, -25.4316, 607.891)
+
+[node name="OmniLightCave2" parent="ProxZone7" instance=ExtResource("16_31mbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -497.859, -475.323, 1423.42)
+
+[node name="OmniLightCave3" parent="ProxZone7" instance=ExtResource("16_31mbo")]
+transform = Transform3D(0.83168, -0.481534, 0.276465, 0.521607, 0.506858, -0.68631, 0.190353, 0.714996, 0.672716, -558.185, -552.317, 1929.71)
+
+[node name="ProxZone8" parent="." instance=ExtResource("14_5x7jb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2945.98, -770.442, -1229.67)
+
+[node name="ZoneTrigger" parent="ProxZone8" instance=ExtResource("15_78gg4")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone8/ZoneTrigger"]
+shape = SubResource("CapsuleShape3D_776jv")
+
+[node name="OmniLightCave4" parent="ProxZone8" instance=ExtResource("16_31mbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290.652, 7.75879, 470.641)
+
+[node name="OmniLightCave5" parent="ProxZone8" instance=ExtResource("16_31mbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -380.636, -18.6144, 679.665)
+
+[node name="LaserTurret" parent="ProxZone8" instance=ExtResource("17_cu70w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -297.632, -109.81, 738.405)
+
+[node name="LaserTurret2" parent="ProxZone8" instance=ExtResource("17_cu70w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -501.597, -114.363, 677.055)
+
+[node name="BlastDoor6" parent="." instance=ExtResource("12_8csq4")]
+transform = Transform3D(0.889648, 0, -0.456648, 0, 1, 0, 0.456648, 0, 0.889648, -3372.73, -893.94, -451.03)
+
+[node name="Crystal" parent="BlastDoor6" instance=ExtResource("12_nbgno")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4.0542, 50.1683, -19.8337)
+
+[node name="ProxZone9" parent="." instance=ExtResource("14_5x7jb")]
+transform = Transform3D(0.889648, 0, -0.456648, 0, 1, 0, 0.456648, 0, 0.889648, -3490.1, -893.94, -294.009)
+
+[node name="ZoneTrigger" parent="ProxZone9" instance=ExtResource("15_78gg4")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone9/ZoneTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.9185, 0, -11.5061)
+shape = SubResource("CapsuleShape3D_0h33b")
+
+[node name="OmniLightCave" parent="ProxZone9" instance=ExtResource("16_31mbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -173.781, 31.838, 183.467)
+
+[node name="OmniLightCave2" parent="ProxZone9" instance=ExtResource("16_31mbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110.303, 212.438, 593.375)
+
+[node name="OmniLightCave3" parent="ProxZone9" instance=ExtResource("16_31mbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -491.474, -244.157, 892.23)
+
+[node name="ProxZone10" parent="." instance=ExtResource("14_5x7jb")]
+transform = Transform3D(0.889648, 0, -0.456648, 0, 1, 0, 0.456648, 0, 0.889648, -4479.08, -1138.1, 197.611)
+
+[node name="ZoneTrigger" parent="ProxZone10" instance=ExtResource("15_78gg4")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone10/ZoneTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -105.551, -5.67273, 0.496582)
+shape = SubResource("CapsuleShape3D_ai3w1")
+
+[node name="OmniLightCave4" parent="ProxZone10" instance=ExtResource("16_31mbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.875, 0, 3.24414)
+
+[node name="OmniLightCave5" parent="ProxZone10" instance=ExtResource("16_31mbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -562.251, 176.317, 234.621)
+
+[node name="LaserTurret" parent="ProxZone10" instance=ExtResource("17_cu70w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -828.913, -11.697, 354.97)
+
+[node name="ProjectileTurret" parent="ProxZone10" instance=ExtResource("17_f2ymy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -856.61, -107.865, 198.187)
+fire_mode = 2
+fire_rate = 0.5
+
+[node name="ProjectileTurret2" parent="ProxZone10" instance=ExtResource("17_f2ymy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -777.591, -177.843, 257.329)
+fire_mode = 2
+fire_rate = 0.5
+
+[node name="ProjectileTurret3" parent="ProxZone10" instance=ExtResource("17_f2ymy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -627.175, -176.479, 363.326)
+fire_mode = 2
+fire_rate = 0.5
+
+[node name="ProxZone11" parent="." instance=ExtResource("14_5x7jb")]
+transform = Transform3D(0.889648, 0, -0.456648, 0, 1, 0, 0.456648, 0, 0.889648, -5676.27, -1167.5, -31.72)
+
+[node name="ZoneTrigger" parent="ProxZone11" instance=ExtResource("15_78gg4")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone11/ZoneTrigger"]
+shape = SubResource("CapsuleShape3D_l5y27")
