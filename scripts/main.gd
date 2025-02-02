@@ -153,6 +153,7 @@ func _on_player_entered_zone_trigger(zone_name: int):
 			camera_instance.final_run_soundtrack.play()
 			hud_instance.activate_chase_timer()
 			switch_to_cave_world_environment()
+			ship_instance.chase_rumble_sound.play()
 			Checkpoint.current_checkpoint = Checkpoint.id.BEFORE_CHASE
 		
 		# ALLY VOICE TRIGGERS

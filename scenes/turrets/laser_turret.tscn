@@ -105,6 +105,7 @@ libraries = {
 unique_name_in_owner = true
 stream = ExtResource("2_m5aj6")
 unit_size = 30.0
+bus = &"SFX"
 
 [node name="PlayerRaycast" type="RayCast3D" parent="."]
 unique_name_in_owner = true
@@ -227,6 +228,7 @@ transform = Transform3D(1, 0, 0, 0, 1, -5.96046e-08, 0, 6.70552e-08, 1, -0.07017
 stream = ExtResource("4_lni1s")
 attenuation_model = 1
 volume_db = 12.598
+bus = &"SFX"
 
 [node name="Turret_Base" parent="." instance=ExtResource("7_fpx20")]
 transform = Transform3D(16, 0, 0, 0, 16, 0, 0, 0, 16, 0, 0, 0)

@@ -211,6 +211,7 @@ attenuation_model = 2
 volume_db = 23.093
 unit_size = 19.78
 autoplay = true
+bus = &"SFX"
 doppler_tracking = 2
 
 [node name="SkyExplosion" type="Node3D" parent="."]

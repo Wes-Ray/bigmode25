@@ -57,9 +57,8 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	menu.hide()
 
-	# TODO: add this back on release
-	# if not OS.is_debug_build():
-	# 	debug_node.hide()
+	if not OS.is_debug_build():
+		debug_node.hide()
 
 	sens_spinbox.value = GameConfig.mouse_sens
 	invert_check.button_pressed = GameConfig.mouse_inverted
