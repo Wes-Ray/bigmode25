@@ -115,6 +115,7 @@ func init() -> void:
 
 	EventsBus.player_entered_zone_trigger.connect(_on_player_entered_zone_trigger)
 	EventsBus.player_objective_complete_trigger.connect(_on_player_entered_zone_trigger)
+	EventsBus.player_failed_chase.connect(ship_instance._died)
 
 	hud_instance.pause()
 
@@ -148,6 +149,7 @@ func _on_player_entered_zone_trigger(zone_name: int):
 		ZoneNames.id.ENTERING_FINAL_RUN:
 			camera_instance.boss_soundtrack.stop()
 			camera_instance.final_run_soundtrack.play()
+			hud_instance.activate_chase_timer()
 			switch_to_cave_world_environment()
 			Checkpoint.current_checkpoint = Checkpoint.id.BEFORE_CHASE
 		
@@ -163,6 +165,7 @@ func _on_player_entered_zone_trigger(zone_name: int):
 		# called from tutorial zone activation by shooting tutorial gate
 		ZoneNames.id.GATE_CYCLING:
 			camera_instance.radio_box.play_ally_radio("firstgate3_redleader")
+			hud_instance.play_tutorial("shift to boost")
 		# TODO: maybe move this to the last chase sequence?
 		ZoneNames.id.THREAD_NEEDLE:
 			camera_instance.radio_box.play_ally_radio("firstgate4_readleader")
@@ -186,6 +189,7 @@ func _on_player_entered_zone_trigger(zone_name: int):
 			camera_instance.radio_box.play_ally_radio("core meltdown")
 		ZoneNames.id.OUTSTANDING_WORK:
 			camera_instance.radio_box.play_ally_radio("escaping1_redleader")
+			hud_instance.deactivate_chase_timer()
 		ZoneNames.id.GATE_SEALED:
 			camera_instance.radio_box.play_ally_radio("doorshut1_redleader")
 		ZoneNames.id.TOO_HIGH:
@@ -199,6 +203,16 @@ func _on_player_entered_zone_trigger(zone_name: int):
 					camera_instance.radio_box.play_ally_radio("death2_redleader")
 				2:
 					camera_instance.radio_box.play_ally_radio("death3_redleader")
+		
+		# TUTORIAL TRIGGERS
+		ZoneNames.id.TUT_BOOST:
+			hud_instance.play_tutorial("shift to boost")
+		ZoneNames.id.TUT_ROLL:
+			hud_instance.play_tutorial("a/d to roll")
+		ZoneNames.id.TUT_SHOOT:
+			hud_instance.play_tutorial("click to shoot")
+		ZoneNames.id.TUT_POWER_MANAGEMENT:
+			hud_instance.play_tutorial("your ship only has enough power to shoot or boost, not both")
 
 		_:
 			assert(false, "unhandled ZoneNames.id was passed to the ship from a zone entrance")
