@@ -50,6 +50,7 @@ var current_ammo := 0
 
 @onready var ship_idle_sfx: AudioStreamPlayer3D = %ShipIdle
 @onready var player_dmg_sfx: AudioStreamPlayer3D = %PlayerDamageSound
+@onready var chase_rumble_sound :AudioStreamPlayer3D= %ChaseRumbleSound
 
 func _ready() -> void:
 	assert(camera_rig, "camera rig must be added before adding to scene")
