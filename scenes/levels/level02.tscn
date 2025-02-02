@@ -1420,6 +1420,9 @@ fire_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -719.594, 18.4369, -507.645)
 fire_mode = 2
 
+[node name="OmniLightCanyon3" parent="ProxZone4" instance=ExtResource("19_u6n46")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.8741, 19.8453, -114.274)
+
 [node name="BlastDoor2" parent="." instance=ExtResource("12_8csq4")]
 transform = Transform3D(-0.880816, 0, -0.473458, 0, 1, 0, 0.473458, 0, -0.880816, -397.214, 3.98614, -3573.46)
 
