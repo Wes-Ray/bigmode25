@@ -227,6 +227,14 @@ func on_player_crashed() -> void:
 	EventsBus.game_reset.emit()
 	pause()
 
+func on_player_failed_to_reach_gate() -> void:
+	deactivate_chase_timer()
+	Logger.log("player crashed", true)
+	status_label.text = "[b][color=red]DEFEAT[/color][/b]"
+	launch_button.hide()
+	EventsBus.game_reset.emit()
+	pause()
+
 func play_tutorial(text: String) -> void:
 	tutorial_display_label.text = "[b]" + text
 	tutorial_display_label.show()

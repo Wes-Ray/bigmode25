@@ -6,19 +6,14 @@ extends Node3D
 
 var crystal_count := 0
 var ship : Ship
+var gate_crossed := false
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	for node in get_children():
 		if node is Crystal:
 			# print("found crystal")
 			crystal_count += 1
 			node.destroyed.connect(_crystal_destroyed)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
 
 func _crystal_destroyed():
 	crystal_count -= 1
@@ -35,3 +30,13 @@ func _crystal_destroyed():
 
 func get_distance(pos: Vector3) -> float:
 	return sqrt(pow(pos.x - global_position.x, 2) + pow(pos.y - global_position.y, 2) + pow(pos.z - global_position.z, 2))
+
+func _on_gate_closed() -> void:
+	if gate_crossed:
+		return
+	print("FAILED TO CROSS GATE IN TIME")
+	EventsBus.player_entered_zone_trigger.emit(ZoneNames.id.FAILED_TO_CROSS_GATE_IN_TIME)
+
+func _on_area_3d_area_entered(_area:Area3D) -> void:
+	print("gate crossed")
+	gate_crossed = true

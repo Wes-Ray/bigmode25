@@ -105,7 +105,9 @@ func init() -> void:
 	camera_instance.rotation = spawn_point.rotation
 
 	ship_instance.player_crashed.connect(hud_instance.on_player_crashed)
+	ship_instance.player_failed_to_reach_gate.connect(hud_instance.on_player_failed_to_reach_gate)
 	ship_instance.player_crashed.connect(camera_instance.on_player_crashed)
+	ship_instance.player_failed_to_reach_gate.connect(camera_instance.on_player_failed_to_reach_gate)
 
 	hud_instance.player_ref = ship_instance
 
@@ -213,6 +215,13 @@ func _on_player_entered_zone_trigger(zone_name: int):
 			hud_instance.play_tutorial("click to shoot")
 		ZoneNames.id.TUT_POWER_MANAGEMENT:
 			hud_instance.play_tutorial("your ship only has enough power to shoot or boost, not both")
+		
+		# MISSION FAILURE TRIGGERS
+		ZoneNames.id.FAILED_TO_CROSS_GATE_IN_TIME:
+			hud_instance.play_tutorial("failed to breach security gate in time")
+			camera_instance.radio_box.play_ally_radio("doorshut1_redleader")
+			await get_tree().create_timer(4.).timeout
+			ship_instance.failed_to_reach_gate()
 
 		_:
 			assert(false, "unhandled ZoneNames.id was passed to the ship from a zone entrance")
