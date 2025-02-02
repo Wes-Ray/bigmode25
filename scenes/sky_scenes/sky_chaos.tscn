@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b16n7jp6nd3t7"]
+[gd_scene load_steps=7 format=3 uid="uid://b16n7jp6nd3t7"]
 
 [ext_resource type="Script" path="res://assets/props/sky_props/ship_path.gd" id="1_mc5ga"]
 [ext_resource type="PackedScene" uid="uid://c8dgqxonkwbnj" path="res://assets/props/sky_props/small_ship.tscn" id="2_4tb44"]
 [ext_resource type="PackedScene" uid="uid://cwhtj7qfi1j6p" path="res://assets/props/sky_props/medium_ship.tscn" id="3_wc742"]
+[ext_resource type="PackedScene" uid="uid://bog5w8s0hg11y" path="res://assets/props/sky_props/large_ship.tscn" id="4_4xdg7"]
 
 [sub_resource type="Curve3D" id="Curve3D_xdb48"]
 bake_interval = 1.0
@@ -173,3 +174,96 @@ script = ExtResource("1_mc5ga")
 
 [node name="SmallShip" parent="AnimationGroup3/Path3D4" instance=ExtResource("2_4tb44")]
 transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 0, 0, 0)
+
+[node name="AnimationGroup4" type="Node3D" parent="."]
+transform = Transform3D(-0.0812602, 0.0664713, -0.994474, 1.23139e-09, 0.997774, 0.0666919, 0.996693, 0.00541939, -0.0810793, -1637.16, 190.887, -357.393)
+
+[node name="Path3D" type="Path3D" parent="AnimationGroup4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1159.56, 662.537, -1963)
+curve = SubResource("Curve3D_xdb48")
+script = ExtResource("1_mc5ga")
+
+[node name="SmallShip" parent="AnimationGroup4/Path3D" instance=ExtResource("2_4tb44")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 0, 0, 0)
+
+[node name="Path3D5" type="Path3D" parent="AnimationGroup4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1884.85, 838.966, -1963)
+curve = SubResource("Curve3D_xdb48")
+script = ExtResource("1_mc5ga")
+
+[node name="PathFollow3D" parent="AnimationGroup4/Path3D5" instance=ExtResource("3_wc742")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 0, 0, 0)
+
+[node name="Path3D6" type="Path3D" parent="AnimationGroup4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1676.92, 662.537, -2066.91)
+curve = SubResource("Curve3D_xdb48")
+script = ExtResource("1_mc5ga")
+
+[node name="PathFollow3D" parent="AnimationGroup4/Path3D6" instance=ExtResource("3_wc742")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 0, 0, 0)
+
+[node name="Path3D2" type="Path3D" parent="AnimationGroup4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1416.76, 662.537, -2226.45)
+curve = SubResource("Curve3D_xdb48")
+script = ExtResource("1_mc5ga")
+
+[node name="SmallShip" parent="AnimationGroup4/Path3D2" instance=ExtResource("2_4tb44")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 0, 0, 0)
+
+[node name="Path3D3" type="Path3D" parent="AnimationGroup4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1004.78, 966.366, -1963)
+curve = SubResource("Curve3D_jl2wf")
+script = ExtResource("1_mc5ga")
+
+[node name="SmallShip" parent="AnimationGroup4/Path3D3" instance=ExtResource("2_4tb44")]
+transform = Transform3D(4.37114e-08, 0, 1, 0, 1, 0, -1, 0, 4.37114e-08, 0, 0, 0)
+
+[node name="Path3D4" type="Path3D" parent="AnimationGroup4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1159.56, 919.632, -4921.49)
+curve = SubResource("Curve3D_xdb48")
+script = ExtResource("1_mc5ga")
+
+[node name="SmallShip" parent="AnimationGroup4/Path3D4" instance=ExtResource("2_4tb44")]
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 0, 0, 0)
+
+[node name="LargeShip" parent="." instance=ExtResource("4_4xdg7")]
+transform = Transform3D(-17.1823, 0, 18.1596, 0, 25, 0, -18.1596, 0, -17.1823, 2616.22, 1327.2, 220.743)
+
+[node name="LargeShip2" parent="." instance=ExtResource("4_4xdg7")]
+transform = Transform3D(13.3418, 0, 21.1423, 0, 25, 0, -21.1423, 0, 13.3418, 169.414, 1396.67, 104.898)
+
+[node name="LargeShip3" parent="." instance=ExtResource("4_4xdg7")]
+transform = Transform3D(-5.31297, 0, -24.4289, 0, 25, 0, 24.4289, 0, -5.31297, 2269.63, 1396.67, -2081.2)
+
+[node name="LargeShip4" parent="." instance=ExtResource("4_4xdg7")]
+transform = Transform3D(-24.2181, 0, -6.20372, 0, 25, 0, 6.20372, 0, -24.2181, 3555.08, 2016.81, -1068.36)
+
+[node name="LargeShip5" parent="." instance=ExtResource("4_4xdg7")]
+transform = Transform3D(-24.2181, 0, -6.20372, 0, 25, 0, 6.20372, 0, -24.2181, 5486.52, 1826.89, -2369.39)
+
+[node name="LargeShip6" parent="." instance=ExtResource("4_4xdg7")]
+transform = Transform3D(-24.2181, 0, -6.20372, 0, 25, 0, 6.20372, 0, -24.2181, 3228.35, 1455.66, -4245.84)
+
+[node name="LargeShip7" parent="." instance=ExtResource("4_4xdg7")]
+transform = Transform3D(-24.2181, 0, -6.20372, 0, 25, 0, 6.20372, 0, -24.2181, 5433.99, 1985.58, 516.665)
+
+[node name="LargeShip8" parent="." instance=ExtResource("4_4xdg7")]
+transform = Transform3D(-17.1823, 0, 18.1596, 0, 25, 0, -18.1596, 0, -17.1823, -3495.12, 874.017, -2012.78)
+
+[node name="LargeShip9" parent="." instance=ExtResource("4_4xdg7")]
+transform = Transform3D(13.3418, 0, 21.1423, 0, 25, 0, -21.1423, 0, 13.3418, -5941.92, 943.483, -2128.63)
+
+[node name="LargeShip10" parent="." instance=ExtResource("4_4xdg7")]
+transform = Transform3D(-5.31297, 0, -24.4289, 0, 25, 0, 24.4289, 0, -5.31297, -3841.7, 943.483, -4314.73)
+
+[node name="LargeShip11" parent="." instance=ExtResource("4_4xdg7")]
+transform = Transform3D(-24.2181, 0, -6.20372, 0, 25, 0, 6.20372, 0, -24.2181, -2556.26, 1563.62, -3301.88)
+
+[node name="LargeShip12" parent="." instance=ExtResource("4_4xdg7")]
+transform = Transform3D(-24.2181, 0, -6.20372, 0, 25, 0, 6.20372, 0, -24.2181, -624.813, 1373.71, -4602.92)
+
+[node name="LargeShip13" parent="." instance=ExtResource("4_4xdg7")]
+transform = Transform3D(-24.2181, 0, -6.20372, 0, 25, 0, 6.20372, 0, -24.2181, -2882.99, 1002.47, -6479.36)
+
+[node name="LargeShip14" parent="." instance=ExtResource("4_4xdg7")]
+transform = Transform3D(-24.2181, 0, -6.20372, 0, 25, 0, 6.20372, 0, -24.2181, -677.351, 1532.4, -1716.86)

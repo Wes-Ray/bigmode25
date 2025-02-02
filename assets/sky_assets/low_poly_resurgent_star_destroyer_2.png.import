@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv6j4wvnrrqdy"
+uid="uid://d4h528mvknkym"
 path.s3tc="res://.godot/imported/low_poly_resurgent_star_destroyer_2.png-eec01aadd322abba2b8bdbbbe2a28cb1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "3e7f26ceb0ba041f659f417d1d534969"
 }
 
 [deps]
