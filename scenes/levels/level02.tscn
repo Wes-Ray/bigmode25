@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dydrr63f746ur"]
+[gd_scene load_steps=40 format=3 uid="uid://dydrr63f746ur"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sebui"]
 [ext_resource type="PackedScene" uid="uid://wk8ox7egbudr" path="res://scenes/ship.tscn" id="2_kkbaq"]
@@ -18,11 +18,15 @@
 [ext_resource type="PackedScene" uid="uid://ddphuw4pwv8q8" path="res://scenes/levels/level_object_scenes/cave_01.tscn" id="16_wnt8b"]
 [ext_resource type="PackedScene" uid="uid://cdrpc5daiyglh" path="res://scenes/turrets/laser_turret.tscn" id="17_cu70w"]
 [ext_resource type="PackedScene" uid="uid://t37eul41x86d" path="res://scenes/turrets/projectile_turret.tscn" id="17_f2ymy"]
+[ext_resource type="PackedScene" uid="uid://dgajnpjqbepw0" path="res://scenes/blast_wall/blast_door_tutorial.tscn" id="18_y35io"]
 [ext_resource type="PackedScene" uid="uid://c6iaef804diea" path="res://scenes/levels/level_object_scenes/omni_light_canyon.tscn" id="19_u6n46"]
 [ext_resource type="PackedScene" uid="uid://cfclqkm2ihib0" path="res://scenes/objective/generator_base.tscn" id="20_i4ycx"]
 [ext_resource type="PackedScene" uid="uid://csl63b474abnd" path="res://scenes/objective/objective_door.tscn" id="21_auxj4"]
 [ext_resource type="PackedScene" uid="uid://c0oi5pmunnlf8" path="res://scenes/objective/generator_base_door_frame.tscn" id="22_8g6bb"]
 [ext_resource type="PackedScene" uid="uid://bfn4f3en4ursj" path="res://scenes/levels/level_object_scenes/chase_01.tscn" id="23_ebtpl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j3b1t"]
+size = Vector3(100, 443.126, 648.278)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_avpex"]
 radius = 800.0
@@ -85,11 +89,12 @@ camera_scene = ExtResource("3_e40k6")
 hud_scene = ExtResource("4_a4gyl")
 
 [node name="Spawn" type="Marker3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3188.69, -252.838, 1790.23)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5286.87, -252.838, 1951.48)
 gizmo_extents = 50.0
 
 [node name="DebugSpawn" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1266.13, -19.0261, -5208.3)
+transform = Transform3D(0.77138, 0, -0.636374, 0, 1, 0, 0.636374, 0, 0.77138, -1290.33, -0.763992, -5163.46)
+gizmo_extents = 50.0
 
 [node name="YChecker" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -118,6 +123,88 @@ sky_mode = 2
 
 [node name="chase01" parent="." instance=ExtResource("23_ebtpl")]
 transform = Transform3D(0.946913, 0, -0.321489, 0, 1, 0, 0.321489, 0, 0.946913, -2173.82, -43.1724, -3137.5)
+
+[node name="VoiceTriggers" type="Node3D" parent="."]
+
+[node name="ZoneTrigger" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4815.05, -222.26, 1889.53)
+zone_name = 9
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -105.49, -64.2704, 7.66479)
+shape = SubResource("BoxShape3D_j3b1t")
+
+[node name="ZoneTrigger2" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3920.47, -222.26, 1760.27)
+zone_name = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -105.49, -64.2704, 7.66479)
+shape = SubResource("BoxShape3D_j3b1t")
+
+[node name="ZoneTrigger3" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1612.23, -222.26, 1945.41)
+zone_name = 11
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger3"]
+transform = Transform3D(0.884467, 0, -0.466603, 0, 1, 0, 0.466603, 0, 0.884467, -14.9266, -64.2704, 62.9124)
+shape = SubResource("BoxShape3D_j3b1t")
+
+[node name="ZoneTrigger4" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -878.589, -222.26, 1792.82)
+zone_name = 12
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger4"]
+transform = Transform3D(0.423915, 0, 0.905702, 0, 1, 0, -0.905702, 0, 0.423915, -14.9266, -64.2704, 62.9124)
+shape = SubResource("BoxShape3D_j3b1t")
+
+[node name="ZoneTrigger6" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5883, 2.4902, 2.55492)
+zone_name = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger6"]
+transform = Transform3D(0.173528, 0, 0.984829, 0, 1, 0, -0.984829, 0, 0.173528, 0, 0, 0)
+shape = SubResource("BoxShape3D_j3b1t")
+
+[node name="ZoneTrigger7" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -133.658, 2.4902, -898.679)
+zone_name = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger7"]
+transform = Transform3D(-0.503035, 0, 0.864266, 0, 1, 0, -0.864266, 0, -0.503035, 0, 0, 0)
+shape = SubResource("BoxShape3D_j3b1t")
+
+[node name="ZoneTrigger8" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -413.121, 2.4902, -3822)
+zone_name = 17
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger8"]
+transform = Transform3D(-0.084043, 0, 0.996462, 0, 1, 0, -0.996462, 0, -0.084043, 0, 0, 0)
+shape = SubResource("BoxShape3D_j3b1t")
+
+[node name="ZoneTrigger9" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1566.72, 2.4902, -4463.76)
+zone_name = 18
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger9"]
+transform = Transform3D(0.431063, 0, 0.902322, 0, 1, 0, -0.902322, 0, 0.431063, 0, 0, 0)
+shape = SubResource("BoxShape3D_j3b1t")
+
+[node name="ZoneTrigger10" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2161.68, 2.4902, -3141.42)
+zone_name = 14
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger10"]
+transform = Transform3D(0.431063, 0, 0.902322, 0, 1, 0, -0.902322, 0, 0.431063, 0, 0, 0)
+shape = SubResource("BoxShape3D_j3b1t")
+
+[node name="ZoneTrigger11" parent="VoiceTriggers" instance=ExtResource("15_78gg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5707.35, -1173.99, -57.6251)
+zone_name = 24
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VoiceTriggers/ZoneTrigger11"]
+transform = Transform3D(0.965958, 0, -0.258701, 0, 1, 0, 0.258701, 0, 0.965958, 0, 0, 0)
+shape = SubResource("BoxShape3D_j3b1t")
 
 [node name="StaticPropsCave" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4139.64, -510.453, 2636.33)
@@ -1083,15 +1170,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3975.75, -288.521, 2637.5)
 start_with_children_enabled = true
 
 [node name="ZoneTrigger" parent="ProxZone01" instance=ExtResource("15_78gg4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.224121, -1.47867, -1075.09)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -960.733, -1.47861, -770.614)
 zone_name = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ProxZone01/ZoneTrigger"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1041.38, -92.4669, 153.091)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.1641, -92.4666, -29.8184)
 shape = SubResource("SphereShape3D_avpex")
 
 [node name="OmniLightCave" parent="ProxZone01" instance=ExtResource("16_31mbo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1124.97, 219.567, -782.426)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250.104, 248.288, -868.081)
 
 [node name="OmniLightCave2" parent="ProxZone01" instance=ExtResource("16_31mbo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1755.44, 237.107, -871.272)
@@ -1128,10 +1215,10 @@ transform = Transform3D(-0.983555, 0, -0.180605, 0, 1, 0, 0.180605, 0, -0.983555
 [node name="OmniLightCave3" parent="ProxZone02EnteringCave" instance=ExtResource("16_31mbo")]
 transform = Transform3D(-0.983555, 0, -0.180605, 0, 1, 0, 0.180605, 0, -0.983555, -777.823, 578.743, 1993.55)
 
-[node name="BlastDoor3" parent="." instance=ExtResource("12_8csq4")]
+[node name="BlastDoorTutorial" parent="." instance=ExtResource("18_y35io")]
 transform = Transform3D(-0.983556, 0, 0.180605, 0, 1, 0, -0.180605, 0, -0.983556, -796.462, -321.905, 1062.52)
 
-[node name="Crystal" parent="BlastDoor3" instance=ExtResource("12_nbgno")]
+[node name="Crystal" parent="BlastDoorTutorial" instance=ExtResource("12_nbgno")]
 transform = Transform3D(1, 0, -2.66454e-15, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 68.2771, 0, -19.431)
 
 [node name="ProxZone03EnteringCanyon" parent="." instance=ExtResource("14_5x7jb")]
@@ -1177,6 +1264,9 @@ fire_rate = 1.2
 
 [node name="LaserTurret" parent="ProxZone" instance=ExtResource("17_cu70w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 641.14, 88.6557, -224.687)
+
+[node name="OmniLightCanyon" parent="ProxZone" instance=ExtResource("19_u6n46")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1317.58, -2.07185, 353.084)
 
 [node name="BlastDoor4" parent="." instance=ExtResource("12_8csq4")]
 transform = Transform3D(-0.542339, 0, 0.84016, 0, 1, 0, -0.84016, 0, -0.542339, 1909.69, -11.3916, -1035.01)

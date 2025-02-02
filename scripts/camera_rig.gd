@@ -23,6 +23,7 @@ var soundtrack_on := false
 @onready var boss_soundtrack := %BossSoundtrack
 @onready var final_run_soundtrack := %ChaseSoundtrack
 @onready var deathsound_player := %DeathSound
+@onready var radio_box := %RadioBox
 
 
 func _ready() -> void:

@@ -22,6 +22,7 @@ func _crystal_destroyed() -> void:
 func _disable_shield() -> void:
 	$AlarmSound.play()
 	$Shield.hide()
+	EventsBus.player_objective_complete_trigger.emit(ZoneNames.id.SHIELD_COLLAPSE)
 	call_deferred("_deferred_shield_collision_disable")
 
 func _deferred_shield_collision_disable() -> void:
@@ -31,3 +32,4 @@ func _obj_crystal_destroyed() -> void:
 	for ob_door in objective_doors:
 		ob_door.close_objective_door()
 	$AlarmSound.stop()
+	EventsBus.player_objective_complete_trigger.emit(ZoneNames.id.CORE_GOING_CRITICAL)

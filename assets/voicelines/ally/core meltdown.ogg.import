@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dh3trhhxblm7x"
+path="res://.godot/imported/core meltdown.ogg-ff4465b37c05d91505ce9a28f09793a3.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/voicelines/ally/core meltdown.ogg"
+dest_files=["res://.godot/imported/core meltdown.ogg-ff4465b37c05d91505ce9a28f09793a3.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

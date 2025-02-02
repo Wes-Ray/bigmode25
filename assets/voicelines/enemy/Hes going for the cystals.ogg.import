@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://hbpup4tbw2kp"
+path="res://.godot/imported/Hes going for the cystals.ogg-7fa5537979f3b26b008d55fb2d83a764.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/voicelines/enemy/Hes going for the cystals.ogg"
+dest_files=["res://.godot/imported/Hes going for the cystals.ogg-7fa5537979f3b26b008d55fb2d83a764.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
