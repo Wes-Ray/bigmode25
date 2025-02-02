@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://h0p1y008jkn8"]
+
+[ext_resource type="PackedScene" uid="uid://bog5w8s0hg11y" path="res://assets/props/sky_props/large_ship.tscn" id="1_mjudc"]
+
+[node name="LargeShips" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 135.413, 0)
+
+[node name="LargeShip" parent="." instance=ExtResource("1_mjudc")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 1944.92, 1881.84, -3822.9)
+
+[node name="LargeShip2" parent="." instance=ExtResource("1_mjudc")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, -382.475, 1488.53, -5108.99)
+
+[node name="LargeShip3" parent="." instance=ExtResource("1_mjudc")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 954.191, 1488.53, -4756.79)
+
+[node name="LargeShip4" parent="." instance=ExtResource("1_mjudc")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, -382.475, 1488.53, -1778.22)
+
+[node name="LargeShip5" parent="." instance=ExtResource("1_mjudc")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, -2727.27, 1488.53, -3212.41)
+
+[node name="LargeShip6" parent="." instance=ExtResource("1_mjudc")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, -382.475, 1488.53, -636.009)
+
+[node name="LargeShip7" parent="." instance=ExtResource("1_mjudc")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 1256.64, 1488.53, -3212.41)

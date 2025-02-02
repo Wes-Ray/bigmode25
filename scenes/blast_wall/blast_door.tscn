@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ca6tuggw5nlul"]
+[gd_scene load_steps=17 format=3 uid="uid://ca6tuggw5nlul"]
 
 [ext_resource type="Script" path="res://scripts/blast_door.gd" id="1_7vavr"]
 [ext_resource type="AudioStream" uid="uid://hx6pwvvb0xeg" path="res://assets/sound/Alarm.ogg" id="3_xwikr"]
@@ -324,6 +324,20 @@ tracks/8/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(5.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_gate_closed"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nkq4x"]
 _data = {
@@ -346,6 +360,9 @@ shader_parameter/zoom = 6.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_dy5r8"]
 size = Vector2(70, 120)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vmgju"]
+size = Vector3(131.01, 81.205, 19.1964)
 
 [node name="BlastDoor" type="Node3D"]
 script = ExtResource("1_7vavr")
@@ -401,3 +418,13 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5, 0, 
 
 [node name="Door2" parent="blast-wall" instance=ExtResource("4_esp65")]
 transform = Transform3D(-1, -8.74228e-08, 1.06581e-14, 8.74228e-08, -1, 0, 1.06581e-14, 8.47033e-22, 1, 5, 0, -86.6438)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6604, -3.32724, -3.52374)
+shape = SubResource("BoxShape3D_vmgju")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

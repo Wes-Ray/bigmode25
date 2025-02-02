@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name Ship
 
 signal player_crashed
+signal player_failed_to_reach_gate
 
 @export var camera_rig : CameraRig
 var camera : Camera3D 
@@ -105,6 +106,8 @@ func _process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("shoot") and not boosting:
 		shoot()
+	elif Input.is_action_just_pressed("shoot") and boosting:
+		hud.shoot_with_no_power()
 	if current_ammo < max_ammo and rocket_recharge_timer.is_stopped():
 		rocket_recharge_timer.start()
 
@@ -206,6 +209,9 @@ func _died() -> void:
 	_death_sound()
 	player_crashed.emit()
 	queue_free()
+
+func failed_to_reach_gate() -> void:
+	player_failed_to_reach_gate.emit()
 
 func _on_rocket_recharge_timeout() -> void:
 	current_ammo += 1

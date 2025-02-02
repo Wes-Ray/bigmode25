@@ -62,7 +62,7 @@ unique_name_in_owner = true
 layout_mode = 1
 offset_left = 25.0
 offset_top = 24.0
-offset_right = 1454.0
+offset_right = 1848.0
 offset_bottom = 267.0
 theme_override_font_sizes/normal_font_size = 180
 theme_override_font_sizes/bold_font_size = 180
@@ -103,7 +103,7 @@ alignment = 2
 
 [node name="RestartButton" type="Button" parent="Menu/ButtonsContainer"]
 layout_mode = 2
-text = "RESTART"
+text = "RESPAWN"
 
 [node name="ExitToMenu" type="Button" parent="Menu/ButtonsContainer"]
 layout_mode = 2
@@ -341,7 +341,8 @@ offset_top = -177.0
 offset_right = 324.0
 offset_bottom = -69.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PowerModes/PowerDirection"]
+[node name="PowerLabel" type="RichTextLabel" parent="PowerModes/PowerDirection"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 207.0
 offset_top = 10.0
@@ -512,6 +513,50 @@ grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 text = "[b]WARNING: FLYING TOO HIGH[/b]"
+
+[node name="ChaseTimer" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 221.0
+offset_right = 20.0
+offset_bottom = 261.0
+grow_horizontal = 2
+
+[node name="ChaseTimerLabel" type="RichTextLabel" parent="ChaseTimer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = -54.0
+offset_top = 6.0
+offset_right = 111.0
+offset_bottom = 58.0
+theme_override_colors/default_color = Color(0.901961, 0.101961, 0.101961, 1)
+bbcode_enabled = true
+
+[node name="TutorialDisplay" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="TutorialLabel" type="RichTextLabel" parent="TutorialDisplay"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 214.0
+offset_top = -320.0
+offset_right = 704.0
+offset_bottom = -5.0
+bbcode_enabled = true
+text = "[b]left click to FIRE MISSILE"
 
 [connection signal="button_up" from="Menu/LaunchButton" to="." method="_on_launch_button_button_up"]
 [connection signal="button_up" from="Menu/ButtonsContainer/RestartButton" to="." method="_on_restart_button_button_up"]

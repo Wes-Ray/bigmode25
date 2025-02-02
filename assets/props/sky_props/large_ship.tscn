@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://bog5w8s0hg11y"]
+
+[ext_resource type="Script" path="res://assets/props/sky_props/large_ship.gd" id="1_pjqqb"]
+[ext_resource type="PackedScene" uid="uid://d0b6abuv46kg6" path="res://assets/props/sky_props/sky_explosion.tscn" id="3_doe22"]
+[ext_resource type="PackedScene" uid="uid://cce1571atoh6s" path="res://assets/props/Star Destroyer.glb" id="3_h0rhe"]
+
+[node name="LargeShip" type="Node3D"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
+script = ExtResource("1_pjqqb")
+
+[node name="SkyExplosion" parent="." instance=ExtResource("3_doe22")]
+unique_name_in_owner = true
+transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 1.82573, -0.597211, 3.84152)
+
+[node name="SkyExplosion2" parent="." instance=ExtResource("3_doe22")]
+unique_name_in_owner = true
+transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 9.98453, -0.184173, 0.756523)
+
+[node name="SkyExplosion3" parent="." instance=ExtResource("3_doe22")]
+unique_name_in_owner = true
+transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, -5.4579, 3.16263, 1.42825)
+
+[node name="ExplosionTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 10.0
+autostart = true
+
+[node name="ShootTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+autostart = true
+
+[node name="ShootingPoint1" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.323582, 0.178461, 3.12981)
+
+[node name="ShootTowards1" type="Marker3D" parent="ShootingPoint1"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.07737, 91.6751)
+
+[node name="ShootingPoint2" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.830776, -3.27199)
+
+[node name="ShootTowards2" type="Marker3D" parent="ShootingPoint2"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -41.2563)
+
+[node name="ShootingPoint3" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90138, -1.80128, 0.204956)
+
+[node name="ShootTowards3" type="Marker3D" parent="ShootingPoint3"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.60009, -10.1959, 8.76291)
+
+[node name="ShootingPoint4" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.40021, 0.214692, -0.914712)
+
+[node name="ShootTowards4" type="Marker3D" parent="ShootingPoint4"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.37324, 10.1603, -20.0896)
+
+[node name="Star Destroyer" parent="." instance=ExtResource("3_h0rhe")]
+
+[connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

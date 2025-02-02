@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwhtj7qfi1j6p"]
+
+[ext_resource type="PackedScene" uid="uid://dh5d41toqe8ab" path="res://assets/sky_assets/low_poly_spaceship_110.glb" id="1_468ki"]
+[ext_resource type="Script" path="res://assets/props/sky_props/medium_ship.gd" id="1_ybjcs"]
+[ext_resource type="PackedScene" uid="uid://d0b6abuv46kg6" path="res://assets/props/sky_props/sky_explosion.tscn" id="3_6nfm2"]
+
+[node name="PathFollow3D" type="PathFollow3D"]
+use_model_front = true
+script = ExtResource("1_ybjcs")
+explosion_time = null
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_468ki")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="SkyExplosion" parent="." instance=ExtResource("3_6nfm2")]
+unique_name_in_owner = true
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="ShootingPoint" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 13.8248, 40.4749)
+
+[node name="ShootingTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="ExplosionTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="ShootTowards" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.0561, 5095.36)

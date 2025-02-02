@@ -23,6 +23,7 @@ var soundtrack_on := false
 @onready var boss_soundtrack := %BossSoundtrack
 @onready var final_run_soundtrack := %ChaseSoundtrack
 @onready var deathsound_player := %DeathSound
+@onready var radio_box := %RadioBox
 
 
 func _ready() -> void:
@@ -95,3 +96,6 @@ func soundtrack(do_play : bool) -> void:
 func on_player_crashed() -> void:
 	print("camera saw player crashed")
 	deathsound_player.play()
+
+func on_player_failed_to_reach_gate() -> void:
+	pass

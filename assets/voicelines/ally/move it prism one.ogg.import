@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://q0kx3wnsuvmk"
+path="res://.godot/imported/move it prism one.ogg-faaa0b5a453fe274c692703639ec78e3.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/voicelines/ally/move it prism one.ogg"
+dest_files=["res://.godot/imported/move it prism one.ogg-faaa0b5a453fe274c692703639ec78e3.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
