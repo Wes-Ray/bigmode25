@@ -1,4 +1,17 @@
-# Gamejam!
+# Prism One: Trench Run
+## Links
+https://itch.io/jam/bigmode-game-jam-2025/rate/3297954#post-11967138
+https://flook.itch.io/prism-one-trench-run
+https://www.youtube.com/watch?v=HswYfvhhwn4 
+
+## Description
+Balance your ship's power between guns and thrusters as you dodge missiles and blow up power crystals along the enemy trench.
+
+You are Prism One, a retired military pilot turned civilian racer. You've been recalled for one last mission, that only you can pull off.
+
+Equipped with a pair of rocket pods strapped to your trusty race ship, you're on an impossible mission to infiltrate a hardened enemy base. Slipping through the narrow mining system and lightly defended trench to reach the main objective.
+
+Good luck, Prism One. You'll need it.
 
 # Setting up deployment
 - Install WSL (wsl --install, requires restart of PC)
