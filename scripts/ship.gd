@@ -52,6 +52,10 @@ var current_ammo := 0
 @onready var player_dmg_sfx: AudioStreamPlayer3D = %PlayerDamageSound
 @onready var chase_rumble_sound :AudioStreamPlayer3D= %ChaseRumbleSound
 
+@onready var explosion_particles : SkyExplosion = %SkyExplosion
+
+var player_is_crashing := false
+
 func _ready() -> void:
 	assert(camera_rig, "camera rig must be added before adding to scene")
 	#TODO: make a separate function / signal for when player dies to projectiles
@@ -66,6 +70,8 @@ func _ready() -> void:
 	launchers.append(%LaunchPoint1)
 
 func _process(delta: float) -> void:
+	if player_is_crashing:
+		return
 
 	# ORIENTATION LOGIC -----
 	var forward := basis.z
@@ -195,11 +201,11 @@ func shoot():
 		EventsBus.rocket_count_changed.emit(current_ammo)
 
 func _on_collision_area_body_entered(_body: Node3D) -> void:
-	# TODO: add explodies
 	# print("collied: ", _body)
-	_death_sound()
-	player_crashed.emit()
-	queue_free()
+	# player_crashed.emit()
+	_explode_ship_fx()
+	_player_crashed()
+	# queue_free()
 
 func _on_collision_area_area_entered(_area: Area3D) -> void:
 	# print("ship hit: ", _area)
@@ -207,9 +213,25 @@ func _on_collision_area_area_entered(_area: Area3D) -> void:
 	player_dmg_sfx.play()
 
 func _died() -> void:
-	_death_sound()
+	# player_crashed.emit()
+	_player_crashed()
+	_explode_ship_fx()
+	# queue_free()
+
+func _player_crashed() -> void:
+	player_is_crashing = true
+	%CrashSound.play()
+	%Spaceship.hide()
+	contrail.hide()
+	bottom_contrail.hide()
+	%ShipIdle.stop()
+
+	# translate player back a bit so less wall clipping happens
+	position = position - transform.basis.z * 10
+
+
+	await get_tree().create_timer(1.).timeout
 	player_crashed.emit()
-	queue_free()
 
 func failed_to_reach_gate() -> void:
 	player_failed_to_reach_gate.emit()
@@ -219,8 +241,5 @@ func _on_rocket_recharge_timeout() -> void:
 	clampi(current_ammo, 0, max_ammo)
 	EventsBus.rocket_count_changed.emit(current_ammo)
 
-func _death_sound() -> void:
-	await get_tree().create_timer(1).timeout
-	$crash.play()
-
-
+func _explode_ship_fx() -> void:
+	explosion_particles.explode()

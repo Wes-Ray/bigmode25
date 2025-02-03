@@ -99,6 +99,5 @@ environment = ExtResource("6_iaxdp")
 transform = Transform3D(0.924597, -0.0281358, -0.379906, 0.380728, 0.102, 0.919044, 0.012892, -0.994387, 0.10502, 0, 4.00047, 0)
 
 [node name="ShipMenu" parent="World" instance=ExtResource("5_g86jm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.66323)
 
 [connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
