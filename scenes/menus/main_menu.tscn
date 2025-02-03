@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhjesns7d06ff"]
+[gd_scene load_steps=7 format=3 uid="uid://bhjesns7d06ff"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_n6a6p"]
-[ext_resource type="Theme" path="res://resources/themes/base.tres" id="1_tujrc"]
+[ext_resource type="Theme" uid="uid://cy0qkp44yj8d3" path="res://resources/themes/base.tres" id="1_tujrc"]
 [ext_resource type="PackedScene" uid="uid://c6d2kxsd2345a" path="res://scenes/menus/switch_scene_button.tscn" id="3_llabq"]
+[ext_resource type="PackedScene" uid="uid://dygasjpm2otdh" path="res://scenes/levels/level_object_scenes/trench_end.tscn" id="4_4w2kh"]
+[ext_resource type="PackedScene" uid="uid://bkjhcoo20itu7" path="res://scenes/ship_menu.tscn" id="5_g86jm"]
+[ext_resource type="Environment" uid="uid://dwo5bgnx8gesy" path="res://resources/canyon_run_world_environment.tres" id="6_iaxdp"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_n6a6p")
+
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,60 +18,63 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_tujrc")
-script = ExtResource("1_n6a6p")
 
-[node name="TitleLabel" type="RichTextLabel" parent="."]
+[node name="TitleLabel" type="RichTextLabel" parent="Control"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -746.0
-offset_top = 9.0
-offset_right = 747.0
-offset_bottom = 251.0
+offset_left = -724.0
+offset_top = 39.0
+offset_right = 724.0
+offset_bottom = 262.0
 grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 200
-text = "WILD WEASELS"
+theme_override_font_sizes/bold_font_size = 200
+bbcode_enabled = true
+text = "[b]WILD WEASELS"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 offset_left = -185.0
-offset_top = -156.5
+offset_top = -313.0
 offset_right = 185.0
-offset_bottom = 156.5
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 
-[node name="SwitchSceneButton2" parent="VBoxContainer" instance=ExtResource("3_llabq")]
+[node name="SwitchSceneButton2" parent="Control/VBoxContainer" instance=ExtResource("3_llabq")]
 layout_mode = 2
 text = "play"
 scene_select = "res://scenes/menus/loading_screen.tscn"
 
-[node name="SwitchSceneButton3" parent="VBoxContainer" instance=ExtResource("3_llabq")]
+[node name="SwitchSceneButton3" parent="Control/VBoxContainer" instance=ExtResource("3_llabq")]
 layout_mode = 2
 text = "settings"
 scene_select = "res://scenes/menus/options_menu.tscn"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 text = "QUIT
 "
 
-[node name="ControlsInfo" type="RichTextLabel" parent="."]
+[node name="ControlsInfo" type="RichTextLabel" parent="Control"]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = -622.0
-offset_top = 801.0
-offset_right = -21.0
-offset_bottom = 1036.0
+anchor_bottom = 1.0
+offset_left = -619.0
+offset_top = -262.0
+offset_right = -18.0
+offset_bottom = -27.0
 grow_horizontal = 0
+grow_vertical = 0
 bbcode_enabled = true
 text = "Roll Plane: a/d
 Throttle:   w
@@ -73,4 +82,23 @@ Free look:  Mouse2
 Boost:      Shift
 Fire:       click"
 
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="World" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="World"]
+transform = Transform3D(-0.283889, 0.36138, -0.88815, 0.110028, 0.932418, 0.344223, 0.952523, 0, -0.304465, -2.51913, 1.01977, -2.04926)
+current = true
+fov = 65.0
+
+[node name="trench_end" parent="World" instance=ExtResource("4_4w2kh")]
+transform = Transform3D(-0.791704, 0, -0.610906, 0, 1, 0, 0.610906, 0, -0.791704, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = ExtResource("6_iaxdp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.924597, -0.0281358, -0.379906, 0.380728, 0.102, 0.919044, 0.012892, -0.994387, 0.10502, 0, 4.00047, 0)
+
+[node name="ShipMenu" parent="World" instance=ExtResource("5_g86jm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.66323)
+
+[connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

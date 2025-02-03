@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y453ajexm1oy"
+uid="uid://bqresdkx5kq1u"
 path.s3tc="res://.godot/imported/low_poly_spaceship_110_2.png-1eeb38417a80f02c56a91a4f87bb72a1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "242ede39cc7b1c8d90905766ceeef294"
 }
 
 [deps]
