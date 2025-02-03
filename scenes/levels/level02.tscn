@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://yl20owsmi50l" path="res://scenes/crystal/crystal.tscn" id="12_nbgno"]
 [ext_resource type="PackedScene" uid="uid://bjgbj1egj4yyk" path="res://scenes/prox_zone.tscn" id="14_5x7jb"]
 [ext_resource type="PackedScene" uid="uid://b84gwpfj7j0eq" path="res://scenes/zone_trigger.tscn" id="15_78gg4"]
-[ext_resource type="PackedScene" path="res://scenes/levels/level_object_scenes/omni_light_cave.tscn" id="16_31mbo"]
+[ext_resource type="PackedScene" uid="uid://b3auk0it0a8fw" path="res://scenes/levels/level_object_scenes/omni_light_cave.tscn" id="16_31mbo"]
 [ext_resource type="Script" path="res://scripts/y_checker.gd" id="16_mxk7d"]
 [ext_resource type="PackedScene" uid="uid://ddphuw4pwv8q8" path="res://scenes/levels/level_object_scenes/cave_01.tscn" id="16_wnt8b"]
 [ext_resource type="PackedScene" uid="uid://cdrpc5daiyglh" path="res://scenes/turrets/laser_turret.tscn" id="17_cu70w"]

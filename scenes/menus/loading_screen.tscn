@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c8tqcdvw3q1uh"]
 
-[ext_resource type="Theme" path="res://resources/themes/base.tres" id="1_4h5od"]
+[ext_resource type="Theme" uid="uid://cy0qkp44yj8d3" path="res://resources/themes/base.tres" id="1_4h5od"]
 [ext_resource type="Script" path="res://scenes/menus/loading_screen.gd" id="1_b2y1e"]
 [ext_resource type="FontFile" uid="uid://mj31ihk0e6wt" path="res://assets/fonts/HomeVideoBold-R90Dv.ttf" id="3_7gmcc"]
 
@@ -23,16 +23,14 @@ scene_select = "res://scenes/levels/level02.tscn"
 
 [node name="TitleLabel" type="RichTextLabel" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -746.0
-offset_top = 9.0
-offset_right = 747.0
-offset_bottom = 251.0
-grow_horizontal = 2
+offset_left = 39.0
+offset_top = 41.0
+offset_right = 1532.0
+offset_bottom = 283.0
 theme_override_font_sizes/normal_font_size = 200
-text = "WILD WEASELS"
+theme_override_font_sizes/bold_font_size = 200
+bbcode_enabled = true
+text = "[b]PRISM ONE"
 
 [node name="LoadingLabel" type="RichTextLabel" parent="."]
 layout_mode = 1

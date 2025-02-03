@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="bigmode25"
+config/name="Prism One: Trench Run"
 run/main_scene="res://scenes/menus/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://assets/icons/icon_image_circle.png"
 
 [audio]
 
