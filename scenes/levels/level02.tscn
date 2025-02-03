@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dydrr63f746ur"]
+[gd_scene load_steps=44 format=3 uid="uid://dydrr63f746ur"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sebui"]
 [ext_resource type="PackedScene" uid="uid://wk8ox7egbudr" path="res://scenes/ship.tscn" id="2_kkbaq"]
@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://yl20owsmi50l" path="res://scenes/crystal/crystal.tscn" id="12_nbgno"]
 [ext_resource type="PackedScene" uid="uid://bjgbj1egj4yyk" path="res://scenes/prox_zone.tscn" id="14_5x7jb"]
 [ext_resource type="PackedScene" uid="uid://b84gwpfj7j0eq" path="res://scenes/zone_trigger.tscn" id="15_78gg4"]
-[ext_resource type="PackedScene" uid="uid://b3auk0it0a8fw" path="res://scenes/levels/level_object_scenes/omni_light_cave.tscn" id="16_31mbo"]
+[ext_resource type="PackedScene" path="res://scenes/levels/level_object_scenes/omni_light_cave.tscn" id="16_31mbo"]
 [ext_resource type="Script" path="res://scripts/y_checker.gd" id="16_mxk7d"]
 [ext_resource type="PackedScene" uid="uid://ddphuw4pwv8q8" path="res://scenes/levels/level_object_scenes/cave_01.tscn" id="16_wnt8b"]
 [ext_resource type="PackedScene" uid="uid://cdrpc5daiyglh" path="res://scenes/turrets/laser_turret.tscn" id="17_cu70w"]
@@ -25,6 +25,8 @@
 [ext_resource type="PackedScene" uid="uid://c0oi5pmunnlf8" path="res://scenes/objective/generator_base_door_frame.tscn" id="22_8g6bb"]
 [ext_resource type="PackedScene" uid="uid://bfn4f3en4ursj" path="res://scenes/levels/level_object_scenes/chase_01.tscn" id="23_ebtpl"]
 [ext_resource type="PackedScene" uid="uid://dygasjpm2otdh" path="res://scenes/levels/level_object_scenes/trench_end.tscn" id="25_ifxdc"]
+[ext_resource type="Script" path="res://scenes/levels/orbital_laser.gd" id="26_msbrv"]
+[ext_resource type="Material" uid="uid://tgcgn4wu7f6q" path="res://resources/turrets/laser.tres" id="27_1utys"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pxy5w"]
 size = Vector3(100, 518.651, 659.217)
@@ -97,7 +99,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5286.
 gizmo_extents = 50.0
 
 [node name="DebugSpawn" type="Marker3D" parent="."]
-transform = Transform3D(0.77138, 0, -0.636374, 0, 1, 0, 0.636374, 0, 0.77138, -1290.33, -0.763992, -5163.46)
+transform = Transform3D(0.77138, 0, -0.636374, 0, 1, 0, 0.636374, 0, 0.77138, 0, 31.7441, -133.498)
 gizmo_extents = 50.0
 
 [node name="YChecker" type="Node3D" parent="."]
@@ -1734,3 +1736,13 @@ shape = SubResource("CapsuleShape3D_l5y27")
 
 [node name="trench_end" parent="." instance=ExtResource("25_ifxdc")]
 transform = Transform3D(0.155814, 0, 0.987787, 0, 1, 0, -0.987787, 0, 0.155814, -5676.27, -1119, -31.72)
+
+[node name="OrbitalLaser" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1460.25, 0)
+script = ExtResource("26_msbrv")
+
+[node name="Laser" type="CSGCylinder3D" parent="OrbitalLaser"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -708.65, 0)
+material_override = ExtResource("27_1utys")
+radius = 1.1
+height = 2000.0
