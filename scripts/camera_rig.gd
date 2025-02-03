@@ -79,6 +79,9 @@ func _input(event: InputEvent) -> void:
 	if not is_instance_valid(track_target):
 		return
 	
+	if track_target.player_is_crashing:
+		return
+	
 	var mouse_movement:Vector2 = event.relative * 0.001 * GameConfig.mouse_sens
 
 	var invert_val := 1.0
@@ -95,7 +98,7 @@ func soundtrack(do_play : bool) -> void:
 
 func on_player_crashed() -> void:
 	print("camera saw player crashed")
-	deathsound_player.play()
+	# deathsound_player.play()
 
 func on_player_failed_to_reach_gate() -> void:
 	pass
