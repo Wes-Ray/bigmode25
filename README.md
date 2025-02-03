@@ -1,8 +1,8 @@
 # Prism One: Trench Run
 ## Links
-https://itch.io/jam/bigmode-game-jam-2025/rate/3297954#post-11967138
-https://flook.itch.io/prism-one-trench-run
-https://www.youtube.com/watch?v=HswYfvhhwn4 
+https://itch.io/jam/bigmode-game-jam-2025/rate/3297954#post-11967138  
+https://flook.itch.io/prism-one-trench-run  
+https://www.youtube.com/watch?v=HswYfvhhwn4   
 
 ## Description
 Balance your ship's power between guns and thrusters as you dodge missiles and blow up power crystals along the enemy trench.
