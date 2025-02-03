@@ -8,7 +8,7 @@ func _process(_delta: float) -> void:
 		if ship.global_position.y > global_position.y:
 			EventsBus.ceiling_warning_started.emit()
 			if ship.global_position.y > global_position.y + 40.:
-				ship.player_crashed.emit()
+				ship.blow_up_player()
 		else:
 			EventsBus.ceiling_warning_stopped.emit()
 	else:

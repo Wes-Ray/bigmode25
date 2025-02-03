@@ -201,11 +201,7 @@ func shoot():
 		EventsBus.rocket_count_changed.emit(current_ammo)
 
 func _on_collision_area_body_entered(_body: Node3D) -> void:
-	# print("collied: ", _body)
-	# player_crashed.emit()
-	_explode_ship_fx()
-	_player_crashed()
-	# queue_free()
+	blow_up_player()
 
 func _on_collision_area_area_entered(_area: Area3D) -> void:
 	# print("ship hit: ", _area)
@@ -213,13 +209,11 @@ func _on_collision_area_area_entered(_area: Area3D) -> void:
 	player_dmg_sfx.play()
 
 func _died() -> void:
-	# player_crashed.emit()
-	_player_crashed()
-	_explode_ship_fx()
-	# queue_free()
+	blow_up_player()
 
-func _player_crashed() -> void:
+func blow_up_player() -> void:
 	player_is_crashing = true
+	explosion_particles.explode()
 	%CrashSound.play()
 	%Spaceship.hide()
 	contrail.hide()
@@ -228,7 +222,6 @@ func _player_crashed() -> void:
 
 	# translate player back a bit so less wall clipping happens
 	position = position - transform.basis.z * 10
-
 
 	await get_tree().create_timer(1.).timeout
 	player_crashed.emit()
@@ -240,6 +233,4 @@ func _on_rocket_recharge_timeout() -> void:
 	current_ammo += 1
 	clampi(current_ammo, 0, max_ammo)
 	EventsBus.rocket_count_changed.emit(current_ammo)
-
-func _explode_ship_fx() -> void:
-	explosion_particles.explode()
+	
